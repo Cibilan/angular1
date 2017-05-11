@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="pilot-app">
+<html ng-app="pilotApp">
 <head>
 
 	<script src="app/lib/angular-1.2.32/angular.min.js"></script>
@@ -11,11 +11,33 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
 	
 </head>
+<body ng-controller="mainController">
 
+	<!-- HEADER AND NAVBAR -->
+	<header>
+		<nav class="navbar navbar-default">
+  			<div class="container">
+				<div class="navbar-header">
+                    <a class="navbar-brand" href="/">Hyperleger Network</a>
+                </div>
 
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#/home"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="#/assetList"><i class="fa fa-shield"></i> Asset List</a></li>
+                    <li><a href="#/contractList"><i class="fa fa-shield"></i> Contract List</a></li>
+                    <li><a href="#/contractDetails"><i class="fa fa-shield"></i> Contract Details</a></li>
+                </ul>
+            </div>
+    	</nav>
+	</header>
 
+	<!-- MAIN CONTENT AND INJECTED VIEWS -->
+        <div id="main">
 
+            <!-- angular templating -->
+            <!-- this is where content will be injected -->
+              <div ng-view></div>
+        </div>
 
-
-
- </html>  	
+</body>	
+</html>  	
