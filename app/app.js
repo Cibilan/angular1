@@ -27,14 +27,32 @@ pilotApp.controller('mainController', ['$scope' , function($scope) {
 
 }]);
 
-pilotApp.controller('assetListController', ['$scope' , function($scope) {
+pilotApp.controller('assetListController', ['$scope', '$http' , function($scope, $http) {
+
+	$http.get('data/assestListResponse.json').success(function(reponse){
+		console.log(reponse);
+		$scope.assetList = JSON.parse(reponse.result.message);
+		console.log($scope.assetList);
+	});
+
+}]);
+
+pilotApp.controller('contractListController', ['$scope', '$http' , function($scope, $http) {
+
+	$http.get('data/contractListResponse.json').success(function(reponse){
+		console.log(reponse);
+		$scope.contractList = JSON.parse(reponse.result.message);
+		console.log($scope.contractList);
+	});
 	
 }]);
 
-pilotApp.controller('contractListController', ['$scope' , function($scope) {
-	
-}]);
+pilotApp.controller('contractDetailsController', ['$scope', '$http' , function($scope, $http) {
 
-pilotApp.controller('contractDetailsController', ['$scope' , function($scope) {
+	$http.get('data/contractHistoryResponse.json').success(function(reponse){
+		console.log(reponse);
+		$scope.contractHisory = JSON.parse(reponse.result.message);
+		console.log($scope.contractHisory);
+	});
 	
 }]);

@@ -1,3 +1,28 @@
+<div>
 <div class="jumbotron text-center">
-	<h1>Contract Details</h1>
-</div>
+	<p>Contract Details</p>
+
+</div>	
+
+<div class="container">
+  <h2>History</h2>          
+  	<table class="table">
+    	<thead>
+      	<tr>
+        <th>Contractid </th>
+        <th>Stage</th>
+        <th>Last Change</th>
+        <th>Description</th>
+      	</tr>
+    	</thead>
+  		<tr ng-repeat="contract in contractHisory">
+    	<td>{{ contract.Contractid }}</td>
+    	<td>{{ contract.Stage }}</td>
+    	<td>{{ contract.TimeStamp | date:'medium' }}</td>
+    	<td>{{ contract.Description }}</td>
+  		</tr>
+	</table>
+
+</div>	
+
+</div>	

@@ -1,3 +1,36 @@
+<div>
 <div class="jumbotron text-center">
-	<h1>Contract List</h1>
-</div>
+	<p>Contract List</p>
+
+</div>	
+
+<div class="container">
+  <h2>Table view</h2>          
+  	<table class="table">
+    	<thead>
+      	<tr>
+        <th>Contractid </th>
+        <th>Stage</th>
+        <th>Buyer</th>
+        <th>Transporter</th>
+        <th>Seller</th>
+        <th>AssetID</th>
+        <th>DocumentID</th>
+        <th>Created On</th>
+      	</tr>
+    	</thead>
+  		<tr ng-repeat="contract in contractList">
+    	<td>{{ contract.Contractid }}</td>
+    	<td>{{ contract.Stage }}</td>
+    	<td>{{ contract.Transporter }}</td>
+    	<td>{{ contract.Seller }}</td>
+    	<td>{{ contract.Buyer }}</td>
+    	<td>{{ contract.AssetID }}</td>
+    	<td>{{ contract.DocumentID }}</td>
+    	<td>{{ contract.TimeStamp | date:'medium' }}</td>
+  		</tr>
+	</table>
+
+</div>	
+
+</div>	

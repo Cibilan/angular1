@@ -1,0 +1,8 @@
+{
+	"jsonrpc": "2.0",
+	"result": {
+		"status": "OK",
+		"message": "[{\"Contractid\":\"Bosch002\",\"Stage\":0,\"Buyer\":\"Maruthi\",\"Transporter\":\"Bosch_1\",\"Seller\":\"VHS_Logistics\",\"AssetID\":\"11011\",\"DocumentID\":\"azxpg6357j\",\"TimeStamp\":\"20170511121943\"},{\"Contractid\":\"Bosch003\",\"Stage\":1,\"Buyer\":\"Maruthi\",\"Transporter\":\"Bosch_1\",\"Seller\":\"VHS_Logistics\",\"AssetID\":\"11011\",\"DocumentID\":\"xhyuk\",\"TimeStamp\":\"20170511123148\"}]"
+	},
+	"id": 3
+}
