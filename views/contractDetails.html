@@ -1,8 +1,241 @@
 <div>
-<div class="jumbotron text-center">
-	<p>Contract Details</p>
+    <md-toolbar layout="row" layout-align="end center">
+        <md-button href="#/contractList" class="md-accent md-raised">
+          Home
+          </md-button>
+        <div class="md-toolbar-tools">
+            <span>Dispatch Order Details</span>
+        </div>
+    </md-toolbar>
 
+<div class ="container" layout="row" layout-align="center end">
+  <div flex-xs>
+    <md-card>
+      <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">Stage 1</span>
+          </md-card-title-text>
+    </md-card-title>
+      <md-card-content>
+          <p>
+            {{dispatchOrderId}}
+          </p>
+        </md-card-content>
+
+    </md-card>
+    </div>
+      <div flex-xs>
+    <md-card>
+      <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">Stage 2</span>
+          </md-card-title-text>
+    </md-card-title>
+      <md-card-content>
+          <p>
+            Transaction details
+          </p>
+        </md-card-content>
+
+    </md-card>
+    </div>
+      <div flex-xs>
+    <md-card>
+      <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">Stage 3</span>
+          </md-card-title-text>
+    </md-card-title>
+      <md-card-content>
+          <p>
+            Transaction details
+          </p>
+        </md-card-content>
+
+    </md-card>
+    </div>
+      <div flex-xs>
+    <md-card>
+      <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">Stage 4</span>
+          </md-card-title-text>
+    </md-card-title>
+      <md-card-content>
+          <p>
+            Transaction details
+          </p>
+        </md-card-content>
+
+    </md-card>
+    </div>
+      <div flex-xs>
+    <md-card>
+      <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">Stage 5</span>
+          </md-card-title-text>
+    </md-card-title>
+      <md-card-content>
+          <p>
+            Transaction details
+          </p>
+        </md-card-content>
+
+    </md-card>
+    </div>
+      <div flex-xs>
+    <md-card>
+      <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">Stage 6</span>
+          </md-card-title-text>
+    </md-card-title>
+      <md-card-content>
+          <p>
+            Transaction details
+          </p>
+        </md-card-content>
+
+    </md-card>
+    </div>
+  
 </div>	
+
+<div layout-gt-xs layout="row" layout-align="center">
+
+<md-card flex>
+
+  <md-card-header>
+      <md-card-header-text>
+        <span class="md-title">Order Info</span>
+      </md-card-header-text>
+  </md-card-header>
+  
+  <div layout="row" layout-align="center">    
+  <md-card-title >
+      <md-card-title-text> 
+        <span>Order ID</span>
+      </md-card-title-text>
+      <md-card-title-text> 
+        <span class="md-subhead"> {{dispatchOrderDetails.dispatchOrderId}} </span>
+      </md-card-title-text>
+  </md-card-title>
+  <md-card-title>
+      <md-card-title-text> 
+        <span >Buyer</span>
+      </md-card-title-text>
+      <md-card-title-text> 
+        <span class="md-subhead"> {{dispatchOrderDetails.customer}} </span>
+      </md-card-title-text>
+  </md-card-title>
+  <md-card-title>
+      <md-card-title-text> 
+        <span>Transporter</span> 
+       </md-card-title-text>
+       <md-card-title-text> 
+        <span class="md-subhead"> {{dispatchOrderDetails.transporter}} </span>
+      </md-card-title-text>        
+  </md-card-title>
+
+  <md-card-title>
+      <md-card-title-text> 
+        <span> Part# </span>
+      </md-card-title-text>
+      <md-card-title-text> 
+        <span class="md-subhead"> {{dispatchOrderDetails.partNumber}} </span>
+      </md-card-title-text>
+  </md-card-title>
+  
+  </div>
+  <div layout="row" layout-align="center">    
+  <md-card-title >
+      <md-card-title-text> 
+        <span>Quantity</span>
+      </md-card-title-text>
+      <md-card-title-text> 
+        <span class="md-subhead"> {{dispatchOrderDetails.quantity}} </span>
+      </md-card-title-text>
+  </md-card-title>
+  <md-card-title>
+      <md-card-title-text> 
+        <span>Source</span>
+      </md-card-title-text>
+      <md-card-title-text> 
+        <span class="md-subhead"> {{dispatchOrderDetails.source}} </span>
+      </md-card-title-text>
+  </md-card-title>
+  <md-card-title>
+      <md-card-title-text> 
+        <span>Destination</span>
+      </md-card-title-text>
+      <md-card-title-text> 
+        <span class="md-subhead"> {{dispatchOrderDetails.customer}} </span>
+      </md-card-title-text>
+  </md-card-title>
+  <md-card-title>
+      <md-card-title-text> 
+        <span>Delivery term</span>
+      </md-card-title-text>
+      <md-card-title-text> 
+        <span class="md-subhead"> {{dispatchOrderDetails.deliveryTerm}} </span>
+      </md-card-title-text>
+  </md-card-title>
+  
+  </div>  
+
+</md-card>
+</div>
+
+<div layout = "row" >
+<md-card flex-gt-sm="30">
+  <md-card-header>
+      <md-card-header-text>
+        <span class="md-title">Document Details</span>
+      </md-card-header-text>
+  </md-card-header>
+  <md-card-content>
+
+  <md-list-item>
+    <p> Invoice</p>
+    <md-button class="md-raised">Upload</md-button>   
+    <md-button class="md-raised">Download</md-button>   
+</md-list-item>
+<md-divider ></md-divider>
+<md-list-item>
+    <p> Esugam</p>
+    <md-button class="md-raised">Upload</md-button>   
+    <md-button class="md-raised">Download</md-button>   
+</md-list-item>
+<md-divider ></md-divider>
+<md-list-item>
+    <p> LR</p>
+    <md-button class="md-raised">Upload</md-button>   
+    <md-button class="md-raised">Download</md-button>   
+</md-list-item>
+<md-divider ></md-divider>
+<md-list-item>
+    <p> ETC</p>
+    <md-button class="md-raised">Upload</md-button>   
+    <md-button class="md-raised">Download</md-button>   
+</md-list-item>
+  </md-card-content>
+</md-card>
+
+<md-card flex-gt-sm="70">
+    <md-card-header>
+      <md-card-header-text>
+        <span class="md-title">Actions</span>
+      </md-card-header-text>
+  </md-card-header>
+  <md-card-content>
+
+</md-card>
+
+
+</div>
+
+
 
 <div class="container">
   <h2>History</h2>          
@@ -24,5 +257,6 @@
 	</table>
 
 </div>	
+
 
 </div>	

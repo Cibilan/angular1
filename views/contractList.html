@@ -1,36 +1,128 @@
-<div>
-<div class="jumbotron text-center">
-	<p>Contract List</p>
+<div>  
 
-</div>	
+<div layout="column" layout-fill >
+    <md-toolbar layout="row" layout-align="end center">
+        <md-button href="#/contractList" class="md-accent md-raised">
+          Home
+          </md-button>
+                  <div class="md-toolbar-tools">
+            <span>Dispatch Order List</span>
+        </div>
+    </md-toolbar>
 
-<div class="container">
-  <h2>Table view</h2>          
-  	<table class="table">
-    	<thead>
-      	<tr>
-        <th>Contractid </th>
-        <th>Stage</th>
-        <th>Buyer</th>
-        <th>Transporter</th>
-        <th>Seller</th>
-        <th>AssetID</th>
-        <th>DocumentID</th>
-        <th>Created On</th>
-      	</tr>
-    	</thead>
-  		<tr ng-repeat="contract in contractList">
-    	<td>{{ contract.Contractid }}</td>
-    	<td>{{ contract.Stage }}</td>
-    	<td>{{ contract.Transporter }}</td>
-    	<td>{{ contract.Seller }}</td>
-    	<td>{{ contract.Buyer }}</td>
-    	<td>{{ contract.AssetID }}</td>
-    	<td>{{ contract.DocumentID }}</td>
-    	<td>{{ contract.TimeStamp | date:'medium' }}</td>
-  		</tr>
-	</table>
+    <md-content layout-padding> 
+         <div layout="row" layout-align="stretch center">
+                <div>
+                    <md-input-container >
+                        <input ng-model="dispatchOrderId"
+                               class="md-input"
+                               ng-change="gridActions.filter()"
+                               id="dispatchOrderId"
+                               placeholder="Search by Order #"
+                               filter-by="dispatchOrderId"
+                               filter-type="text"
+                               aria-invalid="false">
+                    </md-input-container>
+                </div>
+                <div>
+                    <md-datepicker ng-model="dateFrom"
+                                   md-placeholder="From Date"
+                                   is-open="dateFromOpened"
+                                   ng-click="dateFromOpened = true"
+                                   filter-by="placed"
+                                   filter-type="dateFrom"
+                                   ng-change="gridActions.filter()"></md-datepicker>
+                </div>
+                <div>
+                    <md-datepicker ng-model="dateTo"
+                                   md-placeholder="To Date"
+                                   is-open="dateToOpened"
+                                   ng-click="dateToOpened = true"
+                                   filter-by="placed"
+                                   filter-type="dateTo"
+                                   ng-change="gridActions.filter()"></md-datepicker>
+                </div>
+                <div>
+                    <md-button  class="md-raised md-primary" href="#/createOrder">
+                    Create Dispatch Order
+                    </md-button>
+                </div>
+            </div>
 
-</div>	
+            <hr> </hr>
 
-</div>	
+            <div grid-data id='test' grid-options="gridOptions" grid-actions="gridActions">
+                <div layout-gt-sm="row" layout-sm="column" layout-align="center">
+                    <div flex-gt-sm="25" flex-sm="100" layout="row" layout-align="start center">
+                        <span>{{filtered.length}} items total</span>
+                    </div>
+                    <div flex-gt-sm="75" flex-xs="100">
+                        <div layout-xs="column" layout="row" layout-align-xs="end end" layout-align="end center">
+                            <grid-pagination max-size="5"
+                                             boundary-links="true"
+                                             class="pagination mdl-shadow--2dp"
+                                             ng-if="paginationOptions.totalItems  > paginationOptions.itemsPerPage"
+                                             total-items="paginationOptions.totalItems"
+                                             ng-model="paginationOptions.currentPage"
+                                             ng-change="reloadGrid()"
+                                             items-per-page="paginationOptions.itemsPerPage"></grid-pagination>
+                            <md-input-container flex-offset-gt-xs="5" class="items-per-page">
+                                <md-select ng-init="paginationOptions.itemsPerPage = '10'" ng-model="paginationOptions.itemsPerPage" ng-change="reloadGrid()">
+                                    <md-option>10</md-option>
+                                    <md-option>25</md-option>
+                                    <md-option>50</md-option>
+                                    <md-option>75</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>    
+                    
+                    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                        <thead>
+                        <tr>
+                            <th sortable="Contractid" class="sortable mdl-data-table__cell--non-numeric">
+                                <span>Orderid #</span>
+                            </th>
+                            <th class="st-sort-disable th-dropdown">
+                                <md-select filter-by="Buyer"
+                                           filter-type="select"
+                                           ng-model="status"
+                                           placeholder="Buyer"
+                                           ng-change="filter()">
+                                    <md-option value="">All</md-option>
+                                    <md-option ng-repeat="option in filtered track by option.customer"
+                                               value="{{option.customer}}">
+                                        {{option.customer}}
+                                    </md-option>
+                                </md-select>
+                            </th>
+                            <th>
+                            <span>Select</span>
+                            </th>
+                            
+                        </tr>
+                        </thead>
+                        <tbody>
+                          <tr grid-item>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                <span ng-bind="item.dispatchOrderId"></span>
+                            </td>
+                            <td ng-bind="item.customer"> </td>
+                            <td>
+                                <md-button ng-click= "goPath(item.dispatchOrderId)"> Select </md-button>  
+
+                            </td>
+ 
+                        </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+
+    </md-content>
+</div>
+
+
+</div>
+	

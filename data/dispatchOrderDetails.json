@@ -1,0 +1,8 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "status": "OK",
+    "message": "{\"dispatchOrderId\":\"ABCd23454\",\"stage\":0,\"customer\":\"Tesla1\",\"transporter\":\"Rolls Royce\",\"seller\":\"BOSCH\",\"assetIDs\":\"\",\"asnNumber\":\"123\",\"source\":\"Bangalore Plant\",\"shipmentType\":\"FTL\",\"contractType\":\"Permanent\",\"deliveryTerm\":\"Escrow\",\"dispatchDate\":\"01/04/2017\",\"transporterRef\":\"lorry\",\"loadingType\":\"FTLoad\",\"vehicleType\":\"8 tonner\",\"weight\":\"\",\"consignment\":\"\",\"quantity\":\"100 units\",\"partNumber\":\"54bcg\",\"partName\":\"oil pump\",\"orderRefNum\":\"01/05/2017\",\"createdOn\":\"\",\"documentID1\":\"\",\"documentID2\":\"\",\"documentID3\":\"\",\"documentID4\":\"\",\"dropDescription\":\"\",\"deliverydescription\":\"\",\"inTransitDisptachOfficerSigned\":\"\",\"inTransitTransporterSigned\":\"\",\"transactionDescription\":\"\",\"timeStamp\":\"20170517024430\"}"
+  },
+  "id": 3
+}
