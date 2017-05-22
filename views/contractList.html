@@ -81,21 +81,29 @@
                     <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
                         <thead>
                         <tr>
-                            <th sortable="Contractid" class="sortable mdl-data-table__cell--non-numeric">
+                            <th sortable="dispatchOrderId" class="sortable mdl-data-table__cell--non-numeric">
                                 <span>Orderid #</span>
                             </th>
-                            <th class="st-sort-disable th-dropdown">
-                                <md-select filter-by="Buyer"
-                                           filter-type="select"
-                                           ng-model="status"
-                                           placeholder="Buyer"
-                                           ng-change="filter()">
-                                    <md-option value="">All</md-option>
-                                    <md-option ng-repeat="option in filtered track by option.customer"
-                                               value="{{option.customer}}">
-                                        {{option.customer}}
-                                    </md-option>
-                                </md-select>
+                             <th sortable="stage" class="sortable mdl-data-table__cell--non-numeric">
+                                <span>Stage</span>
+                            </th>
+                            <th sortable="customer" class="sortable mdl-data-table__cell--non-numeric">
+                                <span>Customer</span>
+                            </th>
+                            <th sortable="contractType" class="sortable mdl-data-table__cell--non-numeric">
+                                <span>Order Type</span>
+                            </th>
+                            <th sortable="shipmentType" class="sortable mdl-data-table__cell--non-numeric">
+                                <span>Shipment Type</span>
+                            </th>
+                            <th sortable="partNumber" class="sortable mdl-data-table__cell--non-numeric">
+                                <span>Part Number</span>
+                            </th>
+                            <th sortable="partName" class="sortable mdl-data-table__cell--non-numeric">
+                                <span>Part Name</span>
+                            </th>
+                            <th sortable="dispatchDatedispatchDate" class="sortable mdl-data-table__cell--non-numeric">
+                                <span>Dispatch Date</span>
                             </th>
                             <th>
                             <span>Select</span>
@@ -108,7 +116,13 @@
                             <td class="mdl-data-table__cell--non-numeric">
                                 <span ng-bind="item.dispatchOrderId"></span>
                             </td>
+                            <td ng-bind="item.stage"> </td>
                             <td ng-bind="item.customer"> </td>
+                            <td ng-bind="item.contractType"> </td>
+                            <td ng-bind="item.shipmentType"> </td>
+                            <td ng-bind="item.partNumber"> </td>
+                            <td ng-bind="item.partName"> </td>
+                            <td ng-bind="item.dispatchDate"> </td>
                             <td>
                                 <md-button ng-click= "goPath(item.dispatchOrderId)"> Select </md-button>  
 

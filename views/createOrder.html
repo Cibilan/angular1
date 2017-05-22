@@ -1,14 +1,110 @@
-<div layout="column" layout-fill >
-    <md-toolbar layout="row" layout-align="end center">
-        <md-button href="#/contractList" class="md-accent md-raised">
+<div layout = "column">
+
+   
+    <md-toolbar layout = "row" layout-align="end center">
+        <md-button href="#/contractList" class="md-accent md-raised" >
           Home
-          </md-button>
-                  <div class="md-toolbar-tools">
+        </md-button>
+         <div class="md-toolbar-tools">
             <span>Create Dispatch Order</span>
         </div>
     </md-toolbar>
-
+    </div>
     
+
+    <div>
+
+    <md-content layout-margin>
+	    <form name="createContract">
+	    	<div layout="row">
+	          <md-input-container  class="md-block" flex>
+	            <label>Order ID</label>
+	            <input class="md-input" ng-model="order.orderId" >
+	          </md-input-container>
+              <md-input-container class="md-block" flex >
+                  <label>Order Type</label>
+                  <md-select name="type" ng-model="order.orderType">
+                    <md-option value="Sale">Sale</md-option>
+                    <md-option value="Stock Transfer">Stock Transfer</md-option>
+                  </md-select>
+             </md-input-container>
+	          <md-input-container class="md-block" flex >
+		          <label>Shipment Type</label>
+		          <md-select name="type" ng-model="order.shipmentType">
+		            <md-option value="Domestic">Domestic</md-option>
+		            <md-option value="International">International</md-option>
+		          </md-select>
+        	 </md-input-container>
+        	</div>
+
+            <div layout = "row">
+                <md-input-container class="md-block" flex >
+                  <label>Source</label>
+                  <md-select name="type" ng-model="order.source">
+                    <md-option value="Bosch, Adugodi Bangalore">Bosch, Adugodi Bangalore</md-option>
+                    <md-option value="Bosch, Bommasandra Bangalore">Bosch, Bommasandra Bangalore</md-option>
+                  </md-select>                  
+             </md-input-container>
+             <md-input-container class="md-block" flex >
+                  <label>Destination</label>
+                  <md-select name="type" ng-model="order.destination">
+                    <md-option value="Maruthi Pune">Maruthi Pune</md-option>
+                    <md-option value="Ashok Leyland,Hosur">Ashok Leyland,Hosur</md-option>
+                  </md-select>                  
+             </md-input-container>
+             <md-input-container class="md-block" flex >
+                  <label>Delivery Term</label>
+                  <md-select name="type" ng-model="order.deliveryterm">
+                    <md-option value="EXW">EXW</md-option>
+                    <md-option value="FCA">FCA</md-option>
+                  </md-select>                  
+             </md-input-container>
+            </div>
+
+            <div layout = "row">
+                <md-input-container class="md-block" flex >
+                  <label>Part Number</label>
+                  <md-select name="type" ng-model="order.partNumber">
+                    <md-option value="F002.A0Z.807-6YE">F002.A0Z.807-6YE</md-option>
+                    <md-option value="F002.A50.006-6YE">F002.A50.006-6YE</md-option>
+                  </md-select>                  
+             </md-input-container>
+             <md-input-container class="md-block" flex >
+                  <label>Part Name</label>
+                  <md-select name="type" ng-model="order.partName">
+                    <md-option value="Fuel pump">Fuel pump</md-option>
+                    <md-option value="Diesel pump">Diesel pump</md-option>
+                  </md-select>                  
+             </md-input-container>
+             <md-input-container class="md-block" flex>
+                  <label>Quantity</label>
+                  <input class="md-input" ng-model="order.quantity">
+             </md-input-container>
+            </div>
+
+            <div layout="row">
+                <md-input-container  class="md-block"flex>
+            <label>Order Ref.</label>
+            <input ng-model="order.orderRef">
+          </md-input-container>
+           <md-input-container  class="md-block"flex>
+            <label>ASN Number</label>
+            <input ng-model="order.asn">
+          </md-input-container>
+              <div layout="row" flex>
+                <h6 layout-align = "end center"> Dispatch Date </h6 >
+             
+                  <md-datepicker label= "date" ng-model="order.dispatchDate" md-placeholder="Select date"></md-datepicker>
+              
+                </div>
+               </div> 
+             <div>
+                <md-button ng-click= "submitOrder(order)">Submit</md-button>
+            </div>
+
+	    </form>
+    </md-content>
+    </div>
 
 
 
