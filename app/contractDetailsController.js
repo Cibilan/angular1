@@ -1,27 +1,14 @@
-angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$http', '$location', '$routeParams','userinfo' , function($scope, $http, $location, $routeParams, userinfo) {
+angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$http', '$location', '$routeParams','userinfo','para' , function($scope, $http, $location, $routeParams, userinfo,para) {
 
 	$scope.dispatchOrderId = $routeParams.id;
 	$scope.user = userinfo.userData();
 	$scope.dispatchOrderDetails = {};
 
-	var parameter = JSON.stringify({
-		  "jsonrpc": "2.0",
-		  "method": "query",
-		  "params": {
-		    "type": 1,
-		    "chaincodeID": {
-		      "name": $scope.user.cc
-		    },
-		    "ctorMsg": {
-		      "function": "read",
-		      "args": [
-		        $scope.dispatchOrderId
-		        ]
-		    },
-		    "secureContext": $scope.user.userName
-		  },
-		  "id": 3   
-    }); 
+
+    var arg = [$scope.dispatchOrderId];	      
+
+    $scope.param = para.myFunc("query","read",$scope.user,arg);
+           
     
 
 	$http.get('data/contractHistoryResponse.json').success(function(reponse){
@@ -30,7 +17,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		console.log($scope.contractHisory);
 	});
 
-	$http.post($scope.user.url,parameter).success(function(reponse){
+	$http.post($scope.user.url,$scope.param).success(function(reponse){
 		$scope.dispatchOrderDetails = JSON.parse(reponse.result.message);
 	});
 
