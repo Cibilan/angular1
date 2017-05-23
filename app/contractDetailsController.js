@@ -66,7 +66,9 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		  };
 
 
-		$scope.downloadfile = function downFile(){
+	$scope.downFile = function(){
+
+		console.log("Hellow");
 
 			var parameter3 = JSON.stringify({
 				  "jsonrpc": "2.0",
@@ -89,18 +91,22 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 				);
 			console.log(parameter3);
 			$http.post('http://localhost:7050/chaincode',parameter3).success(function(response) {
-            $scope.keyValue = response.data.result.message;
+            console.log(response);
             var result = "" ;         
-            result = response.data.result.message;
+            result = response.result.message;
+            result2 = JSON.parse(result);
+            console.log(result2);
+            result3 = result2[0].documentString;
 
-            //console.log(result);
+
+            console.log(result3);
 		      var arr=[];
-		      for(var i=0; i<result.length; i++) {
-		            arr.push(result.charCodeAt(i))
+		      for(var i=0; i<result3.length; i++) {
+		            arr.push(result3.charCodeAt(i))
 		        }
 		      var arr2 = new Uint8Array(arr); 
 
-		      var fileName = "chain_name.pdf";
+		      var fileName = "teset.pdf";
 		            var a = document.createElement("a");
 		            document.body.appendChild(a);
 		            var fileout = new Blob([arr2], {type: 'application/pdf'});
