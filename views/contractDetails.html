@@ -199,7 +199,7 @@
   <md-list-item>
     <p> Invoice</p>
       <input type ="file" id="invoice"/>
-      <md-button class="md-raised" ng-click = "uploadFile('invoice')">Upload Now</md-button>
+      <md-button class="md-raised" ng-click = "upFile('invoice','documentID1')">Upload Now</md-button>
       <md-button class="md-raised" ng-click = "downFile()">Download</md-button> 
 </md-list-item>
 <md-divider ></md-divider>
@@ -246,17 +246,17 @@
   	<table class="table">
     	<thead>
       	<tr>
-        <th>Contractid </th>
-        <th>Stage</th>
-        <th>Last Change</th>
-        <th>Description</th>
+        <th>orderId </th>
+        <th>stage</th>
+        <th>timestamp</th>
+        <th>transactionDescription</th>
       	</tr>
     	</thead>
   		<tr ng-repeat="contract in contractHisory">
-    	<td>{{ contract.Contractid }}</td>
-    	<td>{{ contract.Stage }}</td>
-    	<td>{{ contract.TimeStamp | date:'medium' }}</td>
-    	<td>{{ contract.Description }}</td>
+    	<td>{{ contract.orderId }}</td>
+    	<td>{{ contract.stage }}</td>
+    	<td>{{ contract.timestamp | date:'medium' }}</td>
+    	<td>{{ contract.transactionDescription }}</td>
   		</tr>
 	</table>
 

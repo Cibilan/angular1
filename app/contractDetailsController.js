@@ -3,28 +3,50 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 	$scope.dispatchOrderId = $routeParams.id;
 	$scope.user = userinfo.userData();
 	$scope.dispatchOrderDetails = {};
+	$scope.contractHisory = {};
 
 
-    var arg = [$scope.dispatchOrderId];	      
+	function refresh(){
 
-    $scope.param = para.myFunc("query","read",$scope.user,arg);
-           
+		var arg = [$scope.dispatchOrderId];
+		var arg2 = ["transaction",$scope.dispatchOrderId];	      
+
+    	$scope.param = para.myFunc("query","read",$scope.user,arg); 
+    	$scope.param2 = para.myFunc("query","getHistory",$scope.user,arg2)         
     
 
-	$http.get('data/contractHistoryResponse.json').success(function(reponse){
-		
+		$http.post($scope.user.url,$scope.param2).success(function(reponse){
 		$scope.contractHisory = JSON.parse(reponse.result.message);
 		console.log($scope.contractHisory);
-	});
+		});
 
-	$http.post($scope.user.url,$scope.param).success(function(reponse){
+		$http.post($scope.user.url,$scope.param).success(function(reponse){
 		$scope.dispatchOrderDetails = JSON.parse(reponse.result.message);
-	});
+		console.log($scope.dispatchOrderDetails);
+		});
+		
+	}
 
-	$scope.uploadFile = function openfile(id) { 
-			console.log(id);
+	function update(){
+
+		var arg = [$scope.dispatchOrderDetails.dispatchOrderId,$scope.dispatchOrderDetails.stage,$scope.dispatchOrderDetails.customer,$scope.dispatchOrderDetails.transporter,$scope.dispatchOrderDetails.seller,$scope.dispatchOrderDetails.assetIDs,$scope.dispatchOrderDetails.asnNumber,$scope.dispatchOrderDetails.source,$scope.dispatchOrderDetails.shipmentType,$scope.dispatchOrderDetails.contractType,$scope.dispatchOrderDetails.deliveryTerm,$scope.dispatchOrderDetails.dispatchDate,$scope.dispatchOrderDetails.transporterRef,$scope.dispatchOrderDetails.loadingType,$scope.dispatchOrderDetails.vehicleType,$scope.dispatchOrderDetails.weight,$scope.dispatchOrderDetails.consignment,$scope.dispatchOrderDetails.quantity,$scope.dispatchOrderDetails.partNumber,$scope.dispatchOrderDetails.partName,$scope.dispatchOrderDetails.orderRefNum,$scope.dispatchOrderDetails.createdOn,$scope.dispatchOrderDetails.documentID1,$scope.dispatchOrderDetails.documentID2,$scope.dispatchOrderDetails.documentID3,$scope.dispatchOrderDetails.documentID4,$scope.dispatchOrderDetails.dropDescription,$scope.dispatchOrderDetails.deliverydescription,$scope.dispatchOrderDetails.inTransitDisptachOfficerSigned,$scope.dispatchOrderDetails.inTransitTransporterSigned,$scope.dispatchOrderDetails.transactionDescription];
+		$scope.param = para.myFunc("invoke","updateDispatchOrder",$scope.user,arg);
+		$http.post($scope.user.url,$scope.param).success(function(reponse){
+			console.log($scope.param);
+			refresh();
+		});
+
+	}
+
+
+	refresh();    
+
+	$scope.upFile = function (id,field){ 
+		  console.log(id);
 		  var input = document.getElementById(id).files;
 		  console.log(input);
+		  var fileName = input[0].name;
+		  var fileType = input[0].type;
 		  var fileData = new Blob([input[0]]);
 		  var reader = new FileReader();
 		  reader.readAsArrayBuffer(fileData);
@@ -45,10 +67,10 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		          "ctorMsg": {
 		            "function": "createDocument",
 		            "args": [
-		              "DOC001",
-		              "invoice",
-		              "pdf",
-		               result
+		              $scope.dispatchOrderId + id,
+		              fileName,
+		              fileType,
+		              result
 		            ]
 		          },
 		          "secureContext": $scope.user.userName
@@ -56,19 +78,22 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		        "id": "2"
 		      });
 
-		      console.log(parameter2);
+		     //console.log(parameter2);
 
-	        $http.post('http://localhost:7050/chaincode',parameter2).success(function(response) {
+		     $scope.dispatchOrderDetails.documentID1 = $scope.dispatchOrderId + id;
+		     $scope.dispatchOrderDetails.transactionDescription = id + " Uploaded";
+
+		     update();
+
+	        /*$http.post('http://localhost:7050/chaincode',parameter2).success(function(response) {
             	console.log($scope.dispatchOrderDetails);
-      		}); 
+      		}); */
 
 		    }
-		  };
+		  }
 
 
 	$scope.downFile = function(){
-
-		console.log("Hellow");
 
 			var parameter3 = JSON.stringify({
 				  "jsonrpc": "2.0",
@@ -81,7 +106,8 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 				    "ctorMsg": {
 				      "function": "getDocuments",
 				      "args": [
-				        "document"
+				        "document",
+				         $scope.dispatchOrderDetails.documentID1
 				        ]
 				    },
 				    "secureContext": $scope.user.userName
@@ -116,6 +142,6 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		            a.click();
 		      	});	
 
-		};  
+		}  
 		
 }]);
