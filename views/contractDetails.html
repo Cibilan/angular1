@@ -198,15 +198,16 @@
 
   <md-list-item>
     <p> Invoice</p>
-      <input type ="file" id ="invoice"/>
-      <md-button class="md-raised" ng-click = "uploadFile(invoice)">Upload Now</md-button>
+      <input type ="file" id="invoice"/>
+      <md-button class="md-raised" ng-click = "uploadFile('invoice')">Upload Now</md-button>
+      <md-button class="md-raised" ng-click = "downFile()">Download</md-button> 
 </md-list-item>
 <md-divider ></md-divider>
 <md-list-item>
     <p> Esugam</p>
     <md-button class="md-raised">Select</md-button>
     <md-button class="md-raised" ng-click = "uploadFile()">Upload</md-button>   
-    <md-button class="md-raised">Download</md-button>   
+    <md-button class="md-raised" >Download</md-button>   
 </md-list-item>
 <md-divider ></md-divider>
 <md-list-item>

@@ -1,6 +1,8 @@
-angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$http', '$location', '$routeParams' , function($scope, $http, $location, $routeParams) {
+angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$http', '$location', '$routeParams','userinfo' , function($scope, $http, $location, $routeParams, userinfo) {
 
 	$scope.dispatchOrderId = $routeParams.id;
+	$scope.user = userinfo.userData();
+	$scope.dispatchOrderDetails = {};
 
 	var parameter = JSON.stringify({
 		  "jsonrpc": "2.0",
@@ -8,7 +10,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		  "params": {
 		    "type": 1,
 		    "chaincodeID": {
-		      "name": "7a4fa3cb79ea47991ea0b471b9c02c0a17502050906529a7715b15cfab1e0296d76c04f9fc9652e12ec18c9625fa8eafdfc0fbf40ff09cf072bc3ebb0bbc3499"
+		      "name": $scope.user.cc
 		    },
 		    "ctorMsg": {
 		      "function": "read",
@@ -16,60 +18,111 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		        $scope.dispatchOrderId
 		        ]
 		    },
-		    "secureContext": "test_user0"
+		    "secureContext": $scope.user.userName
 		  },
 		  "id": 3   
     }); 
     
-    console.log(parameter);
 
 	$http.get('data/contractHistoryResponse.json').success(function(reponse){
-		console.log(reponse);
 		
 		$scope.contractHisory = JSON.parse(reponse.result.message);
 		console.log($scope.contractHisory);
 	});
 
-	$http.post('http://localhost:7050/chaincode',parameter).success(function(response) {
-		console.log(reponse);
+	$http.post($scope.user.url,parameter).success(function(reponse){
 		$scope.dispatchOrderDetails = JSON.parse(reponse.result.message);
-		console.log($scope.dispatchOrderDetails);
-	});	
+	});
 
-	$scope.uploadFile = function openfile(files) { 
-	  var input = document.getElementById("files").files;
-	  console.log(input);
-	  var fileData = new Blob([input[0]]);
-	  var reader = new FileReader();
-	  reader.readAsArrayBuffer(fileData);
+	$scope.uploadFile = function openfile(id) { 
+			console.log(id);
+		  var input = document.getElementById(id).files;
+		  console.log(input);
+		  var fileData = new Blob([input[0]]);
+		  var reader = new FileReader();
+		  reader.readAsArrayBuffer(fileData);
 
-	  reader.onload = function(){
-	      var arrayBuffer = reader.result;
-	      var bytes = new Uint8Array(arrayBuffer);      
-	      var result = "";
-	      for(var i = 0; i < bytes.length; i++){
-	        result+= (String.fromCharCode(bytes[i]));
-	      };         
-	      var parameter = JSON.stringify({"jsonrpc": "2.0",
-	        "method": "invoke",
-	        "params": {
-	          "chaincodeID": {
-	            "name": "94b82bfc9b1eced38a9a3f489fcbc6735cdc27d83ba09edac0d941a5b22b7820f92868e2a4b81cd7d59504565b8d650afa1b974f5819f7eb1b99a9e9e03e44e3"
-	          },
-	          "ctorMsg": {
-	            "function": "write",
-	            "args": [
-	              "hello_world",
-	               result
-	            ]
-	          },
-	          "secureContext": "test_user0"
-	        },
-	        "id": "2"
-	      });
+		  reader.onload = function(){
+		      var arrayBuffer = reader.result;
+		      var bytes = new Uint8Array(arrayBuffer);      
+		      var result = "";
+		      for(var i = 0; i < bytes.length; i++){
+		        result+= (String.fromCharCode(bytes[i]));
+		      };         
+		      var parameter2 = JSON.stringify({"jsonrpc": "2.0",
+		        "method": "invoke",
+		        "params": {
+		          "chaincodeID": {
+		            "name": $scope.user.cc
+		          },
+		          "ctorMsg": {
+		            "function": "createDocument",
+		            "args": [
+		              "DOC001",
+		              "invoice",
+		              "pdf",
+		               result
+		            ]
+		          },
+		          "secureContext": $scope.user.userName
+		        },
+		        "id": "2"
+		      });
 
-	      console.log(result);
-	    }
-	  }; 
-	
+		      console.log(parameter2);
+
+	        $http.post('http://localhost:7050/chaincode',parameter2).success(function(response) {
+            	console.log($scope.dispatchOrderDetails);
+      		}); 
+
+		    }
+		  };
+
+
+		$scope.downloadfile = function downFile(){
+
+			var parameter3 = JSON.stringify({
+				  "jsonrpc": "2.0",
+				  "method": "query",
+				  "params": {
+				    "type": 1,
+				    "chaincodeID": {
+				      "name": $scope.user.cc
+				    },
+				    "ctorMsg": {
+				      "function": "getDocuments",
+				      "args": [
+				        "document"
+				        ]
+				    },
+				    "secureContext": $scope.user.userName
+				  },
+				  "id": 3
+				}
+				);
+			console.log(parameter3);
+			$http.post('http://localhost:7050/chaincode',parameter3).success(function(response) {
+            $scope.keyValue = response.data.result.message;
+            var result = "" ;         
+            result = response.data.result.message;
+
+            //console.log(result);
+		      var arr=[];
+		      for(var i=0; i<result.length; i++) {
+		            arr.push(result.charCodeAt(i))
+		        }
+		      var arr2 = new Uint8Array(arr); 
+
+		      var fileName = "chain_name.pdf";
+		            var a = document.createElement("a");
+		            document.body.appendChild(a);
+		            var fileout = new Blob([arr2], {type: 'application/pdf'});
+		            var fileURL = window.URL.createObjectURL(fileout);
+		            a.href = fileURL;
+		            a.download = fileName;
+		            a.click();
+		      	});	
+
+		};  
+		
 }]);
