@@ -200,6 +200,7 @@
     <p> Invoice</p>
       <input type ="file" id="invoice"/>
       <md-button class="md-raised" ng-click = "upFile('invoice','documentID1')">Upload Now</md-button>
+      <span> {{$scope.dispatchOrderDetails.documentID1}}</span>
       <md-button class="md-raised" ng-click = "downFile()">Download</md-button> 
 </md-list-item>
 <md-divider ></md-divider>
@@ -235,8 +236,48 @@
   <md-card-content>
 
 </md-card>
+</div>
+
+<div layout = "row" >
+  <md-card flex>
+     <md-card-header>
+      <md-card-header-text>
+        <span class="md-title">Create Asset</span>
+      </md-card-header-text>
+  </md-card-header>
+    <md-list-item layout-padding>
+    <input type ="file" on-read-file="showContent($fileContent)"/>
+
+     
+    <md-button class="md-raised" ng-click = "createAsset()" >Create Assest</md-button>  
+    </md-list-item>
+    <div layout-padding>
+    <table class="table" ng-if="content">
+    <thead>
+      <tr>
+        <th>assetId</th> 
+        <th>partNumber</th>
+        <th>partDescription</th>
+        <th>batchNumer</th>
+        <th>manufactureDate</th>
+        <th>itchs</th>
+        <th>exciseChaperNumber</th>
+       </tr> 
+    </thead>
+    <tr ng-repeat="asset in assetList">
+      <td>{{ asset.assetId }}</td>
+      <td>{{ asset.partNumber }}</td>
+      <td>{{ asset.partDescription }}</td>
+      <td>{{ asset.batchNumer }}</td>
+      <td>{{ asset.manufactureDate | date:'medium' }}</td>
+      <td>{{ asset.itchs }}</td>
+      <td>{{ asset.exciseChaperNumber }}</td>
+    </tr>
+    </table>
+    </div>
 
 
+  </md-card>
 </div>
 
 

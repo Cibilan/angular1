@@ -32,7 +32,8 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		var arg = [$scope.dispatchOrderDetails.dispatchOrderId,$scope.dispatchOrderDetails.stage,$scope.dispatchOrderDetails.customer,$scope.dispatchOrderDetails.transporter,$scope.dispatchOrderDetails.seller,$scope.dispatchOrderDetails.assetIDs,$scope.dispatchOrderDetails.asnNumber,$scope.dispatchOrderDetails.source,$scope.dispatchOrderDetails.shipmentType,$scope.dispatchOrderDetails.contractType,$scope.dispatchOrderDetails.deliveryTerm,$scope.dispatchOrderDetails.dispatchDate,$scope.dispatchOrderDetails.transporterRef,$scope.dispatchOrderDetails.loadingType,$scope.dispatchOrderDetails.vehicleType,$scope.dispatchOrderDetails.weight,$scope.dispatchOrderDetails.consignment,$scope.dispatchOrderDetails.quantity,$scope.dispatchOrderDetails.partNumber,$scope.dispatchOrderDetails.partName,$scope.dispatchOrderDetails.orderRefNum,$scope.dispatchOrderDetails.createdOn,$scope.dispatchOrderDetails.documentID1,$scope.dispatchOrderDetails.documentID2,$scope.dispatchOrderDetails.documentID3,$scope.dispatchOrderDetails.documentID4,$scope.dispatchOrderDetails.dropDescription,$scope.dispatchOrderDetails.deliverydescription,$scope.dispatchOrderDetails.inTransitDisptachOfficerSigned,$scope.dispatchOrderDetails.inTransitTransporterSigned,$scope.dispatchOrderDetails.transactionDescription];
 		var param = para.myFunc("invoke","updateDispatchOrder",$scope.user,arg);
 		$http.post($scope.user.url,param).success(function(reponse){
-			console.log($scope.param);			
+			console.log($scope.param);
+			refresh();			
 		});
 
 	}
@@ -57,21 +58,17 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		      for(var i = 0; i < bytes.length; i++){
 		        result+= (String.fromCharCode(bytes[i]));
 		      };
-		      var arg = [$scope.dispatchOrderId + id,fileName,fileType,result];
+		      var arg = [$scope.dispatchOrderId,fileName,fileType,result];
 
 		      var parameter2 = para.myFunc("invoke","createDocument",$scope.user,arg);         
 
 		     console.log(parameter2);
 
 		     $scope.dispatchOrderDetails.documentID1 = $scope.dispatchOrderId + id;
-		     $scope.dispatchOrderDetails.transactionDescription = id + " Uploaded";
+		     $scope.dispatchOrderDetails.transactionDescription = id + " Uploaded";		     
 
-		     
-
-	        $http.post($scope.user.url,parameter2).success(function(response) {
+	        $http.post($scope.user.url,parameter2).then(function(response) {
             	update();
-
-		     	refresh();
       		});
 
 		    }
@@ -109,6 +106,41 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		            a.click();
 		      	});	
 
-		}  
+		}
+
+	$scope.showContent = function($fileContent){
+        $scope.content = $fileContent;
+        $scope.assetList = JSON.parse($scope.content);
+        console.log($scope.content );
+    };	
+
+	$scope.createAsset = function() {			
+ 			for (var i = 0; i < $scope.assetList.length; i++) {
+    		var asset = $scope.assetList[i];
+    		var arg = [asset.assetId,asset.partNumber,asset.partDescription,asset.owner,asset.stage,asset.batchNumer,asset.manufactureDate,asset.itchs,asset.exciseChaperNumber,asset.orderId];
+    		var param = para.myFunc("invoke","createAsset",$scope.user,arg);
+    		console.log(param);
+    		$http.post($scope.user.url,param).then(function(response) { 		
+    			
+            	console.log(asset.assetId);
+
+      		});
+			}
+			/*
+			$scope.dispatchOrderDetails.transactionDescription = "Asset Created";		     
+
+	        	$http.post($scope.user.url,parameter2).then(function(response) {
+            	update();
+      		});*/
+	}
+
+	$scope.mapAsset = function() {
+	
+
+	}
+
+
+
+
 		
 }]);
