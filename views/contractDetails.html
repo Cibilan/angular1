@@ -200,29 +200,28 @@
     <p> Invoice</p>
       <input type ="file" id="invoice"/>
       <md-button class="md-raised" ng-click = "upFile('invoice','documentID1')">Upload Now</md-button>
-      <h6> {{$scope.dispatchOrderDetails.documentID1}}</h6>
-      <md-button class="md-raised" ng-click = "downFile()">Download</md-button> 
+      <md-button class="md-raised" ng-click = "downFile('documentID1')">Download</md-button> 
 </md-list-item>
 <md-divider ></md-divider>
 <md-list-item>
     <p> Esugam</p>
-    <md-button class="md-raised">Select</md-button>
-    <md-button class="md-raised" ng-click = "uploadFile()">Upload</md-button>   
-    <md-button class="md-raised" >Download</md-button>   
+      <input type ="file" id="Esugam"/>
+      <md-button class="md-raised" ng-click = "upFile('Esugam','documentID2')">Upload Now</md-button>
+      <md-button class="md-raised" ng-click = "downFile('documentID2')">Download</md-button>  
 </md-list-item>
 <md-divider ></md-divider>
 <md-list-item>
     <p> LR</p>
-    <md-button class="md-raised">Select</md-button>
-    <md-button class="md-raised">Upload</md-button>   
-    <md-button class="md-raised">Download</md-button>   
+    <input type ="file" id="LR"/>
+      <md-button class="md-raised" ng-click = "upFile('LR','documentID3')">Upload Now</md-button>
+      <md-button class="md-raised" ng-click = "downFile('documentID3')">Download</md-button>   
 </md-list-item>
 <md-divider ></md-divider>
 <md-list-item>
     <p> ETC</p>
-    <md-button class="md-raised">Select</md-button>
-    <md-button class="md-raised">Upload</md-button>   
-    <md-button class="md-raised">Download</md-button>   
+    <input type ="file" id="ETC"/>
+      <md-button class="md-raised" ng-click = "upFile('ETC','documentID4')">Upload Now</md-button>
+      <md-button class="md-raised" ng-click = "downFile('documentID4')">Download</md-button>    
 </md-list-item>
   </md-card-content>
 </md-card>

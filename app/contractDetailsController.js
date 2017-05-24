@@ -52,6 +52,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		  var reader = new FileReader();
 		  reader.readAsArrayBuffer(fileData);
 
+
 		  reader.onload = function(){
 		      var arrayBuffer = reader.result;
 		      var bytes = new Uint8Array(arrayBuffer);      
@@ -59,13 +60,13 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		      for(var i = 0; i < bytes.length; i++){
 		        result+= (String.fromCharCode(bytes[i]));
 		      };
-		      var arg = [$scope.dispatchOrderId,fileName,fileType,result];
+		      var arg = [$scope.dispatchOrderId+id,fileName,fileType,result];
 
 		      var parameter2 = para.myFunc("invoke","createDocument",$scope.user,arg);         
 
 		     console.log(parameter2);
 
-		     $scope.dispatchOrderDetails.documentID1 = $scope.dispatchOrderId + id;
+		     $scope.dispatchOrderDetails[field] = $scope.dispatchOrderId + id;
 		     $scope.dispatchOrderDetails.transactionDescription = id + " Uploaded";		     
 
 	        $http.post($scope.user.url,parameter2).then(function(response) {
@@ -76,9 +77,11 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		  }
 
 
-	$scope.downFile = function(){
+	$scope.downFile = function(field){
 
-			var arg = ["document",$scope.dispatchOrderDetails.documentID1];
+			var name = $scope.dispatchOrderDetails[field]; 
+
+			var arg = ["document",name];
 
 			var parameter3 = para.myFunc("query","getDocuments",$scope.user,arg);
 
@@ -89,6 +92,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
             var result = response.result.message;
             var result2 = JSON.parse(result); 
             var result3 = result2[0].documentString;
+            var name = result2[0].documentName;
 
 
 		      var arr=[];
@@ -97,7 +101,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		        }
 		      var arr2 = new Uint8Array(arr); 
 
-		      var fileName = "teset.pdf";
+		      var fileName = name + ".pdf";
 		            var a = document.createElement("a");
 		            document.body.appendChild(a);
 		            var fileout = new Blob([arr2], {type: 'application/pdf'});
@@ -127,12 +131,12 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 
       		});
 			}
-			/*
+			
 			$scope.dispatchOrderDetails.transactionDescription = "Asset Created";		     
 
 	        	$http.post($scope.user.url,parameter2).then(function(response) {
             	update();
-      		});*/
+      		});
 	}
 
 	$scope.getAsset = function (){
@@ -200,9 +204,5 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
            	update();
       	});
 	}
-
-
-
-
 		
 }]);
