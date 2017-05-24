@@ -5,7 +5,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 	$scope.dispatchOrderDetails = {};
 	$scope.contractHisory = {};
 	$scope.selected = [];
-
+	$scope.openAssetList = [];
 
 	function refresh(){
 
@@ -137,11 +137,19 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 
 	$scope.getAsset = function (){
 
+		$scope.openAssetList = [];
+
 		var arg = ["asset"];
 		var param = para.myFunc("query","getAssets",$scope.user,arg);
 		$http.post($scope.user.url,param).success(function(reponse){
 			$scope.getAssetList = JSON.parse(reponse.result.message);
 			console.log($scope.getAssetList);
+			angular.forEach($scope.getAssetList, function(openAsset){
+				if(openAsset.stage == "Open"){
+					$scope.openAssetList.push(openAsset);	
+				}
+			})
+			console.log($scope.openAssetList);	
 		});
 
 	}
@@ -165,7 +173,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 
 	$scope.checkAll = function(){
 		if ($scope.selectAll) {
-			angular.forEach($scope.getAssetList, function(openAsset){
+			angular.forEach($scope.openAssetList, function(openAsset){
 				idx = $scope.selected.indexOf(openAsset.assetId);
 				if (idx >= 0 ){
 					return true;
@@ -173,7 +181,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 				else {
 					$scope.selected.push(openAsset.assetId);
 				}
-			})
+			});
 		}
 		else {
 			$scope.selected = [];
@@ -181,8 +189,16 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 	}
 
 	$scope.mapAsset = function() {
-	
 
+		var arr = $scope.selected.toString('');
+		var arg = [$scope.dispatchOrderId,arr];
+		
+		var param = para.myFunc("invoke","mapAsset",$scope.user,arg);
+		console.log(param);
+		$scope.dispatchOrderDetails.transactionDescription = "Asset Mapped";
+		$http.post($scope.user.url,param).then(function(response) {     			
+           	update();
+      	});
 	}
 
 

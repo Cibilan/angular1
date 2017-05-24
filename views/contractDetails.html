@@ -284,12 +284,12 @@
 <md-card flex>
      <md-card-header>
       <md-card-header-text>
-        <span class="md-title">Map Asset</span>
+        <span class="md-title">Asset</span>
       </md-card-header-text>
   </md-card-header>
   <md-list-item layout-padding>      
       <md-button class="md-raised" ng-click = "getAsset()"> Get Open Asset</md-button>
-      <md-button class="md-raised"> Mapp Asset</md-button>      
+      <md-button class="md-raised" ng-click = "mapAsset()"> Map Asset</md-button>      
    </md-list-item>
     <div layout-padding>
     <table class="table">
@@ -301,11 +301,11 @@
         <th>batchNumer</th>
        </tr> 
     </thead>
-    <tr ng-repeat="getasset in getAssetList">
-      <td> <input type = "checkbox" name="" ng-model="selected" ng-checked="exist(getasset)" ng-click="toggleSelection(getasset)">{{ getasset.assetId }} </td> 
-      <td>{{ getasset.partNumber }}</td>
-      <td>{{ getasset.partDescription }}</td>
-      <td>{{ getasset.batchNumer }}</td>
+    <tr ng-repeat="openAsset in openAssetList">
+      <td> <input type = "checkbox" name="" ng-model="selected" ng-checked="exist(openAsset)" ng-click="toggleSelection(openAsset)">{{ openAsset.assetId }} </td> 
+      <td>{{ openAsset.partNumber }}</td>
+      <td>{{ openAsset.partDescription }}</td>
+      <td>{{ openAsset.batchNumer }}</td>
     </tr>
     </table>
     <p>{{selected}}</p>
