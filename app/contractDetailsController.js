@@ -146,6 +146,40 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 
 	}
 
+	$scope.exist = function(openAsset){
+
+		return $scope.selected.indexOf(openAsset.assetId) > -1;
+
+	}
+
+	$scope.toggleSelection = function (openAsset){
+
+		var idx = $scope.selected.indexOf(openAsset.assetId);
+		if (idx > -1){
+			$scope.selected.splice(idx,1);
+		}
+		else{
+			$scope.selected.push(openAsset.assetId);
+		} 
+	}
+
+	$scope.checkAll = function(){
+		if ($scope.selectAll) {
+			angular.forEach($scope.getAssetList, function(openAsset){
+				idx = $scope.selected.indexOf(openAsset.assetId);
+				if (idx >= 0 ){
+					return true;
+				}
+				else {
+					$scope.selected.push(openAsset.assetId);
+				}
+			})
+		}
+		else {
+			$scope.selected = [];
+		}
+	}
+
 	$scope.mapAsset = function() {
 	
 

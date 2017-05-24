@@ -295,21 +295,20 @@
     <table class="table">
     <thead>
       <tr>
-        <th> select </th>
-        <th>assetId</th> 
+        <th> <input type="checkbox" name= "" ng-model = "selectAll" ng-click="checkAll()"> Select/Deselect All </th>
         <th>partNumber</th>
         <th>partDescription</th>
         <th>batchNumer</th>
        </tr> 
     </thead>
     <tr ng-repeat="getasset in getAssetList">
-      <td> <md-checkbox> </md-checkbox> </td> 
-      <td>{{ getasset.assetId }}</td>
+      <td> <input type = "checkbox" name="" ng-model="selected" ng-checked="exist(getasset)" ng-click="toggleSelection(getasset)">{{ getasset.assetId }} </td> 
       <td>{{ getasset.partNumber }}</td>
       <td>{{ getasset.partDescription }}</td>
       <td>{{ getasset.batchNumer }}</td>
     </tr>
     </table>
+    <p>{{selected}}</p>
     </div> 
 
 </md-card>
