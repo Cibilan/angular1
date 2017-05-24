@@ -4,6 +4,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 	$scope.user = userinfo.userData();
 	$scope.dispatchOrderDetails = {};
 	$scope.contractHisory = {};
+	$scope.selected = [];
 
 
 	function refresh(){
@@ -132,6 +133,17 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 	        	$http.post($scope.user.url,parameter2).then(function(response) {
             	update();
       		});*/
+	}
+
+	$scope.getAsset = function (){
+
+		var arg = ["asset"];
+		var param = para.myFunc("query","getAssets",$scope.user,arg);
+		$http.post($scope.user.url,param).success(function(reponse){
+			$scope.getAssetList = JSON.parse(reponse.result.message);
+			console.log($scope.getAssetList);
+		});
+
 	}
 
 	$scope.mapAsset = function() {
