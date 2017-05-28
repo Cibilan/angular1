@@ -234,7 +234,7 @@
       <md-button class="md-raised" ng-click = "getAsset()"> Get Open Asset</md-button>
       <md-button class="md-raised" ng-click = "mapAsset()"> Map Asset</md-button>      
    </md-list-item>
-    <div layout-padding ng-if = "openAssetList == []">
+    <div layout-padding ng-if = "openAssetList.length > 0">
     <table class="table" >
     <thead>
       <tr>
@@ -318,35 +318,33 @@
 
   <md-list-item>
     <p> Invoice</p>
-      <div ng-if="show.updocumentID1">
-      <input type ="file" id="invoice"/>
-      <md-button class="md-raised" ng-click = "upFile('invoice','documentID1')">Upload Now</md-button> </div>
-      <div ng-if="show.downdocumentID1">
-      <md-button class="md-raised" ng-click = "downFile('documentID1')">Download</md-button> </div>
+      <input type ="file" id="invoice" ng-if="show.updocumentID1"/>
+      <md-button class="md-raised" ng-if="show.updocumentID1" ng-click = "upFile('invoice','documentID1')">Upload Now</md-button> 
+      <md-button class="md-raised" ng-if="show.downdocumentID1" ng-click = "downFile('documentID1')">Download</md-button> 
 </md-list-item>
 <md-divider ></md-divider>
 <md-list-item>
     <p> Esugam</p>
-      <input type ="file" id="Esugam"/>
-      <md-button class="md-raised" ng-click = "upFile('Esugam','documentID2')">Upload Now</md-button>
-      <md-button class="md-raised" ng-click = "downFile('documentID2')">Download</md-button>  
+      <input type ="file" ng-if="show.updocumentID2" id="Esugam"/>
+      <md-button class="md-raised" ng-if="show.updocumentID2" ng-click = "upFile('Esugam','documentID2')">Upload Now</md-button>
+      <md-button class="md-raised" ng-if="show.downdocumentID2" ng-click = "downFile('documentID2')">Download</md-button>  
 </md-list-item>
 <md-divider ></md-divider>
 <md-list-item>
     <p> LR</p>
-    <input type ="file" id="LR"/>
-      <md-button class="md-raised" ng-click = "upFile('LR','documentID3')">Upload Now</md-button>
-      <md-button class="md-raised" ng-click = "downFile('documentID3')">Download</md-button>   
+    <input type ="file" ng-if="show.updocumentID3" id="LR"/>
+      <md-button class="md-raised" ng-if="show.updocumentID3" ng-click = "upFile('LR','documentID3')">Upload Now</md-button>
+      <md-button class="md-raised" ng-if="show.downdocumentID3" ng-click = "downFile('documentID3')">Download</md-button>   
 </md-list-item>
 <md-divider ></md-divider>
 <md-list-item>
     <p> ETC</p>
-    <input type ="file" id="ETC"/>
-      <md-button class="md-raised" ng-click = "upFile('ETC','documentID4')">Upload Now</md-button>
-      <md-button class="md-raised" ng-click = "downFile('documentID4')">Download</md-button>    
+    <input type ="file" ng-if="show.updocumentID4" id="ETC"/>
+      <md-button class="md-raised" ng-if="show.updocumentID4" ng-click = "upFile('ETC','documentID4')">Upload Now</md-button>
+      <md-button class="md-raised" ng-if="show.downdocumentID4" ng-click = "downFile('documentID4')">Download</md-button>    
 </md-list-item>
   </md-card-content>
-  <md-card-actions layout="row" layout-align="end center">
+  <md-card-actions layout="row" ng-if="show.readyShip" layout-align="end center">
    <md-button class="md-raised" ng-click = "readyShip()">Ready for shipment</md-button>
  </md-card-actions> 
 </md-card>

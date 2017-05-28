@@ -47,43 +47,45 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 			$http.post($scope.user.url,param).success(function(reponse){
 			$scope.dispatchOrderDetails = JSON.parse(reponse.result.message);
 			console.log($scope.dispatchOrderDetails);
-					
+			
+			//Dispatch Officer			
 			if($scope.user.userName == 'test_user0'){
 				if($scope.dispatchOrderDetails.stage == "0"){
 					$scope.show.asset = true;
 				}
-				else if($scope.dispatchOrderDetails.transporter = "" && $scope.dispatchOrderDetails.stage == "1"){
+				else if($scope.dispatchOrderDetails.transporter == "" && $scope.dispatchOrderDetails.stage == "1"){
 					$scope.show.transporter = true;
 				}
-				else if($scope.dispatchOrderDetails.stage == "1"){
+				else if($scope.dispatchOrderDetails.transporter != "" && $scope.dispatchOrderDetails.stage == "1"){
 					$scope.show.confirmArrival = true;
 				}
 				else if ($scope.dispatchOrderDetails.stage == "2"){
 
 					$scope.show.documentUpload = true;
+					$scope.show.readyShip = true;
 
-					if($scope.dispatchOrderDetails.documentID1 = ""){
+					if($scope.dispatchOrderDetails.documentID1 == ""){
 						$scope.show.updocumentID1 = true;
 					}
 					else{
 						$scope.show.downdocumentID1 = true;
 					}
 
-					if($scope.dispatchOrderDetails.documentID2 = ""){
+					if($scope.dispatchOrderDetails.documentID2 == ""){
 						$scope.show.updocumentID2 = true;
 					}
 					else{
 						$scope.show.downdocumentID2 = true;
 					}
 
-					if($scope.dispatchOrderDetails.documentID3 = ""){
+					if($scope.dispatchOrderDetails.documentID3 == ""){
 						$scope.show.updocumentID3 = true;
 					}
 					else{
-						$scope.show.downdocumentID2 = true;
+						$scope.show.downdocumentID3 = true;
 					}
 
-					if($scope.dispatchOrderDetails.documentID4 = ""){
+					if($scope.dispatchOrderDetails.documentID4 == ""){
 						$scope.show.updocumentID4 = true;
 					}
 					else{
@@ -91,29 +93,75 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 					}
 				}
 				else if($scope.dispatchOrderDetails.stage == "3"){
+					$scope.show.documentUpload = true;
+					$scope.show.downdocumentID1 = true;
+					$scope.show.downdocumentID2 = true;
+					$scope.show.downdocumentID3 = true;
+					$scope.show.downdocumentID4 = true;
 					$scope.show.goodsLoad = true;	
 				}
 				else if($scope.dispatchOrderDetails.stage == "4"){
+					$scope.show.documentUpload = true;
+					$scope.show.downdocumentID1 = true;
+					$scope.show.downdocumentID2 = true;
+					$scope.show.downdocumentID3 = true;
+					$scope.show.downdocumentID4 = true;
 					$scope.show.goodsReceived = true;	
 				}
 				else{
+					$scope.show.documentUpload = true;
+					$scope.show.downdocumentID1 = true;
+					$scope.show.downdocumentID2 = true;
+					$scope.show.downdocumentID3 = true;
+					$scope.show.downdocumentID4 = true;
 					$scope.show.goodsDelivered = true;	
 				}
 			}
 
+						//Planner	
 			if($scope.user.userName == 'test_user1'){
-				//console.log(user is transporter);
+				$scope.show.documentUpload = true;
+				$scope.show.downdocumentID1 = true;
+				$scope.show.downdocumentID2 = true;
+				$scope.show.downdocumentID3 = true;
+				$scope.show.downdocumentID4 = true;	
 
 			}
+
+			//Transporter
 			if($scope.user.userName == 'test_user2'){
-				//console.log(user is buyer);
+				if($scope.dispatchOrderDetails.stage == "4"){
+					$scope.show.documentUpload = true;
+					$scope.show.downdocumentID1 = true;
+					$scope.show.downdocumentID2 = true;
+					$scope.show.downdocumentID3 = true;
+					$scope.show.downdocumentID4 = true;
+					$scope.show.goodsDelivered = true;
+					$scope.show.goodsReceived = true;	
+				}	
 
 			}
+
+			//Buyer
 			if($scope.user.userName == 'test_user3'){
-				//console.log(user is planner);
-
-			}
+				if($scope.dispatchOrderDetails.stage == "4"){
+					$scope.show.documentUpload = true;
+					$scope.show.downdocumentID1 = true;
+					$scope.show.downdocumentID2 = true;
+					$scope.show.downdocumentID3 = true;
+					$scope.show.downdocumentID4 = true;
+					$scope.show.goodsDelivered = true;
+				}
+				if($scope.dispatchOrderDetails.stage == "5"){
+					$scope.show.documentUpload = true;
+					$scope.show.downdocumentID1 = true;
+					$scope.show.downdocumentID2 = true;
+					$scope.show.downdocumentID3 = true;
+					$scope.show.downdocumentID4 = true;
+				}
+			}	
 			console.log($scope.show);
+
 		});
 
 		myutils.hideWait();	
@@ -142,6 +190,8 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 	refresh();    
 
 	$scope.upFile = function (id,field){ 
+
+		myutils.showWait();			
 		  console.log(id);
 		  var input = document.getElementById(id).files;
 		  console.log(input);
@@ -199,7 +249,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		        }
 		      var arr2 = new Uint8Array(arr); 
 
-		      var fileName = name + ".pdf";
+		      var fileName = name;
 		            var a = document.createElement("a");
 		            document.body.appendChild(a);
 		            var fileout = new Blob([arr2], {type: 'application/pdf'});
@@ -212,6 +262,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		}
 
 	$scope.readyShip = function(){
+		myutils.showWait();
 		$scope.dispatchOrderDetails.transactionDescription = "Documents Checked";
 		$scope.dispatchOrderDetails.stage = "3";
 		update();
@@ -233,21 +284,19 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 			var param = para.myFunc("invoke","createAsset",$scope.user,arg);
 			console.log(param);
 
-			setTimeout(function(){
-				$http.post($scope.user.url,param).then(function(response) { 	
-				
-	        	console.log(asset.assetId);
+			$http.post($scope.user.url,param).then(function(response) { 	
+			
+        		console.log(asset.assetId);
 
-	  			});
+  			});
 
-			},2000);
 
 		}
     		
 			
-			$scope.dispatchOrderDetails.transactionDescription = "Asset Created";		     
+		$scope.dispatchOrderDetails.transactionDescription = "Asset Created";		     
 
-		    update();	                	
+		update();	                	
       	
 	}
 
@@ -306,27 +355,31 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 	}
 
 	$scope.mapAsset = function() {
-
+		myutils.showWait();	
 		var arr = $scope.selected.toString('');
 		var arg = [$scope.dispatchOrderId,arr];
 		
 		var param = para.myFunc("invoke","mapAsset",$scope.user,arg);
 		console.log(param);
-		$scope.dispatchOrderDetails.transactionDescription = "Asset Mapped";
-		$scope.dispatchOrderDetails.stage = "1";
-		$scope.dispatchOrderDetails.assetIDs = arr;
-		$http.post($scope.user.url,param).then(function(response) {     			
+		
+		$http.post($scope.user.url,param).then(function(response) { 
+			$scope.dispatchOrderDetails.transactionDescription = "Asset Mapped";
+			$scope.dispatchOrderDetails.stage = "1";
+			$scope.dispatchOrderDetails.assetIDs = arr;   
+			console.log($scope.dispatchOrderDetails); 			
            	update();
       	});
 	}
 
 	$scope.addTransporter = function(){
+		myutils.showWait();		
 		console.log($scope.dispatchOrderDetails);
 		$scope.dispatchOrderDetails.transactionDescription = "Transporter added";
 		update();
 	}
 
 	$scope.transporterArrived = function(){
+		myutils.showWait();	
 		console.log($scope.dispatchOrderDetails);
 		$scope.dispatchOrderDetails.transactionDescription = "Transporter Arrived";
 		$scope.dispatchOrderDetails.stage = "2";
@@ -334,6 +387,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 	}
 
 	$scope.confirmLoading = function(){
+		myutils.showWait();
 		console.log($scope.dispatchOrderDetails);
 		$scope.dispatchOrderDetails.transactionDescription = "Goods Loaded";
 		$scope.dispatchOrderDetails.inTransitDisptachOfficerSigned = "True";
