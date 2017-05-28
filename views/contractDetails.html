@@ -8,97 +8,91 @@
         </div>
     </md-toolbar>
 
-<div class ="container" layout="row" layout-align="center end">
-  <div flex-xs>
-    <md-card>
-      <md-card-title>
-      <md-card-title-text>
-        <span class="md-headline">Stage 1</span>
-          </md-card-title-text>
-    </md-card-title>
+<div layout="row" layout-align="center">
+    <md-card flex>
+      <md-card-header>
+      <md-card-header-text>
+        <span class = "md-title">Order Created</span>
+        </md-card-header-text>
+      </md-card-header>
+      <md-card-content>
+          <p>Order Created</p>
+          <p>Create Asset</p>
+          <p>Map asset</p>
+      </md-card-content>
+
+    </md-card>
+    <md-card flex>
+      <md-card-header>
+      <md-card-header-text>
+        <span class = "md-title">Ready for Dispatch</span>
+        </md-card-header-text>
+      </md-card-header>
+      <md-card-content>
+          <p>Assign Transporter</p>
+          <p>Tranporter Arrival</p>
+        </md-card-content>
+
+    </md-card>
+
+    <md-card flex>
+      <md-card-header>
+      <md-card-header-text>
+        <span class = "md-title">Arrival of Transporter</span>
+        </md-card-header-text>
+      </md-card-header>
+      <md-card-content>
+          <p>Upload Invoice</p> 
+          <p>Upload LR</p>
+          <p> Upload esugam</p>
+          <p>Upload etc</p>
+          
+        </md-card-content>
+
+    </md-card>
+
+    <md-card flex>
+     <md-card-header>
+      <md-card-header-text>
+        <span class = "md-title">Ready for Shipment</span>
+        </md-card-header-text>
+      </md-card-header>
       <md-card-content>
           <p>
-            {{dispatchOrderId}}
+             Confirm Loading
           </p>
         </md-card-content>
 
     </md-card>
-    </div>
-      <div flex-xs>
-    <md-card>
-      <md-card-title>
-      <md-card-title-text>
-        <span class="md-headline">Stage 2</span>
-          </md-card-title-text>
-    </md-card-title>
+
+    <md-card flex>
+      <md-card-header>
+      <md-card-header-text>
+        <span class = "md-title">In Transit</span>
+        </md-card-header-text>
+      </md-card-header>
       <md-card-content>
           <p>
-            Transaction details
+            Received Load
           </p>
         </md-card-content>
 
     </md-card>
-    </div>
-      <div flex-xs>
-    <md-card>
-      <md-card-title>
-      <md-card-title-text>
-        <span class="md-headline">Stage 3</span>
-          </md-card-title-text>
-    </md-card-title>
+
+    <md-card flex>
+      <md-card-header>
+      <md-card-header-text>
+        <span class = "md-title">Shipment Delivered</span>
+        </md-card-header-text>
+      </md-card-header>
       <md-card-content>
           <p>
-            Transaction details
+            Consigment Delivered
           </p>
         </md-card-content>
 
     </md-card>
-    </div>
-      <div flex-xs>
-    <md-card>
-      <md-card-title>
-      <md-card-title-text>
-        <span class="md-headline">Stage 4</span>
-          </md-card-title-text>
-    </md-card-title>
-      <md-card-content>
-          <p>
-            Transaction details
-          </p>
-        </md-card-content>
 
-    </md-card>
-    </div>
-      <div flex-xs>
-    <md-card>
-      <md-card-title>
-      <md-card-title-text>
-        <span class="md-headline">Stage 5</span>
-          </md-card-title-text>
-    </md-card-title>
-      <md-card-content>
-          <p>
-            Transaction details
-          </p>
-        </md-card-content>
-
-    </md-card>
-    </div>
-      <div flex-xs>
-    <md-card>
-      <md-card-title>
-      <md-card-title-text>
-        <span class="md-headline">Stage 6</span>
-          </md-card-title-text>
-    </md-card-title>
-      <md-card-content>
-          <p>
-            Transaction details
-          </p>
-        </md-card-content>
-
-    </md-card>
-    </div>
   
 </div>	
 
@@ -187,59 +181,9 @@
 </md-card>
 </div>
 
-<div layout = "row" >
-<md-card flex>
-  <md-card-header>
-      <md-card-header-text>
-        <span class="md-title">Document Details</span>
-      </md-card-header-text>
-  </md-card-header>
-  <md-card-content>
-
-  <md-list-item>
-    <p> Invoice</p>
-      <input type ="file" id="invoice"/>
-      <md-button class="md-raised" ng-click = "upFile('invoice','documentID1')">Upload Now</md-button>
-      <md-button class="md-raised" ng-click = "downFile('documentID1')">Download</md-button> 
-</md-list-item>
-<md-divider ></md-divider>
-<md-list-item>
-    <p> Esugam</p>
-      <input type ="file" id="Esugam"/>
-      <md-button class="md-raised" ng-click = "upFile('Esugam','documentID2')">Upload Now</md-button>
-      <md-button class="md-raised" ng-click = "downFile('documentID2')">Download</md-button>  
-</md-list-item>
-<md-divider ></md-divider>
-<md-list-item>
-    <p> LR</p>
-    <input type ="file" id="LR"/>
-      <md-button class="md-raised" ng-click = "upFile('LR','documentID3')">Upload Now</md-button>
-      <md-button class="md-raised" ng-click = "downFile('documentID3')">Download</md-button>   
-</md-list-item>
-<md-divider ></md-divider>
-<md-list-item>
-    <p> ETC</p>
-    <input type ="file" id="ETC"/>
-      <md-button class="md-raised" ng-click = "upFile('ETC','documentID4')">Upload Now</md-button>
-      <md-button class="md-raised" ng-click = "downFile('documentID4')">Download</md-button>    
-</md-list-item>
-  </md-card-content>
-</md-card>
-
-<md-card flex>
-    <md-card-header>
-      <md-card-header-text>
-        <span class="md-title">Actions</span>
-      </md-card-header-text>
-  </md-card-header>
-  <md-card-content>
-
-</md-card>
-</div>
-
-<div layout = "row" >
+<div layout = "row" ng-if = "show.asset" >
   <md-card flex>
-     <md-card-header>
+     <md-card-header> 
       <md-card-header-text>
         <span class="md-title">Create Asset</span>
       </md-card-header-text>
@@ -279,7 +223,7 @@
   </md-card>
 </div>
 
-<div layout = "row">
+<div layout = "row" ng-if = "show.asset">
 <md-card flex>
      <md-card-header>
       <md-card-header-text>
@@ -290,8 +234,8 @@
       <md-button class="md-raised" ng-click = "getAsset()"> Get Open Asset</md-button>
       <md-button class="md-raised" ng-click = "mapAsset()"> Map Asset</md-button>      
    </md-list-item>
-    <div layout-padding>
-    <table class="table">
+    <div layout-padding ng-if = "openAssetList == []">
+    <table class="table" >
     <thead>
       <tr>
         <th> <input type="checkbox" name= "" ng-model = "selectAll" ng-click="checkAll()"> Select/Deselect All </th>
@@ -312,6 +256,142 @@
 
 </md-card>
 </div>
+
+<div>
+  <md-card flex ="50" layout-padding ng-if = "show.transporter" >
+  <md-card-header>
+      <md-card-header-text>
+        <span class = "md-title">Transporter Details</span>
+        </md-card-header-text>
+   </md-card-header>
+   <md-input-container class="md-block" flex layout-padding >
+      <label>Transporter</label>
+      <md-select name="type" ng-model="dispatchOrderDetails.transporter">
+        <md-option value="VHS Logistics">VHS Logistics</md-option>
+        <md-option value="TVS Logistics">TVS Logistics</md-option>
+        <md-option value="Mahindra Logistics">Mahindra Logistics</md-option>
+      </md-select>
+    </md-input-container>
+    <md-input-container class="md-block" flex >
+      <label>Load Type</label>
+      <md-select name="type" ng-model="dispatchOrderDetails.loadingType">
+        <md-option value="FTL">FTL</md-option>
+        <md-option value="LTL">LTL</md-option>
+      </md-select>
+    </md-input-container>
+    <md-input-container  class="md-block" flex>
+        <label>Transporter Ref</label>
+        <input class="md-input" ng-model="dispatchOrderDetails.transporterRef" >
+    </md-input-container>
+    <md-input-container  class="md-block" flex>
+        <label>Weight in Kgs</label>
+        <input class="md-input" ng-model="dispatchOrderDetails.weight" >
+    </md-input-container>
+    <div>
+        <md-button ng-click= "addTransporter()">Add Transporter</md-button>
+    </div>
+  </md-card> 
+</div>
+
+<div>
+  <md-card flex ="50" layout-padding ng-if="show.confirmArrival">
+    <md-card-header>
+      <md-card-header-text>
+        <span class = "md-title">Confirm Transporter Arrival</span>
+      </md-card-header-text>
+    </md-card-header>
+    <div>
+        <md-button ng-click= "transporterArrived()">Arrived</md-button>
+    </div>
+
+  </md-card>
+</div>
+
+<div layout = "row" ng-if="show.documentUpload">
+<md-card flex>
+  <md-card-header>
+      <md-card-header-text>
+        <span class="md-title">Document Details</span>
+      </md-card-header-text>
+  </md-card-header>
+  <md-card-content>
+
+  <md-list-item>
+    <p> Invoice</p>
+      <div ng-if="show.updocumentID1">
+      <input type ="file" id="invoice"/>
+      <md-button class="md-raised" ng-click = "upFile('invoice','documentID1')">Upload Now</md-button> </div>
+      <div ng-if="show.downdocumentID1">
+      <md-button class="md-raised" ng-click = "downFile('documentID1')">Download</md-button> </div>
+</md-list-item>
+<md-divider ></md-divider>
+<md-list-item>
+    <p> Esugam</p>
+      <input type ="file" id="Esugam"/>
+      <md-button class="md-raised" ng-click = "upFile('Esugam','documentID2')">Upload Now</md-button>
+      <md-button class="md-raised" ng-click = "downFile('documentID2')">Download</md-button>  
+</md-list-item>
+<md-divider ></md-divider>
+<md-list-item>
+    <p> LR</p>
+    <input type ="file" id="LR"/>
+      <md-button class="md-raised" ng-click = "upFile('LR','documentID3')">Upload Now</md-button>
+      <md-button class="md-raised" ng-click = "downFile('documentID3')">Download</md-button>   
+</md-list-item>
+<md-divider ></md-divider>
+<md-list-item>
+    <p> ETC</p>
+    <input type ="file" id="ETC"/>
+      <md-button class="md-raised" ng-click = "upFile('ETC','documentID4')">Upload Now</md-button>
+      <md-button class="md-raised" ng-click = "downFile('documentID4')">Download</md-button>    
+</md-list-item>
+  </md-card-content>
+  <md-card-actions layout="row" layout-align="end center">
+   <md-button class="md-raised" ng-click = "readyShip()">Ready for shipment</md-button>
+ </md-card-actions> 
+</md-card>
+</div>
+<div ng-if="show.goodsLoad">
+  <md-card flex ="50" layout-padding >
+    <md-card-header>
+      <md-card-header-text>
+        <span class = "md-title">Confirm Loading of goods</span>
+      </md-card-header-text>
+    </md-card-header>
+    <div>
+        <md-button ng-click= "confirmLoading()">Loaded</md-button>
+    </div>
+
+  </md-card>
+</div>
+<div ng-if="show.goodsReceived">
+  <md-card flex ="50" layout-padding >
+    <md-card-header>
+      <md-card-header-text>
+        <span class = "md-title">Confirm Goods Received</span>
+      </md-card-header-text>
+    </md-card-header>
+    <div>
+        <md-button ng-click= "goodsLoaded()">Loaded</md-button>
+    </div>
+
+  </md-card>
+</div>
+<div ng-if="show.goodsDelivered">
+  <md-card flex ="50" layout-padding >
+    <md-card-header>
+      <md-card-header-text>
+        <span class = "md-title">Confirm Goods delivered</span>
+      </md-card-header-text>
+    </md-card-header>
+    <div>
+        <md-button ng-click= "goodsdelivered()">Delivered</md-button>
+    </div>
+
+  </md-card>
+</div>
+
+
 
 
 <div class="container">

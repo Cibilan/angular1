@@ -1,0 +1,38 @@
+<div layout = "row">
+	<md-card layout-margin layout-padding flex = "30">
+	 <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">Login Page</span>
+          </md-card-title-text>
+    </md-card-title>
+	<form name="createContract">
+		<div layout="column">
+			<md-input-container class="md-block" flex >
+                  <label>User Peer</label>
+                  <md-select name="type" ng-model="login.peer">
+                    <md-option value="localhost">localhost</md-option>
+                    <md-option value="127.0.0.1">127.0.0.1</md-option>
+                  </md-select>
+             </md-input-container>
+             <md-input-container class="md-block" flex >
+                  <label>User Port</label>
+                  <md-select name="type" ng-model="login.port">
+                    <md-option value="7050">7050</md-option>
+                    <md-option value="7054">7054</md-option>
+                  </md-select>
+             </md-input-container>
+             <md-input-container  class="md-block" flex>
+	            <label>Username</label>
+	            <input class="md-input" ng-model="login.userName" >
+	       	</md-input-container>
+	          <md-input-container  class="md-block" flex>
+	            <label>Password</label>
+	            <input class="md-input" type="password" ng-model="login.Password" >
+	          </md-input-container>
+	          <div>
+	          <md-button ng-click= "loginUser()">Login</md-button>
+	          </div>
+		</div>
+	</form>
+	</md-card>
+</div>

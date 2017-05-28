@@ -3,6 +3,10 @@ var pilotApp = angular.module('pilotApp', ['ngRoute','dataGrid','pagination','ng
 pilotApp.config(['$routeProvider', function($routeProvider){
 	
 	$routeProvider
+		.when('/login', {
+			templateUrl: 'views/login.html',
+			controller: 'loginController'
+		})
 		.when('/home', {
 			templateUrl: 'views/home.html',
 			controller: 'mainController'
@@ -24,7 +28,7 @@ pilotApp.config(['$routeProvider', function($routeProvider){
 			controller: 'createOrderController'
 		})
 		.otherwise({
-			redirectTo: '/orderList'
+			redirectTo: '/login'
 		});
 }]);
 
@@ -36,7 +40,7 @@ pilotApp.provider('userinfo',function () {
 					var user = {
 						url: "http://localhost:7050/chaincode",
 						userName: "test_user0",
-						cc : "74170f66035903ab2f722a3515347dadda4995710a46135458269596fcf7f7f34aea1a8c4489501251d280dd0e91d8ec3ea3b4756d4b818c485fdfc85190c1ef"
+						cc : "26abe9a1e0bf1f5ea6cc5522574659e184c7cd42fe5f2ae3ab085a0d45a898f083f5704d553bfc7b7739a0a21523379e556c71214010364a7b616585228b3e8f"
 					};
 					return user;
 				} 	
@@ -89,6 +93,34 @@ pilotApp.directive('onReadFile', function ($parse) {
 		}
 	};
 });
+
+
+pilotApp.service('myutils',['$mdDialog', '$rootScope', function($mdDialog,  $rootScope){
+
+return {
+  hideWait: hideWait,
+  showWait: showWait
+}
+     
+function hideWait(){
+  $mdDialog.cancel();
+}
+      
+function showWait(){
+  $mdDialog.show({
+  template: '<md-dialog id="plz_wait" style="background-color:transparent;box-shadow:none">' +
+            '<div layout="row" layout-sm="column" layout-align="center center" aria-label="wait">' +
+            '<md-progress-circular md-mode="indeterminate" ></md-progress-circular>' +
+            '<p> {{message}} </p>' +
+            '</div>' +
+            '</md-dialog>',
+  parent: angular.element(document.body),
+  clickOutsideToClose:false,
+  fullscreen: false
+  });
+}
+
+}]);
 
 pilotApp.controller('mainController', ['$scope' , function($scope) {
 
