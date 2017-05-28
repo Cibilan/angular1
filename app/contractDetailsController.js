@@ -99,14 +99,15 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 					$scope.show.downdocumentID3 = true;
 					$scope.show.downdocumentID4 = true;
 					$scope.show.goodsLoad = true;	
+					$scope.show.goodsReceived = true;
 				}
 				else if($scope.dispatchOrderDetails.stage == "4"){
 					$scope.show.documentUpload = true;
 					$scope.show.downdocumentID1 = true;
 					$scope.show.downdocumentID2 = true;
 					$scope.show.downdocumentID3 = true;
-					$scope.show.downdocumentID4 = true;
-					$scope.show.goodsReceived = true;	
+					$scope.show.downdocumentID4 = true;						
+					$scope.show.goodsDelivered = true;	
 				}
 				else{
 					$scope.show.documentUpload = true;
@@ -114,7 +115,6 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 					$scope.show.downdocumentID2 = true;
 					$scope.show.downdocumentID3 = true;
 					$scope.show.downdocumentID4 = true;
-					$scope.show.goodsDelivered = true;	
 				}
 			}
 
@@ -174,6 +174,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 
 	function update(){
 
+		myutils.showWait();
 		var arg = [$scope.dispatchOrderDetails.dispatchOrderId,$scope.dispatchOrderDetails.stage,$scope.dispatchOrderDetails.customer,$scope.dispatchOrderDetails.transporter,$scope.dispatchOrderDetails.seller,$scope.dispatchOrderDetails.assetIDs,$scope.dispatchOrderDetails.asnNumber,$scope.dispatchOrderDetails.source,$scope.dispatchOrderDetails.shipmentType,$scope.dispatchOrderDetails.contractType,$scope.dispatchOrderDetails.deliveryTerm,$scope.dispatchOrderDetails.dispatchDate,$scope.dispatchOrderDetails.transporterRef,$scope.dispatchOrderDetails.loadingType,$scope.dispatchOrderDetails.vehicleType,$scope.dispatchOrderDetails.weight,$scope.dispatchOrderDetails.consignment,$scope.dispatchOrderDetails.quantity,$scope.dispatchOrderDetails.partNumber,$scope.dispatchOrderDetails.partName,$scope.dispatchOrderDetails.orderRefNum,$scope.dispatchOrderDetails.createdOn,$scope.dispatchOrderDetails.documentID1,$scope.dispatchOrderDetails.documentID2,$scope.dispatchOrderDetails.documentID3,$scope.dispatchOrderDetails.documentID4,$scope.dispatchOrderDetails.dropDescription,$scope.dispatchOrderDetails.deliverydescription,$scope.dispatchOrderDetails.inTransitDisptachOfficerSigned,$scope.dispatchOrderDetails.inTransitTransporterSigned,$scope.dispatchOrderDetails.transactionDescription];
 		var param = para.myFunc("invoke","updateDispatchOrder",$scope.user,arg);
 
@@ -191,7 +192,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 
 	$scope.upFile = function (id,field){ 
 
-		myutils.showWait();			
+				
 		  console.log(id);
 		  var input = document.getElementById(id).files;
 		  console.log(input);
@@ -262,8 +263,8 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		}
 
 	$scope.readyShip = function(){
-		myutils.showWait();
-		$scope.dispatchOrderDetails.transactionDescription = "Documents Checked";
+		
+		$scope.dispatchOrderDetails.transactionDescription = "Ready for shipment";
 		$scope.dispatchOrderDetails.stage = "3";
 		update();
 	}	
@@ -275,7 +276,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
     }	
 
 	$scope.createAsset = function() {
-		myutils.showWait();		
+				
 
 		for (var i = 0; i < $scope.assetList.length; i++) {
 
@@ -355,7 +356,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 	}
 
 	$scope.mapAsset = function() {
-		myutils.showWait();	
+			
 		var arr = $scope.selected.toString('');
 		var arg = [$scope.dispatchOrderId,arr];
 		
@@ -364,22 +365,28 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		
 		$http.post($scope.user.url,param).then(function(response) { 
 			$scope.dispatchOrderDetails.transactionDescription = "Asset Mapped";
-			$scope.dispatchOrderDetails.stage = "1";
 			$scope.dispatchOrderDetails.assetIDs = arr;   
 			console.log($scope.dispatchOrderDetails); 			
            	update();
+
+           	setTimeout(function(){
+           		$scope.dispatchOrderDetails.stage = "1";
+           		$scope.dispatchOrderDetails.transactionDescription = "Ready for Dispatch";
+           		update();
+	      	},4000);
+           	
       	});
 	}
 
 	$scope.addTransporter = function(){
-		myutils.showWait();		
+				
 		console.log($scope.dispatchOrderDetails);
 		$scope.dispatchOrderDetails.transactionDescription = "Transporter added";
 		update();
 	}
 
 	$scope.transporterArrived = function(){
-		myutils.showWait();	
+			
 		console.log($scope.dispatchOrderDetails);
 		$scope.dispatchOrderDetails.transactionDescription = "Transporter Arrived";
 		$scope.dispatchOrderDetails.stage = "2";
@@ -387,12 +394,12 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 	}
 
 	$scope.confirmLoading = function(){
-		myutils.showWait();
+		
 		console.log($scope.dispatchOrderDetails);
 		$scope.dispatchOrderDetails.transactionDescription = "Goods Loaded";
-		$scope.dispatchOrderDetails.inTransitDisptachOfficerSigned = "True";
-		$scope.dispatchOrderDetails.stage = "4";
+		$scope.dispatchOrderDetails.inTransitDisptachOfficerSigned = "True";		
 		update();
+
 	}
 
 	$scope.goodsLoaded = function(){
@@ -400,6 +407,11 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		$scope.dispatchOrderDetails.transactionDescription = "Goods Received";
 		$scope.dispatchOrderDetails.inTransitTransporterSigned = "True";
 		update();
+				setTimeout(function(){
+           		$scope.dispatchOrderDetails.stage = "4";
+           		$scope.dispatchOrderDetails.transactionDescription = "In transit";
+           		update();
+	     },4000);
 	}
 
 	$scope.goodsdelivered = function(){
