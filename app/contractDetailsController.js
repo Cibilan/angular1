@@ -43,7 +43,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
     		step4Completed : false,
     		step5Completed : false,
     		step6Completed : false,
-    		selected : 3
+    		selected : 0
     	};
 
     	console.log($scope.show);
@@ -69,20 +69,21 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 				}
 				else if($scope.dispatchOrderDetails.transporter == "" && $scope.dispatchOrderDetails.stage == "1"){
 					$scope.show.transporter = true;
-					step1Completed : true;
-					$scope.selected = 2; 
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.selected = 2; 
 				}
 				else if($scope.dispatchOrderDetails.transporter != "" && $scope.dispatchOrderDetails.stage == "1"){
 					$scope.show.confirmArrival = true;
-					step1Completed : true;
-					$scope.selected = 2; 
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.selected = 2; 
 				}
 				else if ($scope.dispatchOrderDetails.stage == "2"){
 
 					$scope.show.documentUpload = true;
 					$scope.show.readyShip = true;
-					step2Completed : true;
-					$scope.selected = 3; 
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.selected = 3; 
 
 					if($scope.dispatchOrderDetails.documentID1 == ""){
 						$scope.show.updocumentID1 = true;
@@ -119,8 +120,10 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 					$scope.show.downdocumentID3 = true;
 					$scope.show.downdocumentID4 = true;
 					$scope.show.goodsLoad = true;
-					step3Completed : true;
-					$scope.selected = 4; 	
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.step3Completed = true;
+					$scope.stepper.selected = 4; 	
 				}
 				else if($scope.dispatchOrderDetails.stage == "3" && $scope.dispatchOrderDetails.inTransitDisptachOfficerSigned == "True"){
 					$scope.show.documentUpload = true;
@@ -129,8 +132,10 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 					$scope.show.downdocumentID3 = true;
 					$scope.show.downdocumentID4 = true;
 					$scope.show.goodsReceived = true;
-					step3Completed : true;
-					$scope.selected = 4; 
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.step3Completed = true;
+					$scope.stepper.selected = 4; 
 				}
 				else if($scope.dispatchOrderDetails.stage == "4"){
 					$scope.show.documentUpload = true;
@@ -139,8 +144,11 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 					$scope.show.downdocumentID3 = true;
 					$scope.show.downdocumentID4 = true;						
 					$scope.show.goodsDelivered = true;	
-					step4Completed : true;
-					$scope.selected = 5; 
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.step3Completed = true;
+					$scope.stepper.step4Completed = true;
+					$scope.stepper.selected = 5; 
 				}
 				else{
 					$scope.show.documentUpload = true;
@@ -148,8 +156,12 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 					$scope.show.downdocumentID2 = true;
 					$scope.show.downdocumentID3 = true;
 					$scope.show.downdocumentID4 = true;
-					step5Completed : true;
-					$scope.selected = 6;
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.step3Completed = true;
+					$scope.stepper.step4Completed = true;
+					$scope.stepper.step5Completed = true;
+					$scope.stepper.selected = 6;
 				}
 			}
 
