@@ -1,4 +1,4 @@
-angular.module('pilotApp').controller('contractListController', ['$scope', '$http' , '$location', 'userinfo' ,'para' ,function($scope, $http, $location, userinfo, para) {
+angular.module('pilotApp').controller('contractListController', ['$scope', '$http' , '$location', 'userinfo' ,'para', '$rootScope' ,function($scope, $http, $location, userinfo, para, $rootScope) {
 
 	$scope.gridOptions = {
             data: [],
@@ -11,7 +11,7 @@ angular.module('pilotApp').controller('contractListController', ['$scope', '$htt
 
     $scope.param = para.myFunc("query","getAllDispatchOrdersLatest",$scope.user,arg);
            
-
+    console.log($rootScope.userName);
 	$http.post($scope.user.url,$scope.param).success(function(reponse){
 		console.log(reponse);
 		var message = reponse.result.message;

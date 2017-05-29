@@ -12,6 +12,13 @@ pilotApp.config(['$routeProvider', function($routeProvider){
 			controller: 'mainController'
 		})
 		.when('/assetList', {
+			resolve:{
+				"check":function($location,$rootScope){
+					if(!$rootScope.loggedIn){
+						$location.path('/login');
+					}
+				}	
+			},
 			templateUrl: 'views/assetList.html',
 			controller: 'assetListController'
 		})

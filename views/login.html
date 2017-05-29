@@ -1,19 +1,18 @@
-<div layout = "row">
-	<md-card layout-margin layout-padding flex = "30">
-	 <md-card-title>
-      <md-card-title-text>
-        <span class="md-headline">Login Page</span>
-          </md-card-title-text>
-    </md-card-title>
-	<form name="createContract">
-		<div layout="column">
+<div layout="row" layout-align="space-around" layout-padding="layout-padding" ng-cloak="ng-cloak">
+	<md-card layout-margin layout-padding flex="flex" flex-gt-sm="50" flex-gt-md="33">
+		<md-card-title>
+	      	<md-card-title-text>	
+	        	<span class="md-headline">User Login</span>
+	      	</md-card-title-text>
+	    </md-card-title>
+		<md-card-content layout="column">
 			<md-input-container class="md-block" flex >
                   <label>User Peer</label>
                   <md-select name="type" ng-model="login.peer">
                     <md-option value="localhost">localhost</md-option>
                     <md-option value="127.0.0.1">127.0.0.1</md-option>
                   </md-select>
-             </md-input-container>
+            </md-input-container>
              <md-input-container class="md-block" flex >
                   <label>User Port</label>
                   <md-select name="type" ng-model="login.port">
@@ -27,12 +26,12 @@
 	       	</md-input-container>
 	          <md-input-container  class="md-block" flex>
 	            <label>Password</label>
-	            <input class="md-input" type="password" ng-model="login.Password" >
+	            <input class="md-input" type="password" ng-model="login.password" >
 	          </md-input-container>
-	          <div>
-	          <md-button ng-click= "loginUser()">Login</md-button>
-	          </div>
-		</div>
-	</form>
+		</md-card-content>
+		<md-card-actions>
+	          <md-button class="md-raised md-primary" ng-click= "loginUser()">Login</md-button>
+	    </md-card-actions>      
+
 	</md-card>
 </div>
