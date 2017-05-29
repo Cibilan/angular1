@@ -8,26 +8,26 @@
         </div>
     </md-toolbar>
 
-<div layout="row" layout-align="center">
-  <md-card>
+<div layout="row" layout-align="center" layout-padding>
+  <md-card flex>
 
-    <md-steppers>
-        <md-step label="Order Created" md-complete="stepper.step1Completed"  ng-disabled="stepper.step1Disabled">
+    <md-steppers md-selected="stepper.selected" md-stretch-steppers="always">
+        <md-step label="Order Created" md-complete="stepper.step1Completed">
             <md-content></md-content>
         </md-step>
-        <md-step label="Ready for Dispatch" md-complete="stepper.step1Completed"  ng-disabled="stepper.step1Completed">
+        <md-step label="Ready for Dispatch" md-complete="stepper.step2Completed">
             <md-content></md-content>
         </md-step>
-        <md-step label="Arrival of Transporter" md-complete="step3.completed"  ng-disabled="step3.disabled">
+        <md-step label="Arrival of Transporter" md-complete="stepper.step3Completed">
             <md-content></md-content>
         </md-step>  
-        <md-step label="Ready for Shipment" md-complete="step2.completed"  ng-disabled="step2.disabled">
+        <md-step label="Ready for Shipment" md-complete="stepper.step4Completed">
             <md-content></md-content>
         </md-step>
-        <md-step label="In Transit" md-complete="step2.completed"  ng-disabled="step2.disabled">
+        <md-step label="In Transit" md-complete="stepper.step5Completed">
             <md-content></md-content>
         </md-step>
-        <md-step label="Shipment Delivered" md-complete="step2.completed"  ng-disabled="step2.disabled">
+        <md-step label="Shipment Delivered" md-complete="stepper.step6Completed">
             <md-content></md-content>
         </md-step>
     </md-steppers>
@@ -35,6 +35,7 @@
   </md-card>
 </div>    
 
+<!--
 <div layout="row" layout-align="center">
     <md-card flex>
       <md-card-header>
@@ -121,9 +122,9 @@
     </md-card>
 
   
-</div>	
+</div>	-->
 
-<div layout-gt-xs layout="row" layout-align="center">
+<div layout-gt-xs layout="row" layout-align="center" layout-padding>
 
 <md-card flex>
 

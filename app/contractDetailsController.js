@@ -9,9 +9,6 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 	$scope.show = {};
 	$scope.stepper = {};
 
-	$scope.stepper.step1Completed = true;
-	$scope.stepper.step1Disabled = false;
-
 
 	function refresh(){
 
@@ -39,7 +36,18 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
     		goodsDelivered : false
     	};
 
+    	$scope.stepper = {
+    		step1Completed : false,
+    		step2Completed : false,
+    		step3Completed : false,
+    		step4Completed : false,
+    		step5Completed : false,
+    		step6Completed : false,
+    		selected : 3
+    	};
+
     	console.log($scope.show);
+    	console.log($scope.stepper);
 
 
     	setTimeout(function(){	
@@ -48,7 +56,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 			$scope.contractHisory = JSON.parse(reponse.result.message);
 			console.log($scope.contractHisory);
 			});
-
+                                                                           
 			$http.post($scope.user.url,param).success(function(reponse){
 			$scope.dispatchOrderDetails = JSON.parse(reponse.result.message);
 			console.log($scope.dispatchOrderDetails);
@@ -57,17 +65,24 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 			if($scope.user.userName == 'test_user0'){
 				if($scope.dispatchOrderDetails.stage == "0"){
 					$scope.show.asset = true;
+					$scope.selected = 1;                                                
 				}
 				else if($scope.dispatchOrderDetails.transporter == "" && $scope.dispatchOrderDetails.stage == "1"){
 					$scope.show.transporter = true;
+					step1Completed : true;
+					$scope.selected = 2; 
 				}
 				else if($scope.dispatchOrderDetails.transporter != "" && $scope.dispatchOrderDetails.stage == "1"){
 					$scope.show.confirmArrival = true;
+					step1Completed : true;
+					$scope.selected = 2; 
 				}
 				else if ($scope.dispatchOrderDetails.stage == "2"){
 
 					$scope.show.documentUpload = true;
 					$scope.show.readyShip = true;
+					step2Completed : true;
+					$scope.selected = 3; 
 
 					if($scope.dispatchOrderDetails.documentID1 == ""){
 						$scope.show.updocumentID1 = true;
@@ -97,14 +112,25 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 						$scope.show.downdocumentID4 = true;
 					}
 				}
-				else if($scope.dispatchOrderDetails.stage == "3"){
+				else if($scope.dispatchOrderDetails.stage == "3" && $scope.dispatchOrderDetails.inTransitDisptachOfficerSigned == ""){
 					$scope.show.documentUpload = true;
 					$scope.show.downdocumentID1 = true;
 					$scope.show.downdocumentID2 = true;
 					$scope.show.downdocumentID3 = true;
 					$scope.show.downdocumentID4 = true;
-					$scope.show.goodsLoad = true;	
+					$scope.show.goodsLoad = true;
+					step3Completed : true;
+					$scope.selected = 4; 	
+				}
+				else if($scope.dispatchOrderDetails.stage == "3" && $scope.dispatchOrderDetails.inTransitDisptachOfficerSigned == "True"){
+					$scope.show.documentUpload = true;
+					$scope.show.downdocumentID1 = true;
+					$scope.show.downdocumentID2 = true;
+					$scope.show.downdocumentID3 = true;
+					$scope.show.downdocumentID4 = true;
 					$scope.show.goodsReceived = true;
+					step3Completed : true;
+					$scope.selected = 4; 
 				}
 				else if($scope.dispatchOrderDetails.stage == "4"){
 					$scope.show.documentUpload = true;
@@ -113,6 +139,8 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 					$scope.show.downdocumentID3 = true;
 					$scope.show.downdocumentID4 = true;						
 					$scope.show.goodsDelivered = true;	
+					step4Completed : true;
+					$scope.selected = 5; 
 				}
 				else{
 					$scope.show.documentUpload = true;
@@ -120,6 +148,8 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 					$scope.show.downdocumentID2 = true;
 					$scope.show.downdocumentID3 = true;
 					$scope.show.downdocumentID4 = true;
+					step5Completed : true;
+					$scope.selected = 6;
 				}
 			}
 
@@ -180,6 +210,33 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 	function update(){
 
 		myutils.showWait();
+		$scope.show = {
+    		asset : false,
+    		transporter : false,
+    		confirmArrival : false,
+    		documentUpload : false,
+    		updocumentID1 : false,
+    		downdocumentID1 : false,
+    		updocumentID2 : false,
+    		downdocumentID2 : false,
+    		updocumentID3 : false,
+    		downdocumentID3 : false,
+    		updocumentID4 : false,
+    		downdocumentID4 : false,
+    		goodsLoad : false,
+    		goodsReceived : false,
+    		goodsDelivered : false
+    	};
+
+    	$scope.stepper = {
+    		step1Completed : false,
+    		step2Completed : false,
+    		step3Completed : false,
+    		step4Completed : false,
+    		step5Completed : false,
+    		step6Completed : false,
+    		selected : 0
+    	};
 		var arg = [$scope.dispatchOrderDetails.dispatchOrderId,$scope.dispatchOrderDetails.stage,$scope.dispatchOrderDetails.customer,$scope.dispatchOrderDetails.transporter,$scope.dispatchOrderDetails.seller,$scope.dispatchOrderDetails.assetIDs,$scope.dispatchOrderDetails.asnNumber,$scope.dispatchOrderDetails.source,$scope.dispatchOrderDetails.shipmentType,$scope.dispatchOrderDetails.contractType,$scope.dispatchOrderDetails.deliveryTerm,$scope.dispatchOrderDetails.dispatchDate,$scope.dispatchOrderDetails.transporterRef,$scope.dispatchOrderDetails.loadingType,$scope.dispatchOrderDetails.vehicleType,$scope.dispatchOrderDetails.weight,$scope.dispatchOrderDetails.consignment,$scope.dispatchOrderDetails.quantity,$scope.dispatchOrderDetails.partNumber,$scope.dispatchOrderDetails.partName,$scope.dispatchOrderDetails.orderRefNum,$scope.dispatchOrderDetails.createdOn,$scope.dispatchOrderDetails.documentID1,$scope.dispatchOrderDetails.documentID2,$scope.dispatchOrderDetails.documentID3,$scope.dispatchOrderDetails.documentID4,$scope.dispatchOrderDetails.dropDescription,$scope.dispatchOrderDetails.deliverydescription,$scope.dispatchOrderDetails.inTransitDisptachOfficerSigned,$scope.dispatchOrderDetails.inTransitTransporterSigned,$scope.dispatchOrderDetails.transactionDescription];
 		var param = para.myFunc("invoke","updateDispatchOrder",$scope.user,arg);
 
