@@ -9,6 +9,33 @@
     </md-toolbar>
 
 <div layout="row" layout-align="center">
+  <md-card>
+
+    <md-steppers>
+        <md-step label="Order Created" md-complete="stepper.step1Completed"  ng-disabled="stepper.step1Disabled">
+            <md-content></md-content>
+        </md-step>
+        <md-step label="Ready for Dispatch" md-complete="stepper.step1Completed"  ng-disabled="stepper.step1Completed">
+            <md-content></md-content>
+        </md-step>
+        <md-step label="Arrival of Transporter" md-complete="step3.completed"  ng-disabled="step3.disabled">
+            <md-content></md-content>
+        </md-step>  
+        <md-step label="Ready for Shipment" md-complete="step2.completed"  ng-disabled="step2.disabled">
+            <md-content></md-content>
+        </md-step>
+        <md-step label="In Transit" md-complete="step2.completed"  ng-disabled="step2.disabled">
+            <md-content></md-content>
+        </md-step>
+        <md-step label="Shipment Delivered" md-complete="step2.completed"  ng-disabled="step2.disabled">
+            <md-content></md-content>
+        </md-step>
+    </md-steppers>
+
+  </md-card>
+</div>    
+
+<div layout="row" layout-align="center">
     <md-card flex>
       <md-card-header>
       <md-card-header-text>

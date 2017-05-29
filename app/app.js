@@ -1,4 +1,4 @@
-var pilotApp = angular.module('pilotApp', ['ngRoute','dataGrid','pagination','ngMaterial', 'ngMessages']);
+var pilotApp = angular.module('pilotApp', ['ngRoute','dataGrid','pagination','ngMaterial', 'ngMessages','md-steppers']);
 
 pilotApp.config(['$routeProvider', function($routeProvider){
 	

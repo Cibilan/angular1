@@ -7,6 +7,11 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 	$scope.selected = [];
 	$scope.openAssetList = [];
 	$scope.show = {};
+	$scope.stepper = {};
+
+	$scope.stepper.step1Completed = true;
+	$scope.stepper.step1Disabled = false;
+
 
 	function refresh(){
 
