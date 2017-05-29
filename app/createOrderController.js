@@ -1,7 +1,6 @@
-angular.module('pilotApp').controller('createOrderController',['$scope', '$location', '$http', 'userinfo' ,'para','myutils', function($scope,$location,$http,userinfo,para,myutils){
+angular.module('pilotApp').controller('createOrderController',['$scope', '$location', '$http', '$rootScope' ,'para','myutils', function($scope,$location,$http,$rootScope,para,myutils){
 
 	$scope.order ={};
-	$scope.user = userinfo.userData();
 
 	$scope.submitOrder = function(order) {
 
@@ -12,10 +11,10 @@ angular.module('pilotApp').controller('createOrderController',['$scope', '$locat
 	var arg = [order.orderId,"0",order.destination,"","Bosch","",order.asn,order.source,order.shipmentType,order.orderType,order.deliveryterm,order.dispatchDate,"","","","","",order.quantity,order.partNumber,order.partName,order.orderRef,n,"","","","","","","","","Order Created"];
 
 
-    $scope.param = para.myFunc("invoke","createDispatchOrder", $scope.user, arg);  
+    $scope.param = para.myFunc("invoke","createDispatchOrder", arg);  
 
      console.log($scope.param);    
-	$http.post('http://localhost:7050/chaincode',$scope.param)
+	$http.post($rootScope.url,$scope.param)
         .then(function(response) {
             $scope.message = response.data;
             var url = "/orderList";			

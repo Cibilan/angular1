@@ -39,40 +39,21 @@ pilotApp.config(['$routeProvider', function($routeProvider){
 		});
 }]);
 
-pilotApp.provider('userinfo',function () {
-	return {
-		$get: function (){
-			return {
-				userData: function (){
-					var user = {
-						url: "http://localhost:7050/chaincode",
-						userName: "test_user0",
-						cc : "26abe9a1e0bf1f5ea6cc5522574659e184c7cd42fe5f2ae3ab085a0d45a898f083f5704d553bfc7b7739a0a21523379e556c71214010364a7b616585228b3e8f"
-					};
-					return user;
-				} 	
-
-			}
-		}	
-	}
-	
-});
-
-pilotApp.service('para',function(){
-	this.myFunc = function(type,func,user,arg){
+pilotApp.service('para',function($rootScope){
+	this.myFunc = function(type,func,arg){
 	return JSON.stringify({
 		  "jsonrpc": "2.0",
 		  "method": type,
 		  "params": {
 		    "type": 1,
 		    "chaincodeID": {
-		      "name": user.cc
+		      "name": $rootScope.cc
 		    },
 		    "ctorMsg": {
 		      "function": func,
 		      "args": arg
 		    },
-		    "secureContext": user.userName
+		    "secureContext": $rootScope.userName
 		  },
 		  "id": 3   
     	});

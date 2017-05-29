@@ -1,7 +1,6 @@
-angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$http', '$location', '$routeParams','userinfo','para','myutils' , function($scope, $http, $location, $routeParams, userinfo,para,myutils) {
+angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$http', '$location', '$routeParams','$rootScope','para','myutils' , function($scope, $http, $location, $routeParams, $rootScope,para,myutils) {
 
 	$scope.dispatchOrderId = $routeParams.id;
-	$scope.user = userinfo.userData();
 	$scope.dispatchOrderDetails = {};
 	$scope.contractHisory = {};
 	$scope.selected = [];
@@ -15,8 +14,8 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		var arg = [$scope.dispatchOrderId];
 		var arg2 = ["transaction",$scope.dispatchOrderId];	      
 
-    	var param = para.myFunc("query","read",$scope.user,arg); 
-    	var param2 = para.myFunc("query","getHistory",$scope.user,arg2);         
+    	var param = para.myFunc("query","read",arg); 
+    	var param2 = para.myFunc("query","getHistory",arg2);         
     
     	$scope.show = {
     		asset : false,
@@ -52,17 +51,17 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 
     	setTimeout(function(){	
 
-			$http.post($scope.user.url,param2).success(function(reponse){
+			$http.post($rootScope.url,param2).success(function(reponse){
 			$scope.contractHisory = JSON.parse(reponse.result.message);
 			console.log($scope.contractHisory);
 			});
                                                                            
-			$http.post($scope.user.url,param).success(function(reponse){
+			$http.post($rootScope.url,param).success(function(reponse){
 			$scope.dispatchOrderDetails = JSON.parse(reponse.result.message);
 			console.log($scope.dispatchOrderDetails);
 			
 			//Dispatch Officer			
-			if($scope.user.userName == 'test_user0'){
+			if($rootScope.userName == 'test_user0'){
 				if($scope.dispatchOrderDetails.stage == "0"){
 					$scope.show.asset = true;
 					$scope.selected = 1;                                                
@@ -166,7 +165,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 			}
 
 						//Planner	
-			if($scope.user.userName == 'test_user1'){
+			if($rootScope.userName == 'test_user1'){
 				$scope.show.documentUpload = true;
 				$scope.show.downdocumentID1 = true;
 				$scope.show.downdocumentID2 = true;
@@ -176,7 +175,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 			}
 
 			//Transporter
-			if($scope.user.userName == 'test_user2'){
+			if($rootScope.userName == 'test_user2'){
 				if($scope.dispatchOrderDetails.stage == "4"){
 					$scope.show.documentUpload = true;
 					$scope.show.downdocumentID1 = true;
@@ -190,7 +189,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 			}
 
 			//Buyer
-			if($scope.user.userName == 'test_user3'){
+			if($rootScope.userName == 'test_user3'){
 				if($scope.dispatchOrderDetails.stage == "4"){
 					$scope.show.documentUpload = true;
 					$scope.show.downdocumentID1 = true;
@@ -250,10 +249,10 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
     		selected : 0
     	};
 		var arg = [$scope.dispatchOrderDetails.dispatchOrderId,$scope.dispatchOrderDetails.stage,$scope.dispatchOrderDetails.customer,$scope.dispatchOrderDetails.transporter,$scope.dispatchOrderDetails.seller,$scope.dispatchOrderDetails.assetIDs,$scope.dispatchOrderDetails.asnNumber,$scope.dispatchOrderDetails.source,$scope.dispatchOrderDetails.shipmentType,$scope.dispatchOrderDetails.contractType,$scope.dispatchOrderDetails.deliveryTerm,$scope.dispatchOrderDetails.dispatchDate,$scope.dispatchOrderDetails.transporterRef,$scope.dispatchOrderDetails.loadingType,$scope.dispatchOrderDetails.vehicleType,$scope.dispatchOrderDetails.weight,$scope.dispatchOrderDetails.consignment,$scope.dispatchOrderDetails.quantity,$scope.dispatchOrderDetails.partNumber,$scope.dispatchOrderDetails.partName,$scope.dispatchOrderDetails.orderRefNum,$scope.dispatchOrderDetails.createdOn,$scope.dispatchOrderDetails.documentID1,$scope.dispatchOrderDetails.documentID2,$scope.dispatchOrderDetails.documentID3,$scope.dispatchOrderDetails.documentID4,$scope.dispatchOrderDetails.dropDescription,$scope.dispatchOrderDetails.deliverydescription,$scope.dispatchOrderDetails.inTransitDisptachOfficerSigned,$scope.dispatchOrderDetails.inTransitTransporterSigned,$scope.dispatchOrderDetails.transactionDescription];
-		var param = para.myFunc("invoke","updateDispatchOrder",$scope.user,arg);
+		var param = para.myFunc("invoke","updateDispatchOrder",arg);
 
 		setTimeout(function(){
-		    $http.post($scope.user.url,param).success(function(reponse){
+		    $http.post($rootScope.url,param).success(function(reponse){
 			console.log($scope.param);
 			refresh();			
 			});
@@ -286,11 +285,11 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		      };
 		      var arg = [$scope.dispatchOrderId+id,fileName,fileType,result];
 
-		      var parameter2 = para.myFunc("invoke","createDocument",$scope.user,arg);         
+		      var parameter2 = para.myFunc("invoke","createDocument",arg);         
 
 		     console.log(parameter2);	     
 
-	        $http.post($scope.user.url,parameter2).then(function(response) {
+	        $http.post($rootScope.url,parameter2).then(function(response) {
 			   	$scope.dispatchOrderDetails[field] = $scope.dispatchOrderId + id;
 		     	$scope.dispatchOrderDetails.transactionDescription = id + " Uploaded";	
             	update();
@@ -306,10 +305,10 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 
 			var arg = ["document",name];
 
-			var parameter3 = para.myFunc("query","getDocuments",$scope.user,arg);
+			var parameter3 = para.myFunc("query","getDocuments",arg);
 
 			console.log(parameter3);
-			$http.post($scope.user.url,parameter3).success(function(response) {
+			$http.post($rootScope.url,parameter3).success(function(response) {
             console.log(response);
                   
             var result = response.result.message;
@@ -356,10 +355,10 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 
 			var asset = $scope.assetList[i];
 			var arg = [asset.assetId,asset.partNumber,asset.partDescription,asset.owner,asset.stage,asset.batchNumer,asset.manufactureDate,asset.itchs,asset.exciseChaperNumber,asset.orderId];
-			var param = para.myFunc("invoke","createAsset",$scope.user,arg);
+			var param = para.myFunc("invoke","createAsset",arg);
 			console.log(param);
 
-			$http.post($scope.user.url,param).then(function(response) { 	
+			$http.post($rootScope.url,param).then(function(response) { 	
 			
         		console.log(asset.assetId);
 
@@ -380,9 +379,9 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		$scope.openAssetList = [];
 
 		var arg = ["asset"];
-		var param = para.myFunc("query","getAssets",$scope.user,arg);
+		var param = para.myFunc("query","getAssets",arg);
 		console.log(param);
-		$http.post($scope.user.url,param).success(function(reponse){
+		$http.post($rootScope.url,param).success(function(reponse){
 			$scope.getAssetList = JSON.parse(reponse.result.message);
 			console.log($scope.getAssetList);
 			angular.forEach($scope.getAssetList, function(openAsset){
@@ -434,10 +433,10 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		var arr = $scope.selected.toString('');
 		var arg = [$scope.dispatchOrderId,arr];
 		
-		var param = para.myFunc("invoke","mapAsset",$scope.user,arg);
+		var param = para.myFunc("invoke","mapAsset",arg);
 		console.log(param);
 		
-		$http.post($scope.user.url,param).then(function(response) { 
+		$http.post($rootScope.url,param).then(function(response) { 
 			$scope.dispatchOrderDetails.transactionDescription = "Asset Mapped";
 			$scope.dispatchOrderDetails.assetIDs = arr;   
 			console.log($scope.dispatchOrderDetails); 			
