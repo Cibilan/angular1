@@ -7,8 +7,8 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 	$scope.openAssetList = [];
 	$scope.show = {};
 	$scope.stepper = {};
-		console.log($rootScope.userName);
 
+	myutils.showWait();		
 	function refresh(){
 
 		var arg = [$scope.dispatchOrderId];
@@ -213,8 +213,6 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		myutils.hideWait();	
 
 	},4000);
-
-
 	
 }
 

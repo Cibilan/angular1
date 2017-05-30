@@ -1,4 +1,4 @@
-angular.module('pilotApp').controller('contractListController', ['$scope', '$http' , '$location','para', '$rootScope' ,function($scope, $http, $location, para, $rootScope) {
+angular.module('pilotApp').controller('contractListController', ['$scope', '$http' , '$location','para', '$rootScope','myutils' ,function($scope, $http, $location, para, $rootScope,myutils) {
 
 	$scope.gridOptions = {
             data: [],
@@ -13,20 +13,21 @@ angular.module('pilotApp').controller('contractListController', ['$scope', '$htt
     	console.log($scope.show);
     }
 
-
+    myutils.showWait();	
 
     $scope.param = para.myFunc("query","getAllDispatchOrdersLatest",arg);
-           
-    console.log($rootScope.userName);
-	$http.post($rootScope.url,$scope.param).success(function(reponse){
-		console.log(reponse);
-		var message = reponse.result.message;
-		var message1 = message.split("}{").join("},{");
-		var message2 = "[" + message1 + "]";
-		console.log(message2);
-		$scope.gridOptions.data = JSON.parse(message2);
-        console.log($scope.gridOptions);
-	});
+    
+    setTimeout(function(){       
+			$http.post($rootScope.url,$scope.param).success(function(reponse){
+				console.log(reponse);
+				var message = reponse.result.message;
+				var message1 = message.split("}{").join("},{");
+				var message2 = "[" + message1 + "]";
+				console.log(message2);
+				$scope.gridOptions.data = JSON.parse(message2);
+		        myutils.hideWait();	
+			});
+	},1000);			
 
 	$scope.goPath = function(path){
 		var url = "/contractDetails/" + path;
@@ -35,12 +36,18 @@ angular.module('pilotApp').controller('contractListController', ['$scope', '$htt
 
 	$scope.reload = function(){
 		console.log("reload");
-		$location.path('/orderList');	
-	}
-
-	$scope.logout = function(){
-		console.log("reload");
-		$location.path('/login');	
+		 myutils.showWait();		
+		setTimeout(function(){       
+			$http.post($rootScope.url,$scope.param).success(function(reponse){
+				console.log(reponse);
+				var message = reponse.result.message;
+				var message1 = message.split("}{").join("},{");
+				var message2 = "[" + message1 + "]";
+				console.log(message2);
+				$scope.gridOptions.data = JSON.parse(message2);
+		        myutils.hideWait();	
+			});
+		},1000);	
 	}
 	
 }]);

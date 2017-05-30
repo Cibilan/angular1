@@ -1,4 +1,4 @@
-<div>  
+<div ng-cloak>  
 
 <md-toolbar>
       <div class="md-toolbar-tools">
@@ -30,58 +30,13 @@
           Reload
         </md-button>
 
-        <md-button class="md-icon-button md-accent" aria-label="Logout" ng-click="logout()">
+        <md-button class="md-icon-button md-accent" aria-label="Logout" href="#/Login">
           <md-icon md-svg-src="img/icons/ic_account_circle_white_48px.svg"></md-icon>
         </md-button>
         {{userName}}
       </div>
 
 </md-toolbar>
-<!--
-<hr> </hr>
-<div>
-    <md-card layout-padding> 
-        <div layout="row" layout-align="left center">
-            <div>
-                <md-input-container >
-                    <input ng-model="dispatchOrderId"
-                       class="md-input"
-                       ng-change="gridActions.filter()"
-                       id="dispatchOrderId"
-                       placeholder="Search by Order #"
-                       filter-by="dispatchOrderId"
-                       filter-type="text"
-                       aria-invalid="false">
-                </md-input-container>
-            </div>
-            
-            <div>
-                <md-datepicker ng-model="dateFrom"
-                               md-placeholder="From Date"
-                               is-open="dateFromOpened"
-                               ng-click="dateFromOpened = true"
-                               filter-by="placed"
-                               filter-type="dateFrom"
-                               ng-change="gridActions.filter()"></md-datepicker>
-            </div>
-            <div>
-                <md-datepicker ng-model="dateTo"
-                               md-placeholder="To Date"
-                               is-open="dateToOpened"
-                               ng-click="dateToOpened = true"
-                               filter-by="placed"
-                               filter-type="dateTo"
-                               ng-change="gridActions.filter()"></md-datepicker>
-            </div>
-            <div> 
-            <md-button ng-if="show" class="md-raised md-primary" href="#/createOrder">
-            Create Dispatch Order
-            </md-button>
-        </div>
-    </md-card>
-</div>
-
-<hr> </hr> -->
 
 <md-card layout-padding>
 <div grid-data id='test' grid-options="gridOptions" grid-actions="gridActions">
@@ -117,28 +72,28 @@
             <th sortable="dispatchOrderId" class="sortable mdl-data-table__cell--non-numeric">
                 <span>Orderid #</span>
             </th>
-             <th sortable="stage" class="sortable mdl-data-table__cell--non-numeric">
+             <th sortable="stage" class="sortable">
                 <span>Stage</span>
             </th>
-            <th sortable="customer" class="sortable mdl-data-table__cell--non-numeric">
+            <th sortable="customer" class="sortable">
                 <span>Customer</span>
             </th>
-            <th sortable="contractType" class="sortable mdl-data-table__cell--non-numeric">
+            <th sortable="contractType" class="sortable">
                 <span>Order Type</span>
             </th>
-            <th sortable="shipmentType" class="sortable mdl-data-table__cell--non-numeric">
+            <th sortable="shipmentType" class="sortable">
                 <span>Shipment Type</span>
             </th>
-            <th sortable="partNumber" class="sortable mdl-data-table__cell--non-numeric">
+            <th sortable="partNumber" class="sortable">
                 <span>Part Number</span>
             </th>
-            <th sortable="partName" class="sortable mdl-data-table__cell--non-numeric">
+            <th sortable="partName" class="sortable">
                 <span>Part Name</span>
             </th>
-            <th sortable="dispatchDatedispatchDate" class="sortable mdl-data-table__cell--non-numeric">
+            <th sortable="dispatchDate" class="sortable">
                 <span>Dispatch Date</span>
             </th>
-            <th>
+            <th sortable="dispatchDate" class="sortable" layout-align = "center">
             <span>Select</span>
             </th>
             
@@ -155,9 +110,9 @@
             <td ng-bind="item.shipmentType"> </td>
             <td ng-bind="item.partNumber"> </td>
             <td ng-bind="item.partName"> </td>
-            <td ng-bind="item.dispatchDate"> </td>
+            <td ng-bind="item.dispatchDate | date:'MM/dd/yyyy'"> </td>
             <td>
-                <md-button ng-click= "goPath(item.dispatchOrderId)"> Select </md-button>  
+                <md-button ng-click= "goPath(item.dispatchOrderId)" class="md-raised md-primary"> Select </md-button>  
 
             </td>
 

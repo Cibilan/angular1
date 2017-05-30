@@ -1,19 +1,30 @@
 <div>
-    <md-toolbar layout="row" layout-align="end center">
-        <md-button href="#/contractList" class="md-accent md-raised">
-          Home
-          </md-button>
-        <div class="md-toolbar-tools">
-            <span>Dispatch Order Details</span>
-        </div>
-    </md-toolbar>
+<md-toolbar>
+  <div class="md-toolbar-tools">
+        <md-button href="#/orderList"
+        class="md-icon-button"
+        aria-label="Home">
+        <md-icon md-svg-icon="img/icons/ic_home_white_48px.svg"></md-icon>
+      </md-button>
+      <h5>Dispatch Order Details</h5> 
+      <span flex></span>
+      <md-button class="md-icon-button md-accent" aria-label="Logout" href="#/Login">
+          <md-icon md-svg-src="img/icons/ic_account_circle_white_48px.svg"></md-icon>
+        </md-button>
+        {{userName}}
+
+   </div>   
+</md-toolbar>
 
 <div layout="row" layout-align="center" layout-padding>
   <md-card flex>
 
     <md-steppers md-selected="stepper.selected" md-stretch-steppers="always">
         <md-step label="Order Created" md-complete="stepper.step1Completed">
-            <md-content></md-content>
+            <md-content layout="row">
+
+
+            </md-content>
         </md-step>
         <md-step label="Ready for Dispatch" md-complete="stepper.step2Completed">
             <md-content></md-content>

@@ -1,21 +1,30 @@
-<div layout = "column">
-
-   
-    <md-toolbar layout = "row" layout-align="end center">
-        <md-button href="#/orderList" class="md-accent md-raised" >
-          Home
+<md-toolbar>
+  <div class="md-toolbar-tools">
+        <md-button href="#/orderList"
+        class="md-icon-button"
+        aria-label="Home">
+        <md-icon md-svg-icon="img/icons/ic_home_white_48px.svg"></md-icon>
+      </md-button>
+      <h5>Create Dispatch Order</h5> 
+      <span flex></span>
+      <md-button class="md-icon-button md-accent" aria-label="Logout" href="#/Login">
+          <md-icon md-svg-src="img/icons/ic_account_circle_white_48px.svg"></md-icon>
         </md-button>
-         <div class="md-toolbar-tools">
-            <span>Create Dispatch Order</span>
-        </div>
-    </md-toolbar>
-    </div>
+        {{userName}}
+
+   </div>   
+</md-toolbar>
     
 
-    <div>
+<md-card layout-padding> 
+
+      <md-card-header>
+      <md-card-header-text>
+        <span class="md-title">Enter Order Details</span>
+      </md-card-header-text>
+      </md-card-header>
 
     <md-content layout-margin>
-	    <form name="createContract">
 	    	<div layout="row">
 	          <md-input-container  class="md-block" flex>
 	            <label>Order ID</label>
@@ -97,16 +106,11 @@
                   <md-datepicker label= "date" ng-model="order.dispatchDate" md-placeholder="Select date"></md-datepicker>
               
                 </div>
-               </div> 
-             <div>
-                <md-button ng-click= "submitOrder(order)">Submit</md-button>
-            </div>
-
-	    </form>
+               </div>
+           <md-card-actions>     
+                <md-button ng-click= "submitOrder(order)" class="md-raised md-primary">Submit</md-button>
+           </md-card-actions> 
     </md-content>
     </div>
 
-
-
-
-</div>    
+</md-card>  
