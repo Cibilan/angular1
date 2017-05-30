@@ -34,7 +34,7 @@ md-steppers {
       -ms-flex-negative: 0;
           flex-shrink: 0; }
   md-steppers:not(.md-no-step-content):not(.md-dynamic-height) {
-    min-height: 72px; }
+    min-height: 272px; }
   md-steppers[md-align-steppers="bottom"] {
     padding-bottom: 72px; }
     md-steppers[md-align-steppers="bottom"] md-steppers-wrapper {
@@ -309,7 +309,6 @@ md-step {
           flex-direction: row; }
   .md-step::before {
     background: rgba(0, 0, 0, 0.25);
-    color: rgba(255, 255, 255, 0.87);
     display: inline-block;
     width: 16px;
     margin-right: 8px;
@@ -318,7 +317,7 @@ md-step {
     line-height: 1px;
     vertical-align: middle;
     border-radius: 0 1px 1px 0;
-    content: attr(stepindex);
+    content: '';
     opacity: 0.5;
     -webkit-box-flex: 1;
     -webkit-flex-grow: 1;
@@ -371,8 +370,7 @@ md-step {
         -ms-flex-positive: 0;
             flex-grow: 0; }
     .md-step md-step-label-wrapper span {
-      margin-right: 8px;
-      margin-left: 8px; }
+      margin-right: 8px; }
     .md-step md-step-label-wrapper::before {
       background: rgba(0, 0, 0, 0.25);
       color: rgba(255, 255, 255, 0.87);
@@ -398,7 +396,7 @@ md-step {
   .md-step.md-active md-step-label-wrapper::before, .md-step.md-success md-step-label-wrapper::before {
     background: #106cc8; }
   .md-step.md-complete md-step-label-wrapper::before {
-    color: rgba(255, 255, 255, 0);
+    content: '\7';
     background: #106cc8 url('data:image/svg+xml;utf8,<svg fill="rgba(255,255,255,0.87)" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>') no-repeat center center; }
   .md-step.md-complete.md-active md-step-label-wrapper::before {
     content: '\7';
