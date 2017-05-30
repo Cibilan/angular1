@@ -7,11 +7,7 @@ pilotApp.config(['$routeProvider', function($routeProvider){
 			templateUrl: 'views/login.html',
 			controller: 'loginController'
 		})
-		.when('/home', {
-			templateUrl: 'views/home.html',
-			controller: 'mainController'
-		})
-		.when('/assetList', {
+		.when('/orderList', {
 			resolve:{
 				"check":function($location,$rootScope){
 					if(!$rootScope.loggedIn){
@@ -19,18 +15,28 @@ pilotApp.config(['$routeProvider', function($routeProvider){
 					}
 				}	
 			},
-			templateUrl: 'views/assetList.html',
-			controller: 'assetListController'
-		})
-		.when('/orderList', {
 			templateUrl: 'views/contractList.html',
 			controller: 'contractListController'
 		})
 		.when('/contractDetails/:id', {
+			resolve:{
+				"check":function($location,$rootScope){
+					if(!$rootScope.loggedIn){
+						$location.path('/login');
+					}
+				}	
+			},
 			templateUrl: 'views/contractDetails.html',
 			controller: 'contractDetailsController'
 		})
 		.when('/createOrder', {
+			resolve:{
+				"check":function($location,$rootScope){
+					if(!$rootScope.loggedIn){
+						$location.path('/login');
+					}
+				}	
+			},
 			templateUrl: 'views/createOrder.html',
 			controller: 'createOrderController'
 		})

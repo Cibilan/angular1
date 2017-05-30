@@ -7,6 +7,14 @@ angular.module('pilotApp').controller('contractListController', ['$scope', '$htt
 
     var arg = [""];
 
+
+    if($rootScope.userName == 'test_user0' || $rootScope.userName == 'test_user1'){
+    	$scope.show = true;
+    	console.log($scope.show);
+    }
+
+
+
     $scope.param = para.myFunc("query","getAllDispatchOrdersLatest",arg);
            
     console.log($rootScope.userName);
@@ -23,6 +31,16 @@ angular.module('pilotApp').controller('contractListController', ['$scope', '$htt
 	$scope.goPath = function(path){
 		var url = "/contractDetails/" + path;
 	  	$location.path(url);
+	}
+
+	$scope.reload = function(){
+		console.log("reload");
+		$location.path('/orderList');	
+	}
+
+	$scope.logout = function(){
+		console.log("reload");
+		$location.path('/login');	
 	}
 	
 }]);

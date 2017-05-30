@@ -1,7 +1,7 @@
 angular.module('pilotApp').controller('createOrderController',['$scope', '$location', '$http', '$rootScope' ,'para','myutils', function($scope,$location,$http,$rootScope,para,myutils){
 
 	$scope.order ={};
-
+	console.log($rootScope.userName);
 	$scope.submitOrder = function(order) {
 
 	myutils.showWait();	

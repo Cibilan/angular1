@@ -5,7 +5,7 @@ angular.module('pilotApp').controller('loginController', ['$scope', '$http', '$l
 		peer : "localhost",	
 		port : "7050",
 		cc : "26abe9a1e0bf1f5ea6cc5522574659e184c7cd42fe5f2ae3ab085a0d45a898f083f5704d553bfc7b7739a0a21523379e556c71214010364a7b616585228b3e8f",
-		userName : "test_user5" ,
+		userName : "test_user0" ,
 		password : "MS9qrN8hFjlE"
 	};
 	

@@ -1,15 +1,43 @@
 <div>  
 
-<div layout="column" layout-fill >
-    <md-toolbar layout="row" layout-align="end center">
-        <md-button href="#/contractList" class="md-accent md-raised">
-          Home
+<md-toolbar>
+      <div class="md-toolbar-tools">
+        <md-button
+        class="md-icon-button"
+        aria-label="Settings">
+        <md-icon md-svg-icon="img/icons/ic_menu_white_48px.svg"></md-icon>
+      </md-button>
+        <h5>List of Dispatch Orders</h5> 
+        <md-input-container layout="center center" layout-padding md-no-float>
+                   
+                    <input ng-model="dispatchOrderId"
+                       class="md-input"
+                       ng-change="gridActions.filter()"
+                       id="dispatchOrderId"
+                       filter-by="dispatchOrderId"
+                       placeholder ="Search by Order #" 
+                       filter-type="text"
+                       aria-invalid="false"
+                       style="border-color: white; color: white">    
+        </md-input-container>
+
+        <span flex></span>
+        <md-button ng-if="show" class="md-raised" href="#/createOrder">
+            Create Dispatch Order
+            </md-button>
+
+        <md-button class="md-raised md-warn" aria-label="Learn More" ng-click= "reload()">
+          Reload
         </md-button>
-        <div class="md-toolbar-tools">
-            <span>Dispatch Order List</span>
-        </div>
-    </md-toolbar>
-</div>
+
+        <md-button class="md-icon-button md-accent" aria-label="Logout" ng-click="logout()">
+          <md-icon md-svg-src="img/icons/ic_account_circle_white_48px.svg"></md-icon>
+        </md-button>
+        {{userName}}
+      </div>
+
+</md-toolbar>
+<!--
 <hr> </hr>
 <div>
     <md-card layout-padding> 
@@ -26,7 +54,7 @@
                        aria-invalid="false">
                 </md-input-container>
             </div>
-            <!--
+            
             <div>
                 <md-datepicker ng-model="dateFrom"
                                md-placeholder="From Date"
@@ -45,15 +73,15 @@
                                filter-type="dateTo"
                                ng-change="gridActions.filter()"></md-datepicker>
             </div>
-            <div> -->
-            <md-button  class="md-raised md-primary" href="#/createOrder">
+            <div> 
+            <md-button ng-if="show" class="md-raised md-primary" href="#/createOrder">
             Create Dispatch Order
             </md-button>
         </div>
     </md-card>
 </div>
 
-<hr> </hr>
+<hr> </hr> -->
 
 <md-card layout-padding>
 <div grid-data id='test' grid-options="gridOptions" grid-actions="gridActions">
