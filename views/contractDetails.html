@@ -1,4 +1,4 @@
-<div>
+<div ng-cloak>
 <md-toolbar>
   <div class="md-toolbar-tools">
         <md-button href="#/orderList"
@@ -8,6 +8,9 @@
       </md-button>
       <h5>Dispatch Order Details</h5> 
       <span flex></span>
+      <md-button class="md-raised md-warn" aria-label="Reload" ng-click= "reload()">
+          Reload
+        </md-button>
       <md-button class="md-icon-button md-accent" aria-label="Logout" href="#/Login">
           <md-icon md-svg-src="img/icons/ic_account_circle_white_48px.svg"></md-icon>
         </md-button>
@@ -22,41 +25,178 @@
     <md-steppers md-selected="stepper.selected" md-stretch-steppers="always">
         <md-step label="Order Created" md-complete="stepper.step1Completed">
             <md-content layout="row">
-                <md-card>
+                <md-card flex>
                   <md-card-header-text>
                     <span class="md-title">Steps</span>
                   </md-card-header-text>
+                  <md-card-content>
+                    <ol>
+                      <li>Order Created</li>
+                      <li>Create Asset</li>
+                      <li>Map asset</li>
+                    </ol>
+                  </md-card-content>
                 </md-card>
-                <md-card>
+                <md-card flex>
                   <md-card-header-text>
                     <span class="md-title">Transaction</span>
                   </md-card-header-text>
+                  <md-card-content>
+                      <table>
+                        <tr ng-repeat="list in stage1">
+                          <td> <md-icon style="color:green" md-svg-icon="img/icons/ic_done_white_16px.svg"></md-icon></td>
+                          <td>{{list.transactionDescription}}</td>
+                          <td>{{ list.timestamp }}</td>
+                        </tr>
+                      </table>
+                  </md-card-content>
                 </md-card>
             </md-content>
         </md-step>
         <md-step label="Ready for Dispatch" md-complete="stepper.step2Completed">
-            <md-content></md-content>
-        </md-step>
-        <md-step label="Arrival of Transporter" md-complete="stepper.step3Completed">
-            <md-content></md-content>
-        </md-step>  
-        <md-step label="Ready for Shipment" md-complete="stepper.step4Completed">
-            <md-content></md-content>
-        </md-step>
-        <md-step label="In Transit" md-complete="stepper.step5Completed">
-            <md-content></md-content>
-        </md-step>
-        <md-step label="Shipment Delivered" md-complete="stepper.step6Completed">
-                 <md-content layout="row">
-                <md-card>
+            <md-content layout="row">
+                <md-card flex>
                   <md-card-header-text>
                     <span class="md-title">Steps</span>
                   </md-card-header-text>
+                  <md-card-content>
+                    <ol>
+                      <li>Ready for Dispatch</li>
+                      <li>Assign Transporter</li>
+                    </ol>
+                  </md-card-content>
                 </md-card>
-                <md-card>
+                <md-card flex>
                   <md-card-header-text>
                     <span class="md-title">Transaction</span>
                   </md-card-header-text>
+                  <md-card-content>
+                      <table>
+                        <tr ng-repeat="list in stage2">
+                          <td> <md-icon style="color:green" md-svg-icon="img/icons/ic_done_white_16px.svg"></md-icon></td>
+                          <td>{{list.transactionDescription}}</td>
+                          <td>{{ list.timestamp }}</td>
+                        </tr>
+                      </table>
+                  </md-card-content>
+                </md-card>
+            </md-content>
+        </md-step>
+        <md-step label="Arrival of Transporter" md-complete="stepper.step3Completed">
+             <md-content layout="row">
+                <md-card flex>
+                  <md-card-header-text>
+                    <span class="md-title">Steps</span>
+                  </md-card-header-text>
+                  <md-card-content>
+                    <ol>
+                      <li>Arrival Of transporter</li>
+                      <li>Upload Invoice</li>
+                       <li>Upload E sugam</li>
+                        <li>Upload LR</li>
+                         <li>Upload etc</li>
+                    </ol>
+                  </md-card-content>
+                </md-card>
+                <md-card flex>
+                  <md-card-header-text>
+                    <span class="md-title">Transaction</span>
+                  </md-card-header-text>
+                  <md-card-content>
+                      <table>
+                        <tr ng-repeat="list in stage3">
+                          <td> <md-icon style="color:green" md-svg-icon="img/icons/ic_done_white_16px.svg"></md-icon></td>
+                          <td>{{list.transactionDescription}}</td>
+                          <td>{{ list.timestamp }}</td>
+                        </tr>
+                      </table>
+                  </md-card-content>
+                </md-card>
+            </md-content>
+        </md-step>  
+        <md-step label="Ready for Shipment" md-complete="stepper.step4Completed">
+            <md-content layout="row">
+                <md-card flex>
+                  <md-card-header-text>
+                    <span class="md-title">Steps</span>
+                  </md-card-header-text>
+                  <md-card-content>
+                    <ol>
+                      <li>Ready for shipment</li>
+                      <li>Confirm Loading</li>
+                      <li>Confirm good received</li>
+                    </ol>
+                  </md-card-content>
+                </md-card>
+                <md-card flex>
+                  <md-card-header-text>
+                    <span class="md-title">Transaction</span>
+                  </md-card-header-text>
+                  <md-card-content>
+                      <table>
+                        <tr ng-repeat="list in stage4">
+                          <td> <md-icon style="color:green" md-svg-icon="img/icons/ic_done_white_16px.svg"></md-icon></td>
+                          <td>{{list.transactionDescription}}</td>
+                          <td>{{ list.timestamp }}</td>
+                        </tr>
+                      </table>
+                  </md-card-content>
+                </md-card>
+            </md-content>
+        </md-step>
+        <md-step label="In Transit" md-complete="stepper.step5Completed">
+            <md-content layout="row">
+                <md-card flex>
+                  <md-card-header-text>
+                    <span class="md-title">Steps</span>
+                  </md-card-header-text>
+                  <md-card-content>
+                    <ol>
+                      <li>Intransit</li>
+                    </ol>
+                  </md-card-content>
+                </md-card>
+                <md-card flex>
+                  <md-card-header-text>
+                    <span class="md-title">Transaction</span>
+                  </md-card-header-text>
+                  <md-card-content>
+                      <table>
+                        <tr ng-repeat="list in stage5">
+                          <td> <md-icon style="color:green" md-svg-icon="img/icons/ic_done_white_16px.svg"></md-icon></td>
+                          <td>{{list.transactionDescription}}</td>
+                          <td>{{ list.timestamp }}</td>
+                        </tr>
+                      </table>
+                  </md-card-content>
+                </md-card>
+            </md-content>
+        </md-step>
+        <md-step label="Shipment Delivered" md-complete="stepper.step6Completed">
+                <md-content layout="row">
+                <md-card flex>
+                  <md-card-header-text>
+                    <span class="md-title">Steps</span>
+                  </md-card-header-text>
+                  <md-card-content>
+                    <ol>
+                      <li>Shipment Delivered</li>
+                    </ol>
+                  </md-card-content>
+                </md-card>
+                <md-card flex>
+                  <md-card-header-text>
+                    <span class="md-title">Transaction</span>
+                  </md-card-header-text>
+                  <md-card-content>
+                      <table>
+                        <tr ng-repeat="list in stage6">
+                          <td> <md-icon style="color:green" md-svg-icon="img/icons/ic_done_white_16px.svg"></md-icon></td>
+                          <td>{{list.transactionDescription}}</td>
+                          <td>{{ list.timestamp }}</td>
+                        </tr>
+                      </table>
+                  </md-card-content>
                 </md-card>
             </md-content>
         </md-step>
@@ -296,7 +436,7 @@
     <table class="table" >
     <thead>
       <tr>
-        <th> <input type="checkbox" name= "" ng-model = "selectAll" ng-click="checkAll()"> Select/Deselect All </th>
+        <th> <input type="checkbox" name= "" ng-model="selectAll" ng-click="checkAll()"> Select/Deselect All </th>
         <th>partNumber</th>
         <th>partDescription</th>
         <th>batchNumer</th>
@@ -322,12 +462,19 @@
         <span class = "md-title">Transporter Details</span>
         </md-card-header-text>
    </md-card-header>
-   <md-input-container class="md-block" flex layout-padding >
+   <md-input-container class="md-block" flex>
       <label>Transporter</label>
       <md-select name="type" ng-model="dispatchOrderDetails.transporter">
         <md-option value="VHS Logistics">VHS Logistics</md-option>
         <md-option value="TVS Logistics">TVS Logistics</md-option>
         <md-option value="Mahindra Logistics">Mahindra Logistics</md-option>
+      </md-select>
+    </md-input-container>
+    <md-input-container class="md-block" flex >
+      <label>Vehicle Type</label>
+      <md-select name="type" ng-model="dispatchOrderDetails.vehicleType">
+        <md-option value="16 Tonner">16 Tonner</md-option>
+        <md-option value="12 Tonner">12 Tonner</md-option>
       </md-select>
     </md-input-container>
     <md-input-container class="md-block" flex >
@@ -377,7 +524,7 @@
   <md-list-item>
     <p> Invoice</p>
       <input type ="file" id="invoice" ng-if="show.updocumentID1"/>
-      <md-button class="md-raised" ng-if="show.updocumentID1" ng-click = "upFile('invoice','documentID1')">Upload Now</md-button> 
+      <md-button class="md-raised" ng-if="show.updocumentID1" ng-click = "upFile('Invoice','documentID1')">Upload Now</md-button> 
       <md-button class="md-raised" ng-if="show.downdocumentID1" ng-click = "downFile('documentID1')">Download</md-button> 
 </md-list-item>
 <md-divider ></md-divider>
@@ -446,30 +593,3 @@
 
   </md-card>
 </div>
-
-
-
-
-<div class="container">
-  <h2>History</h2>          
-  	<table class="table">
-    	<thead>
-      	<tr>
-        <th>orderId </th>
-        <th>stage</th>
-        <th>timestamp</th>
-        <th>transactionDescription</th>
-      	</tr>
-    	</thead>
-  		<tr ng-repeat="contract in contractHisory">
-    	<td>{{ contract.orderId }}</td>
-    	<td>{{ contract.stage }}</td>
-    	<td>{{ contract.timestamp | date:'medium' }}</td>
-    	<td>{{ contract.transactionDescription }}</td>
-  		</tr>
-	</table>
-
-</div>	
-
-
-</div>	

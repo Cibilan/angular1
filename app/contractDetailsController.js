@@ -7,6 +7,12 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 	$scope.openAssetList = [];
 	$scope.show = {};
 	$scope.stepper = {};
+	$scope.stage1 = [];
+	$scope.stage2 = [];
+	$scope.stage3 = [];
+	$scope.stage4 = [];
+	$scope.stage5 = [];
+	$scope.stage6 = [];
 
 	myutils.showWait();		
 	function refresh(){
@@ -15,8 +21,14 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		var arg2 = ["transaction",$scope.dispatchOrderId];	      
 
     	var param = para.myFunc("query","read",arg); 
-    	var param2 = para.myFunc("query","getHistory",arg2);         
-    
+    	var param2 = para.myFunc("query","getHistory",arg2);
+
+    		$scope.stage1 = [];
+			$scope.stage2 = [];
+			$scope.stage3 = [];
+			$scope.stage4 = [];
+			$scope.stage5 = [];
+			$scope.stage6 = [];
     	$scope.show = {
     		asset : false,
     		transporter : false,
@@ -54,6 +66,28 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 			$http.post($rootScope.url,param2).success(function(reponse){
 			$scope.contractHisory = JSON.parse(reponse.result.message);
 			console.log($scope.contractHisory);
+
+				angular.forEach($scope.contractHisory, function(list){
+				if(list.stage == "0"){
+					$scope.stage1.push(list);	
+				}
+				if(list.stage == "1"){
+					$scope.stage2.push(list);	
+				}
+				if(list.stage == "2"){
+					$scope.stage3.push(list);	
+				}
+				if(list.stage == "3"){
+					$scope.stage4.push(list);	
+				}
+				if(list.stage == "4"){
+					$scope.stage5.push(list);	
+				}
+				if(list.stage == "5"){
+					$scope.stage6.push(list);	
+				}
+			})
+
 			});
                                                                            
 			$http.post($rootScope.url,param).success(function(reponse){
@@ -64,17 +98,17 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 			if($rootScope.userName == 'test_user0'){
 				if($scope.dispatchOrderDetails.stage == "0"){
 					$scope.show.asset = true;
-					$scope.selected = 1;                                                
+					$scope.stepper.selected = 0;                                                
 				}
 				else if($scope.dispatchOrderDetails.transporter == "" && $scope.dispatchOrderDetails.stage == "1"){
 					$scope.show.transporter = true;
 					$scope.stepper.step1Completed = true;
-					$scope.stepper.selected = 2; 
+					$scope.stepper.selected = 1; 
 				}
 				else if($scope.dispatchOrderDetails.transporter != "" && $scope.dispatchOrderDetails.stage == "1"){
 					$scope.show.confirmArrival = true;
 					$scope.stepper.step1Completed = true;
-					$scope.stepper.selected = 2; 
+					$scope.stepper.selected = 1; 
 				}
 				else if ($scope.dispatchOrderDetails.stage == "2"){
 
@@ -82,7 +116,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 					$scope.show.readyShip = true;
 					$scope.stepper.step1Completed = true;
 					$scope.stepper.step2Completed = true;
-					$scope.stepper.selected = 3; 
+					$scope.stepper.selected = 2; 
 
 					if($scope.dispatchOrderDetails.documentID1 == ""){
 						$scope.show.updocumentID1 = true;
@@ -122,7 +156,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 					$scope.stepper.step1Completed = true;
 					$scope.stepper.step2Completed = true;
 					$scope.stepper.step3Completed = true;
-					$scope.stepper.selected = 4; 	
+					$scope.stepper.selected = 3; 	
 				}
 				else if($scope.dispatchOrderDetails.stage == "3" && $scope.dispatchOrderDetails.inTransitDisptachOfficerSigned == "True"){
 					$scope.show.documentUpload = true;
@@ -134,7 +168,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 					$scope.stepper.step1Completed = true;
 					$scope.stepper.step2Completed = true;
 					$scope.stepper.step3Completed = true;
-					$scope.stepper.selected = 4; 
+					$scope.stepper.selected = 3; 
 				}
 				else if($scope.dispatchOrderDetails.stage == "4"){
 					$scope.show.documentUpload = true;
@@ -160,7 +194,8 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 					$scope.stepper.step3Completed = true;
 					$scope.stepper.step4Completed = true;
 					$scope.stepper.step5Completed = true;
-					$scope.stepper.selected = 6;
+					$scope.stepper.step6Completed = true;
+					$scope.stepper.selected = 5;
 				}
 			}
 
@@ -266,7 +301,6 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 				
 		  console.log(id);
 		  var input = document.getElementById(id).files;
-		  console.log(input);
 		  var fileName = input[0].name;
 		  var fileType = input[0].type;
 		  var fileData = new Blob([input[0]]);
@@ -283,9 +317,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		      };
 		      var arg = [$scope.dispatchOrderId+id,fileName,fileType,result];
 
-		      var parameter2 = para.myFunc("invoke","createDocument",arg);         
-
-		     console.log(parameter2);	     
+		      var parameter2 = para.myFunc("invoke","createDocument",arg);         	     
 
 	        $http.post($rootScope.url,parameter2).then(function(response) {
 			   	$scope.dispatchOrderDetails[field] = $scope.dispatchOrderId + id;
@@ -305,9 +337,9 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 
 			var parameter3 = para.myFunc("query","getDocuments",arg);
 
-			console.log(parameter3);
+
 			$http.post($rootScope.url,parameter3).success(function(response) {
-            console.log(response);
+
                   
             var result = response.result.message;
             var result2 = JSON.parse(result); 
@@ -334,10 +366,19 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		}
 
 	$scope.readyShip = function(){
+
+		if($scope.dispatchOrderDetailsdocumentID1 == "" || $scope.dispatchOrderDetailsdocumentID2 == "" || $scope.dispatchOrderDetailsdocumentID3 == "" || $scope.dispatchOrderDetailsdocumentID4 == "" ){
+			alert("All documents not Uploaded");
+
+		}
+		else{
+			$scope.dispatchOrderDetails.transactionDescription = "Ready for shipment";
+			$scope.dispatchOrderDetails.stage = "3";
+			update();
+
+		}
 		
-		$scope.dispatchOrderDetails.transactionDescription = "Ready for shipment";
-		$scope.dispatchOrderDetails.stage = "3";
-		update();
+		
 	}	
 
 	$scope.showContent = function($fileContent){
@@ -410,26 +451,28 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 	}
 
 	$scope.checkAll = function(){
-		if ($scope.selectAll) {
-			angular.forEach($scope.openAssetList, function(openAsset){
+		console.log($scope.selectAll);
+ 		if ($scope.selectAll) {
+ 			angular.forEach($scope.getAssetList, function(openAsset){
 				idx = $scope.selected.indexOf(openAsset.assetId);
-				if (idx >= 0 ){
-					return true;
-				}
-				else {
-					$scope.selected.push(openAsset.assetId);
-				}
-			});
-		}
-		else {
-			$scope.selected = [];
-		}
-	}
+ 				if (idx >= 0 ){
+ 					return true;
+ 				}
+ 				else {
+ 					$scope.selected.push(openAsset.assetId);
+ 				}
+ 			})
+ 		}
+ 		else {
+ 			$scope.selected = [];
+ 		}
+ 	}
 
 	$scope.mapAsset = function() {
 			
 		var arr = $scope.selected.toString('');
 		var arg = [$scope.dispatchOrderId,arr];
+		$scope.show.asset = false;
 		
 		var param = para.myFunc("invoke","mapAsset",arg);
 		console.log(param);
@@ -490,6 +533,14 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		$scope.dispatchOrderDetails.transactionDescription = "Shipment Delivered";
 		$scope.dispatchOrderDetails.stage = "5";
 		update();
+	}
+
+	$scope.reload = function(){
+		console.log("reload");
+		 myutils.showWait();		
+		setTimeout(function(){       
+			refresh();
+		},2000);	
 	}
 		
 }]);
