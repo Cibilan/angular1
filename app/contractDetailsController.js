@@ -31,6 +31,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 			$scope.stage6 = [];
     	$scope.show = {
     		asset : false,
+    		amend : false,
     		transporter : false,
     		confirmArrival : false,
     		documentUpload : false,
@@ -98,6 +99,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 			if($rootScope.userName == 'test_user0'){
 				if($scope.dispatchOrderDetails.stage == "0"){
 					$scope.show.asset = true;
+					$scope.show.amend = true;
 					$scope.stepper.selected = 0;                                                
 				}
 				else if($scope.dispatchOrderDetails.transporter == "" && $scope.dispatchOrderDetails.stage == "1"){
@@ -181,7 +183,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 					$scope.stepper.step2Completed = true;
 					$scope.stepper.step3Completed = true;
 					$scope.stepper.step4Completed = true;
-					$scope.stepper.selected = 5; 
+					$scope.stepper.selected = 4; 
 				}
 				else{
 					$scope.show.documentUpload = true;
@@ -201,39 +203,155 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 
 						//Planner	
 			if($rootScope.userName == 'test_user1'){
-				$scope.show.documentUpload = true;
-				$scope.show.downdocumentID1 = true;
-				$scope.show.downdocumentID2 = true;
-				$scope.show.downdocumentID3 = true;
-				$scope.show.downdocumentID4 = true;	
+				if($scope.dispatchOrderDetails.stage == "0"){
+					$scope.show.amend = true;
+					$scope.stepper.selected = 0;                                                
+				}
+				else if($scope.dispatchOrderDetails.stage == "1"){
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.selected = 1; 
+				}
+				else if($scope.dispatchOrderDetails.stage == "2"){
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.selected = 2; 
+				}
+				else if($scope.dispatchOrderDetails.stage == "3"){
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.step3Completed = true;
+					$scope.stepper.selected = 3; 
+				}
+				else if($scope.dispatchOrderDetails.stage == "4"){
+					
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.step3Completed = true;
+					$scope.stepper.step4Completed = true;
+					$scope.stepper.selected = 4; 
+				}
+				else{
+					
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.step3Completed = true;
+					$scope.stepper.step4Completed = true;
+					$scope.stepper.step5Completed = true;
+					$scope.stepper.selected = 5; 
+				}	
 
 			}
 
 			//Transporter
 			if($rootScope.userName == 'test_user2'){
-				if($scope.dispatchOrderDetails.stage == "4"){
+				if($scope.dispatchOrderDetails.stage == "0"){
+					$scope.stepper.selected = 0;                                                
+				}
+				else if($scope.dispatchOrderDetails.stage == "1"){
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.selected = 1; 
+				}
+				else if($scope.dispatchOrderDetails.stage == "2"){
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.selected = 2; 
+				}
+				else if($scope.dispatchOrderDetails.stage == "3" && $scope.dispatchOrderDetails.inTransitDisptachOfficerSigned == ""){
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.step3Completed = true;
+					$scope.stepper.selected = 3;
+					$scope.show.documentUpload = true;
+					$scope.show.downdocumentID1 = true;
+					$scope.show.downdocumentID2 = true;
+					$scope.show.downdocumentID3 = true;
+					$scope.show.downdocumentID4 = true; 
+				}
+				else if($scope.dispatchOrderDetails.stage == "3" && $scope.dispatchOrderDetails.inTransitDisptachOfficerSigned == "True"){
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.step3Completed = true;
+					$scope.show.goodsReceived = true;
+					$scope.stepper.selected = 3; 
 					$scope.show.documentUpload = true;
 					$scope.show.downdocumentID1 = true;
 					$scope.show.downdocumentID2 = true;
 					$scope.show.downdocumentID3 = true;
 					$scope.show.downdocumentID4 = true;
-					$scope.show.goodsDelivered = true;
-					$scope.show.goodsReceived = true;	
+				}
+				else if($scope.dispatchOrderDetails.stage == "4"){
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.step3Completed = true;
+					$scope.stepper.step4Completed = true;
+					$scope.stepper.selected = 4; 
+					$scope.show.documentUpload = true;
+					$scope.show.downdocumentID1 = true;
+					$scope.show.downdocumentID2 = true;
+					$scope.show.downdocumentID3 = true;
+					$scope.show.downdocumentID4 = true;
+				}
+				else{
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.step3Completed = true;
+					$scope.stepper.step4Completed = true;
+					$scope.stepper.step5Completed = true;
+					$scope.stepper.selected = 5; 
+					$scope.show.documentUpload = true;
+					$scope.show.downdocumentID1 = true;
+					$scope.show.downdocumentID2 = true;
+					$scope.show.downdocumentID3 = true;
+					$scope.show.downdocumentID4 = true;
 				}	
-
 			}
 
 			//Buyer
 			if($rootScope.userName == 'test_user3'){
-				if($scope.dispatchOrderDetails.stage == "4"){
+				if($scope.dispatchOrderDetails.stage == "0"){
+					$scope.stepper.selected = 0;                                                
+				}
+				else if($scope.dispatchOrderDetails.stage == "1"){
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.selected = 1; 
+
+				}
+				else if($scope.dispatchOrderDetails.stage == "2"){
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.selected = 2; 
+				}
+				else if($scope.dispatchOrderDetails.stage == "3"){
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.step3Completed = true;
+					$scope.stepper.selected = 3; 
 					$scope.show.documentUpload = true;
 					$scope.show.downdocumentID1 = true;
 					$scope.show.downdocumentID2 = true;
 					$scope.show.downdocumentID3 = true;
 					$scope.show.downdocumentID4 = true;
-					$scope.show.goodsDelivered = true;
 				}
-				if($scope.dispatchOrderDetails.stage == "5"){
+				else if($scope.dispatchOrderDetails.stage == "4"){
+					$scope.show.documentUpload = true;
+					$scope.show.downdocumentID1 = true;
+					$scope.show.downdocumentID2 = true;
+					$scope.show.downdocumentID3 = true;
+					$scope.show.downdocumentID4 = true;						
+					$scope.show.goodsDelivered = true;
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.step3Completed = true;
+					$scope.stepper.step4Completed = true;
+					$scope.stepper.selected = 4; 
+				}
+				else{
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.step3Completed = true;
+					$scope.stepper.step4Completed = true;
+					$scope.stepper.step5Completed = true;
+					$scope.stepper.selected = 5; 
 					$scope.show.documentUpload = true;
 					$scope.show.downdocumentID1 = true;
 					$scope.show.downdocumentID2 = true;
@@ -541,6 +659,13 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		setTimeout(function(){       
 			refresh();
 		},2000);	
+	}
+
+	$scope.amend = function(){
+		alert("Feature Not active");
+	}
+	$scope.drop = function(){
+		alert("Feature Not active");
 	}
 		
 }]);
