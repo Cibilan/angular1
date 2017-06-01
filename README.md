@@ -20,3 +20,11 @@ git push -u origin master
     bosch_dispatch: 1 6S0UjokSRHYh 
     ksh_transport: 1 dpodq6r2+NPu 
     ford_inbound: 1 9XZFoBjXJ5zM 
+
+docker ps -a
+
+docker stop $(docker ps -a -q)
+
+ps -A | grep python
+
+ssh -i "akasa-pilot.pem" ubuntu@ec2-34-210-162-19.us-west-2.compute.amazonaws.com
