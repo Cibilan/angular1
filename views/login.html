@@ -1,5 +1,5 @@
 <div> 
-	 <md-toolbar layout="row" layout-align="end center">
+	 <md-toolbar layout="row" layout-align="end center" class="md-primary">
 	        <div class="md-toolbar-tools">
 	            <span>Login Page</span>
 	        </div>
@@ -14,17 +14,19 @@
 	    </md-card-title>
 		<md-card-content layout="column">
 			<md-input-container class="md-block" flex >
-                  <label>User Peer</label>
+                  <label>Hyperledger Address</label>
                   <md-select name="type" ng-model="login.peer">
                     <md-option value="localhost">localhost</md-option>
                     <md-option value="127.0.0.1">127.0.0.1</md-option>
                   </md-select>
             </md-input-container>
              <md-input-container class="md-block" flex >
-                  <label>User Port</label>
+                  <label>User Peer</label>
                   <md-select name="type" ng-model="login.port">
-                    <md-option value="7050">7050</md-option>
-                    <md-option value="7054">7054</md-option>
+                    <md-option value="7050">Peer 1</md-option>
+                    <md-option value="8050">Peer 2</md-option>
+                    <md-option value="9050">Peer 3</md-option>
+                    <md-option value="10050">Peer 4</md-option>
                   </md-select>
              </md-input-container>
              <md-input-container  class="md-block" flex>

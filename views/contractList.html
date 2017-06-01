@@ -6,8 +6,10 @@
         class="md-icon-button"
         aria-label="Settings">
         <md-icon md-svg-icon="img/icons/ic_menu_white_48px.svg"></md-icon>
-      </md-button>
-        <h5>List of Dispatch Orders</h5> 
+        </md-button>
+        <h2 class="md-toolbar-item md-breadcrumb md-headline ng-isolate-scope">
+            <span class="md-breadcrumb-page ng-binding">List of Dispatch Orders</span>
+          </h2>
         <md-input-container layout="center center" layout-padding md-no-float>
                    
                     <input ng-model="dispatchOrderId"
@@ -22,18 +24,17 @@
         </md-input-container>
 
         <span flex></span>
-        <md-button ng-if="show" class="md-raised" href="#/createOrder">
-            Create Dispatch Order
-            </md-button>
 
-        <md-button class="md-raised md-warn" aria-label="Learn More" ng-click= "reload()">
+        <md-button class="md-raised md-accent" aria-label="Learn More" ng-click= "reload()">
           Reload
         </md-button>
 
         <md-button class="md-icon-button md-accent" aria-label="Logout" href="#/Login">
           <md-icon md-svg-src="img/icons/ic_account_circle_white_48px.svg"></md-icon>
         </md-button>
-        {{userName}}
+        <div layout="row">
+          <h3 class="md-toolbar-item"> <span> {{userName}} </span></h3>  
+        </div>
       </div>
 
 </md-toolbar>
@@ -84,16 +85,13 @@
             <th sortable="shipmentType" class="sortable">
                 <span>Shipment Type</span>
             </th>
-            <th sortable="partNumber" class="sortable">
-                <span>Part Number</span>
-            </th>
             <th sortable="partName" class="sortable">
                 <span>Part Name</span>
             </th>
             <th sortable="dispatchDate" class="sortable">
                 <span>Dispatch Date</span>
             </th>
-            <th sortable="dispatchDate" class="sortable" layout-align = "center">
+            <th sortable="dispatchDate" class="sortable" layout-align = "center center">
             <span>Select</span>
             </th>
             
@@ -108,11 +106,10 @@
             <td ng-bind="item.customer"> </td>
             <td ng-bind="item.contractType"> </td>
             <td ng-bind="item.shipmentType"> </td>
-            <td ng-bind="item.partNumber"> </td>
             <td ng-bind="item.partName"> </td>
             <td ng-bind="item.dispatchDate | date:'MM/dd/yyyy'"> </td>
             <td>
-                <md-button ng-click= "goPath(item.dispatchOrderId)" class="md-raised md-primary"> Select </md-button>  
+                <md-button ng-click= "goPath(item.dispatchOrderId)" class="md-raised md-primary md-hue-1"> Select </md-button>  
 
             </td>
 
@@ -121,11 +118,12 @@
     </table>
     
 </div>
-<!--
-<md-button class="md-fab md-fab-bottom-right docs-scroll-fab scrolling" docs-scroll-class="scrolling" ng-if="show" ng-transclude="" aria-label="createOrder">
-  <md-icon md-svg-src="img/icons/ic_add_white_48px.svg"></md-icon>
-</md-button>
--->
 
 </md-card>
+
+
+<md-button class="md-fab md-fab-bottom-right docs-scroll-fab scrolling" docs-scroll-class="scrolling" ng-if="show" ng-transclude="" aria-label="createOrder" href="#/createOrder">
+  <md-icon md-svg-src="img/icons/ic_add_white_48px.svg"></md-icon>  
+</md-button>
+
 </div>

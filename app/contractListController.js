@@ -8,7 +8,7 @@ angular.module('pilotApp').controller('contractListController', ['$scope', '$htt
     var arg = [""];
 
 
-    if($rootScope.userName == 'test_user0' || $rootScope.userName == 'test_user1'){
+    if($rootScope.userName == 'test_user0' || $rootScope.userName == 'bosch_planner'){
     	$scope.show = true;
     	console.log($scope.show);
     }

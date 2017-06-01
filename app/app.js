@@ -1,5 +1,18 @@
 var pilotApp = angular.module('pilotApp', ['ngRoute','dataGrid','pagination','ngMaterial', 'ngMessages','md-steppers']);
 
+
+pilotApp.config(function($mdThemingProvider) {
+  $mdThemingProvider.theme('dark-grey').backgroundPalette('grey').dark();
+  $mdThemingProvider.theme('dark-orange').backgroundPalette('orange').dark();
+  $mdThemingProvider.theme('dark-purple').backgroundPalette('deep-purple').dark();
+  $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
+  $mdThemingProvider.theme('grey').backgroundPalette('grey');
+  $mdThemingProvider.theme('orange').backgroundPalette('orange');
+  $mdThemingProvider.theme('purple').backgroundPalette('deep-purple');
+  $mdThemingProvider.theme('blue').backgroundPalette('blue');
+});
+
+
 pilotApp.config(['$routeProvider', function($routeProvider){
 	
 	$routeProvider
@@ -59,7 +72,8 @@ pilotApp.service('para',function($rootScope){
 		      "function": func,
 		      "args": arg
 		    },
-		    "secureContext": $rootScope.userName
+		    "secureContext": $rootScope.userName,
+		    "metadata" : $rootScope.callerMeta
 		  },
 		  "id": 3   
     	});

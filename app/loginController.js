@@ -4,12 +4,21 @@ angular.module('pilotApp').controller('loginController', ['$scope', '$http', '$l
 
 		peer : "localhost",	
 		port : "7050",
-		cc : "26abe9a1e0bf1f5ea6cc5522574659e184c7cd42fe5f2ae3ab085a0d45a898f083f5704d553bfc7b7739a0a21523379e556c71214010364a7b616585228b3e8f",
+		cc : "e24fd807f7a1b5bd8267ce623d23fc1db3be59092a4e293ac9998e5587d61399759901604a778a6d46004679aba98d099e719b3f6e33b24020742126f36a5cb6",
 		userName : "test_user0" ,
 		password : "MS9qrN8hFjlE"
 	};
+
+	var user = "";
+	$scope.metacaller = [];
+
 	
 	$scope.loginUser = function(){
+		user = $scope.login.userName;
+	
+		for(var i = 0; i < user.length; ++i){
+			$scope.metacaller[i] = user.charCodeAt(i);
+		}
 
 		$scope.login.chainUrl = "http://" + $scope.login.peer + ":" + $scope.login.port + "/chaincode" ; 
 		$scope.login.regUrl = "http://" + $scope.login.peer + ":" + $scope.login.port + "/registrar" ; 
@@ -23,9 +32,11 @@ angular.module('pilotApp').controller('loginController', ['$scope', '$http', '$l
 		.then(function successCallback(response) {
 		    console.log("Login success");
 		    $rootScope.loggedIn = true;
-		    $rootScope.userName = $scope.login.userName,
-		    $rootScope.url = $scope.login.chainUrl,
-		    $rootScope.cc = $scope.login.cc
+		    $rootScope.userName = $scope.login.userName;
+		    $rootScope.url = $scope.login.chainUrl;
+		    $rootScope.cc = $scope.login.cc;
+		    $rootScope.callerMeta = $scope.metacaller;
+		    $rootScope.peer = $scope.login.port;
 			$location.path('/orderList');
 		}, function errorCallback(response) {
 		  	alert(response.data.Error);

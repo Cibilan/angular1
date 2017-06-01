@@ -6,29 +6,32 @@
         aria-label="Home">
         <md-icon md-svg-icon="img/icons/ic_home_white_48px.svg"></md-icon>
       </md-button>
-      <h5>Dispatch Order Details</h5> 
+      <h2 class="md-toolbar-item md-breadcrumb md-headline ng-isolate-scope">
+            <span class="md-breadcrumb-page ng-binding">Dispatch Order Details</span>
+          </h2>
       <span flex></span>
-      <md-button class="md-raised md-warn" aria-label="Reload" ng-click= "reload()">
+      <md-button class="md-raised md-accent" aria-label="Reload" ng-click= "reload()">
           Reload
         </md-button>
       <md-button class="md-icon-button md-accent" aria-label="Logout" href="#/Login">
           <md-icon md-svg-src="img/icons/ic_account_circle_white_48px.svg"></md-icon>
         </md-button>
-        {{userName}}
-
+        <div layout="row">
+          <h3 class="md-toolbar-item"> <span> {{userName}} </span></h3>  
+        </div>
    </div>   
 </md-toolbar>
 
 <div layout="row" layout-align="center" layout-padding>
-  <md-card flex>
+  <md-card md-theme="light-blue" flex>
 
     <md-steppers md-selected="stepper.selected" md-stretch-steppers="always">
         <md-step label="Order Created" md-complete="stepper.step1Completed">
             <md-content layout="row">
-                <md-card flex>
-                  <md-card-header-text>
-                    <span class="md-title">Steps</span>
-                  </md-card-header-text>
+                <md-card flex="40" >
+                  <md-card-header>
+                    <span class="md-title"> Steps</span>
+                  </md-card-header>
                   <md-card-content>
                     <ol>
                       <li>Order Created</li>
@@ -37,14 +40,23 @@
                     </ol>
                   </md-card-content>
                 </md-card>
-                <md-card flex>
-                  <md-card-header-text>
+                <md-card flex = "60">
+                  <md-card-title>
                     <span class="md-title">Transaction</span>
-                  </md-card-header-text>
+                  </md-card-title>
                   <md-card-content>
-                      <table>
-                        <tr ng-repeat="list in stage1">
-                          <td> <md-icon style="color:green" md-svg-icon="img/icons/ic_done_white_16px.svg"></md-icon></td>
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th> </th>
+                            <th> User </th>
+                            <th> Description </th>
+                            <th> Timestamp </th>
+                          </tr>
+                        </thead>
+                        <tr ng-repeat="list in stage1 | orderBy : 'timestamp' ">
+                          <td> <md-icon style="color:green" md-svg-icon="img/icons/ic_done_black_16px.svg"></md-icon></td>
+                          <td>{{list.user}}</td>
                           <td>{{list.transactionDescription}}</td>
                           <td>{{ list.timestamp }}</td>
                         </tr>
@@ -56,9 +68,9 @@
         <md-step label="Ready for Dispatch" md-complete="stepper.step2Completed">
             <md-content layout="row">
                 <md-card flex>
-                  <md-card-header-text>
-                    <span class="md-title">Steps</span>
-                  </md-card-header-text>
+                  <md-card-header>
+                    <span class="md-title"> Steps</span>
+                  </md-card-header>
                   <md-card-content>
                     <ol>
                       <li>Ready for Dispatch</li>
@@ -67,13 +79,22 @@
                   </md-card-content>
                 </md-card>
                 <md-card flex>
-                  <md-card-header-text>
+                  <md-card-title>
                     <span class="md-title">Transaction</span>
-                  </md-card-header-text>
+                  </md-card-title>
                   <md-card-content>
-                      <table>
-                        <tr ng-repeat="list in stage2">
-                          <td> <md-icon style="color:green" md-svg-icon="img/icons/ic_done_white_16px.svg"></md-icon></td>
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th> </th>
+                            <th> User </th>
+                            <th> Description </th>
+                            <th> Timestamp </th>
+                          </tr>
+                        </thead>
+                        <tr ng-repeat="list in stage2 | orderBy : 'timestamp' ">
+                          <td> <md-icon style="color:green" md-svg-icon="img/icons/ic_done_black_16px.svg"></md-icon></td>
+                          <td>{{list.user}}</td>
                           <td>{{list.transactionDescription}}</td>
                           <td>{{ list.timestamp }}</td>
                         </tr>
@@ -85,9 +106,9 @@
         <md-step label="Arrival of Transporter" md-complete="stepper.step3Completed">
              <md-content layout="row">
                 <md-card flex>
-                  <md-card-header-text>
-                    <span class="md-title">Steps</span>
-                  </md-card-header-text>
+                  <md-card-header>
+                    <span class="md-title"> Steps</span>
+                  </md-card-header>
                   <md-card-content>
                     <ol>
                       <li>Arrival Of transporter</li>
@@ -99,13 +120,22 @@
                   </md-card-content>
                 </md-card>
                 <md-card flex>
-                  <md-card-header-text>
+                  <md-card-title>
                     <span class="md-title">Transaction</span>
-                  </md-card-header-text>
+                  </md-card-title>
                   <md-card-content>
-                      <table>
-                        <tr ng-repeat="list in stage3">
-                          <td> <md-icon style="color:green" md-svg-icon="img/icons/ic_done_white_16px.svg"></md-icon></td>
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th> </th>
+                            <th> User </th>
+                            <th> Description </th>
+                            <th> Timestamp </th>
+                          </tr>
+                        </thead>
+                        <tr ng-repeat="list in stage3 | orderBy : 'timestamp' ">
+                          <td> <md-icon style="color:green" md-svg-icon="img/icons/ic_done_black_16px.svg"></md-icon></td>
+                          <td>{{list.user}}</td>
                           <td>{{list.transactionDescription}}</td>
                           <td>{{ list.timestamp }}</td>
                         </tr>
@@ -117,9 +147,9 @@
         <md-step label="Ready for Shipment" md-complete="stepper.step4Completed">
             <md-content layout="row">
                 <md-card flex>
-                  <md-card-header-text>
-                    <span class="md-title">Steps</span>
-                  </md-card-header-text>
+                 <md-card-header>
+                    <span class="md-title"> Steps</span>
+                  </md-card-header>
                   <md-card-content>
                     <ol>
                       <li>Ready for shipment</li>
@@ -129,13 +159,22 @@
                   </md-card-content>
                 </md-card>
                 <md-card flex>
-                  <md-card-header-text>
+                  <md-card-title>
                     <span class="md-title">Transaction</span>
-                  </md-card-header-text>
+                  </md-card-title>
                   <md-card-content>
-                      <table>
-                        <tr ng-repeat="list in stage4">
-                          <td> <md-icon style="color:green" md-svg-icon="img/icons/ic_done_white_16px.svg"></md-icon></td>
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th> </th>
+                            <th> User </th>
+                            <th> Description </th>
+                            <th> Timestamp </th>
+                          </tr>
+                        </thead>
+                        <tr ng-repeat="list in stage4 | orderBy : 'timestamp' ">
+                          <td> <md-icon style="color:green" md-svg-icon="img/icons/ic_done_black_16px.svg"></md-icon></td>
+                          <td>{{list.user}}</td>
                           <td>{{list.transactionDescription}}</td>
                           <td>{{ list.timestamp }}</td>
                         </tr>
@@ -147,9 +186,9 @@
         <md-step label="In Transit" md-complete="stepper.step5Completed">
             <md-content layout="row">
                 <md-card flex>
-                  <md-card-header-text>
-                    <span class="md-title">Steps</span>
-                  </md-card-header-text>
+                  <md-card-header>
+                    <span class="md-title"> Steps</span>
+                  </md-card-header>
                   <md-card-content>
                     <ol>
                       <li>Intransit</li>
@@ -157,13 +196,22 @@
                   </md-card-content>
                 </md-card>
                 <md-card flex>
-                  <md-card-header-text>
+                  <md-card-title>
                     <span class="md-title">Transaction</span>
-                  </md-card-header-text>
+                  </md-card-title>
                   <md-card-content>
-                      <table>
-                        <tr ng-repeat="list in stage5">
-                          <td> <md-icon style="color:green" md-svg-icon="img/icons/ic_done_white_16px.svg"></md-icon></td>
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th> </th>
+                            <th> User </th>
+                            <th> Description </th>
+                            <th> Timestamp </th>
+                          </tr>
+                        </thead>
+                        <tr ng-repeat="list in stage5 | orderBy : 'timestamp' ">
+                          <td> <md-icon style="color:green" md-svg-icon="img/icons/ic_done_black_16px.svg"></md-icon></td>
+                          <td>{{list.user}}</td>
                           <td>{{list.transactionDescription}}</td>
                           <td>{{ list.timestamp }}</td>
                         </tr>
@@ -175,9 +223,9 @@
         <md-step label="Shipment Delivered" md-complete="stepper.step6Completed">
                 <md-content layout="row">
                 <md-card flex>
-                  <md-card-header-text>
-                    <span class="md-title">Steps</span>
-                  </md-card-header-text>
+                  <md-card-header>
+                    <span class="md-title"> Steps</span>
+                  </md-card-header>
                   <md-card-content>
                     <ol>
                       <li>Shipment Delivered</li>
@@ -185,13 +233,22 @@
                   </md-card-content>
                 </md-card>
                 <md-card flex>
-                  <md-card-header-text>
+                  <md-card-title>
                     <span class="md-title">Transaction</span>
-                  </md-card-header-text>
+                  </md-card-title>
                   <md-card-content>
-                      <table>
-                        <tr ng-repeat="list in stage6">
-                          <td> <md-icon style="color:green" md-svg-icon="img/icons/ic_done_white_16px.svg"></md-icon></td>
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th> </th>
+                            <th> User </th>
+                            <th> Description </th>
+                            <th> Timestamp </th>
+                          </tr>
+                        </thead>
+                        <tr ng-repeat="list in stage6 | orderBy : 'timestamp' ">
+                          <td> <md-icon style="color:green" md-svg-icon="img/icons/ic_done_black_16px.svg"></md-icon></td>
+                          <td>{{list.user}}</td>
                           <td>{{list.transactionDescription}}</td>
                           <td>{{ list.timestamp }}</td>
                         </tr>
@@ -208,7 +265,7 @@
 
 <div layout-gt-xs layout="row" layout-align="center" layout-padding>
 
-<md-card flex>
+<md-card flex md-theme="default">
 
   <md-card-header>
       <md-card-header-text>
@@ -287,8 +344,8 @@
   </md-card-title>
   </div>  
   <md-card-actions ng-if="show.amend">
-    <md-button class="md-raised" ng-click = "amend()"> Amend </md-button>
-    <md-button class="md-raised" ng-click = "drop()"> Drop </md-button>
+    <md-button class="md-raised md-warn md-hue-3" ng-click = "amend()"> Amend </md-button>
+    <md-button class="md-raised md-warn md-hue-3" ng-click = "drop()"> Drop </md-button>
   </md-card-actions>
 </md-card>
 </div>
@@ -304,7 +361,7 @@
     <input type ="file" on-read-file="showContent($fileContent)"/>
 
      
-    <md-button class="md-raised" ng-click = "createAsset()" >Create Assest</md-button>  
+    <md-button class="md-raised md-primary md-hue-1" ng-click = "createAsset()" >Create Assest</md-button>  
     </md-list-item>
     <div layout-padding>
     <table class="table" ng-if="content">
@@ -343,8 +400,8 @@
       </md-card-header-text>
   </md-card-header>
   <md-list-item layout-padding>      
-      <md-button class="md-raised" ng-click = "getAsset()"> Get Open Asset</md-button>
-      <md-button class="md-raised" ng-click = "mapAsset()"> Map Asset</md-button>      
+      <md-button class="md-raised md-primary md-hue-1" ng-click = "getAsset()"> Get Open Asset</md-button>
+      <md-button class="md-raised md-primary md-hue-1" ng-click = "mapAsset()"> Map Asset</md-button>      
    </md-list-item>
     <div layout-padding ng-if = "openAssetList.length > 0">
     <table class="table" >
@@ -370,7 +427,7 @@
 </div>
 
 <div>
-  <md-card flex ="50" layout-padding ng-if = "show.transporter" >
+  <md-card flex ="50" layout-padding ng-if = "show.transporter">
   <md-card-header>
       <md-card-header-text>
         <span class = "md-title">Transporter Details</span>
@@ -406,28 +463,29 @@
         <label>Weight in Kgs</label>
         <input class="md-input" ng-model="dispatchOrderDetails.weight" >
     </md-input-container>
-    <div>
-        <md-button ng-click= "addTransporter()">Add Transporter</md-button>
-    </div>
+    <md-card-actions layout="row"  layout-align="end center">
+        <md-button class="md-raised md-primary" ng-click= "addTransporter()">Add Transporter</md-button>
+    </md-card-actions>
   </md-card> 
 </div>
 
 <div>
-  <md-card flex ="50" layout-padding ng-if="show.confirmArrival">
+  <md-card flex ="50" layout-padding ng-if="show.confirmArrival" layout-align="center">
     <md-card-header>
       <md-card-header-text>
         <span class = "md-title">Confirm Transporter Arrival</span>
       </md-card-header-text>
     </md-card-header>
-    <div>
-        <md-button ng-click= "transporterArrived()">Arrived</md-button>
-    </div>
+    <md-card-actions layout="row"  layout-align="end center">
+        <md-button class="md-raised md-primary" ng-click= "transporterArrived()">Arrived</md-button>
+    </md-card-actions>
 
   </md-card>
 </div>
 
-<div layout = "row" ng-if="show.documentUpload">
-<md-card flex>
+<div layout="column" flex> 
+  <div layout ="row" ng-if="show.documentUpload">
+  <md-card flex layout-padding>
   <md-card-header>
       <md-card-header-text>
         <span class="md-title">Document Details</span>
@@ -437,34 +495,34 @@
 
   <md-list-item>
     <p> Invoice</p>
-      <input type ="file" id="invoice" ng-if="show.updocumentID1"/>
-      <md-button class="md-raised" ng-if="show.updocumentID1" ng-click = "upFile('Invoice','documentID1')">Upload Now</md-button> 
-      <md-button class="md-raised" ng-if="show.downdocumentID1" ng-click = "downFile('documentID1')">Download</md-button> 
+      <input type ="file" id="Invoice" ng-if="show.updocumentID1"/>
+      <md-button class="md-raised md-accent md-hue-1" ng-if="show.updocumentID1" ng-click = "upFile('Invoice','documentID1')">Upload Now</md-button> 
+      <md-button class="md-raised md-primary md-hue-1" ng-if="show.downdocumentID1" ng-click = "downFile('documentID1')">Download</md-button> 
 </md-list-item>
 <md-divider ></md-divider>
 <md-list-item>
     <p> Esugam</p>
       <input type ="file" ng-if="show.updocumentID2" id="Esugam"/>
-      <md-button class="md-raised" ng-if="show.updocumentID2" ng-click = "upFile('Esugam','documentID2')">Upload Now</md-button>
-      <md-button class="md-raised" ng-if="show.downdocumentID2" ng-click = "downFile('documentID2')">Download</md-button>  
+      <md-button class="md-raised md-accent md-hue-1" ng-if="show.updocumentID2" ng-click = "upFile('Esugam','documentID2')">Upload Now</md-button>
+      <md-button class="md-raised md-primary md-hue-1" ng-if="show.downdocumentID2" ng-click = "downFile('documentID2')">Download</md-button>  
 </md-list-item>
 <md-divider ></md-divider>
 <md-list-item>
     <p> LR</p>
     <input type ="file" ng-if="show.updocumentID3" id="LR"/>
-      <md-button class="md-raised" ng-if="show.updocumentID3" ng-click = "upFile('LR','documentID3')">Upload Now</md-button>
-      <md-button class="md-raised" ng-if="show.downdocumentID3" ng-click = "downFile('documentID3')">Download</md-button>   
+      <md-button class="md-raised md-accent md-hue-1" ng-if="show.updocumentID3" ng-click = "upFile('LR','documentID3')">Upload Now</md-button>
+      <md-button class="md-raised md-primary md-hue-1" ng-if="show.downdocumentID3" ng-click = "downFile('documentID3')">Download</md-button>   
 </md-list-item>
 <md-divider ></md-divider>
 <md-list-item>
     <p> ETC</p>
     <input type ="file" ng-if="show.updocumentID4" id="ETC"/>
-      <md-button class="md-raised" ng-if="show.updocumentID4" ng-click = "upFile('ETC','documentID4')">Upload Now</md-button>
-      <md-button class="md-raised" ng-if="show.downdocumentID4" ng-click = "downFile('documentID4')">Download</md-button>    
+      <md-button class="md-raised md-accent md-hue-1" ng-if="show.updocumentID4" ng-click = "upFile('ETC','documentID4')">Upload Now</md-button>
+      <md-button class="md-raised md-primary md-hue-1" ng-if="show.downdocumentID4" ng-click = "downFile('documentID4')">Download</md-button>    
 </md-list-item>
   </md-card-content>
   <md-card-actions layout="row" ng-if="show.readyShip" layout-align="end center">
-   <md-button class="md-raised" ng-click = "readyShip()">Ready for shipment</md-button>
+   <md-button class="md-raised md-primary" ng-click = "readyShip()">Ready for shipment</md-button>
  </md-card-actions> 
 </md-card>
 </div>
@@ -475,9 +533,9 @@
         <span class = "md-title">Confirm Loading of goods</span>
       </md-card-header-text>
     </md-card-header>
-    <div>
-        <md-button ng-click= "confirmLoading()">Loaded</md-button>
-    </div>
+    <md-card-actions layout="row"  layout-align="end center">
+        <md-button class="md-raised md-primary" ng-click= "confirmLoading()">Loaded</md-button>
+    </md-card-actions>
 
   </md-card>
 </div>
@@ -488,9 +546,9 @@
         <span class = "md-title">Confirm Goods Received</span>
       </md-card-header-text>
     </md-card-header>
-    <div>
-        <md-button ng-click= "goodsLoaded()">Loaded</md-button>
-    </div>
+    <md-card-actions layout="row"  layout-align="end center">
+        <md-button class="md-raised md-primary" ng-click= "goodsLoaded()">Loaded</md-button>
+     </md-card-actions>
 
   </md-card>
 </div>
@@ -501,9 +559,11 @@
         <span class = "md-title">Confirm Goods delivered</span>
       </md-card-header-text>
     </md-card-header>
-    <div>
-        <md-button ng-click= "goodsdelivered()">Delivered</md-button>
-    </div>
+    <md-card-actions layout="row"  layout-align="end center">
+        <md-button class="md-raised md-primary" ng-click= "goodsdelivered()">Delivered</md-button>
+    </md-card-actions>
 
   </md-card>
+</div>
+
 </div>

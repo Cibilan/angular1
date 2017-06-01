@@ -95,7 +95,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 			$scope.dispatchOrderDetails = JSON.parse(reponse.result.message);
 			console.log($scope.dispatchOrderDetails);
 			
-			//Dispatch Officer			
+			//admin			
 			if($rootScope.userName == 'test_user0'){
 				if($scope.dispatchOrderDetails.stage == "0"){
 					$scope.show.asset = true;
@@ -200,9 +200,113 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 					$scope.stepper.selected = 5;
 				}
 			}
+			//dispatch
+			if($rootScope.userName == 'bosch_dispatch'){
+				if($scope.dispatchOrderDetails.stage == "0"){
+					$scope.show.asset = true;
+					$scope.stepper.selected = 0;                                                
+				}
+				else if($scope.dispatchOrderDetails.transporter == "" && $scope.dispatchOrderDetails.stage == "1"){
+					$scope.show.transporter = true;
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.selected = 1; 
+				}
+				else if($scope.dispatchOrderDetails.transporter != "" && $scope.dispatchOrderDetails.stage == "1"){
+					$scope.show.confirmArrival = true;
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.selected = 1; 
+				}
+				else if ($scope.dispatchOrderDetails.stage == "2"){
+
+					$scope.show.documentUpload = true;
+					$scope.show.readyShip = true;
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.selected = 2; 
+
+					if($scope.dispatchOrderDetails.documentID1 == ""){
+						$scope.show.updocumentID1 = true;
+					}
+					else{
+						$scope.show.downdocumentID1 = true;
+					}
+
+					if($scope.dispatchOrderDetails.documentID2 == ""){
+						$scope.show.updocumentID2 = true;
+					}
+					else{
+						$scope.show.downdocumentID2 = true;
+					}
+
+					if($scope.dispatchOrderDetails.documentID3 == ""){
+						$scope.show.updocumentID3 = true;
+					}
+					else{
+						$scope.show.downdocumentID3 = true;
+					}
+
+					if($scope.dispatchOrderDetails.documentID4 == ""){
+						$scope.show.updocumentID4 = true;
+					}
+					else{
+						$scope.show.downdocumentID4 = true;
+					}
+				}
+				else if($scope.dispatchOrderDetails.stage == "3" && $scope.dispatchOrderDetails.inTransitDisptachOfficerSigned == ""){
+					$scope.show.documentUpload = true;
+					$scope.show.downdocumentID1 = true;
+					$scope.show.downdocumentID2 = true;
+					$scope.show.downdocumentID3 = true;
+					$scope.show.downdocumentID4 = true;
+					$scope.show.goodsLoad = true;
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.step3Completed = true;
+					$scope.stepper.selected = 3; 	
+				}
+				else if($scope.dispatchOrderDetails.stage == "3" && $scope.dispatchOrderDetails.inTransitDisptachOfficerSigned == "True"){
+					$scope.show.documentUpload = true;
+					$scope.show.downdocumentID1 = true;
+					$scope.show.downdocumentID2 = true;
+					$scope.show.downdocumentID3 = true;
+					$scope.show.downdocumentID4 = true;
+
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.step3Completed = true;
+					$scope.stepper.selected = 3; 
+				}
+				else if($scope.dispatchOrderDetails.stage == "4"){
+					$scope.show.documentUpload = true;
+					$scope.show.downdocumentID1 = true;
+					$scope.show.downdocumentID2 = true;
+					$scope.show.downdocumentID3 = true;
+					$scope.show.downdocumentID4 = true;						
+						
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.step3Completed = true;
+					$scope.stepper.step4Completed = true;
+					$scope.stepper.selected = 4; 
+				}
+				else{
+					$scope.show.documentUpload = true;
+					$scope.show.downdocumentID1 = true;
+					$scope.show.downdocumentID2 = true;
+					$scope.show.downdocumentID3 = true;
+					$scope.show.downdocumentID4 = true;
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.step3Completed = true;
+					$scope.stepper.step4Completed = true;
+					$scope.stepper.step5Completed = true;
+					$scope.stepper.step6Completed = true;
+					$scope.stepper.selected = 5;
+				}
+			}
 
 						//Planner	
-			if($rootScope.userName == 'test_user1'){
+			if($rootScope.userName == 'bosch_planner'){
 				if($scope.dispatchOrderDetails.stage == "0"){
 					$scope.show.amend = true;
 					$scope.stepper.selected = 0;                                                
@@ -243,7 +347,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 			}
 
 			//Transporter
-			if($rootScope.userName == 'test_user2'){
+			if($rootScope.userName == 'ksh_transport'){
 				if($scope.dispatchOrderDetails.stage == "0"){
 					$scope.stepper.selected = 0;                                                
 				}
@@ -307,7 +411,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 			}
 
 			//Buyer
-			if($rootScope.userName == 'test_user3'){
+			if($rootScope.userName == 'ford_inbound'){
 				if($scope.dispatchOrderDetails.stage == "0"){
 					$scope.stepper.selected = 0;                                                
 				}
@@ -521,12 +625,9 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 
   			});
 
-
-		}
-    		
-			
+		}		
 		$scope.dispatchOrderDetails.transactionDescription = "Asset Created";		     
-
+		$scope.content = {};
 		update();	                	
       	
 	}
@@ -604,6 +705,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
            	setTimeout(function(){
            		$scope.dispatchOrderDetails.stage = "1";
            		$scope.dispatchOrderDetails.transactionDescription = "Ready for Dispatch";
+           		$scope.show.asset = false;
            		update();
 	      	},4000);
            	
@@ -643,7 +745,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
            		$scope.dispatchOrderDetails.stage = "4";
            		$scope.dispatchOrderDetails.transactionDescription = "In transit";
            		update();
-	     },4000);
+	     },8000);
 	}
 
 	$scope.goodsdelivered = function(){
