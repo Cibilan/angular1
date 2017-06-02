@@ -23,7 +23,7 @@
 </md-toolbar>
 
 <div layout="row" layout-align="center" layout-padding>
-  <md-card md-theme="light-blue" flex>
+  <md-card flex>
 
     <md-steppers md-selected="stepper.selected" md-stretch-steppers="always">
         <md-step label="Order Created" md-complete="stepper.step1Completed">
@@ -65,7 +65,7 @@
                 </md-card>
             </md-content>
         </md-step>
-        <md-step label="Ready for Dispatch" md-complete="stepper.step2Completed">
+        <md-step label="Ready for Dispatch" md-complete="stepper.step2Completed" ng-disabled="stepper.disable">
             <md-content layout="row">
                 <md-card flex>
                   <md-card-header>
@@ -103,7 +103,7 @@
                 </md-card>
             </md-content>
         </md-step>
-        <md-step label="Arrival of Transporter" md-complete="stepper.step3Completed">
+        <md-step label="Arrival of Transporter" md-complete="stepper.step3Completed" ng-disabled="stepper.disable">
              <md-content layout="row">
                 <md-card flex>
                   <md-card-header>
@@ -144,7 +144,7 @@
                 </md-card>
             </md-content>
         </md-step>  
-        <md-step label="Ready for Shipment" md-complete="stepper.step4Completed">
+        <md-step label="Ready for Shipment" md-complete="stepper.step4Completed" ng-disabled="stepper.disable">
             <md-content layout="row">
                 <md-card flex>
                  <md-card-header>
@@ -367,13 +367,13 @@
     <table class="table" ng-if="content">
     <thead>
       <tr>
-        <th>assetId</th> 
-        <th>partNumber</th>
-        <th>partDescription</th>
-        <th>batchNumer</th>
-        <th>manufactureDate</th>
-        <th>itchs</th>
-        <th>exciseChaperNumber</th>
+        <th>Asset Id</th> 
+        <th>Part Number</th>
+        <th>Part Description</th>
+        <th>Batch Number</th>
+        <th>Manufacture Date</th>
+        <th>ITCHS</th>
+        <th>Excise Chaper Number</th>
        </tr> 
     </thead>
     <tr ng-repeat="asset in assetList">
@@ -408,9 +408,9 @@
     <thead>
       <tr>
         <th> <input type="checkbox" name= "" ng-model="selectAll" ng-click="checkAll()"> Select/Deselect All </th>
-        <th>partNumber</th>
-        <th>partDescription</th>
-        <th>batchNumer</th>
+        <th>Part Number</th>
+        <th>Part Description</th>
+        <th>Batch Number</th>
        </tr> 
     </thead>
     <tr ng-repeat="openAsset in openAssetList">
@@ -436,7 +436,7 @@
    <md-input-container class="md-block" flex>
       <label>Transporter</label>
       <md-select name="type" ng-model="dispatchOrderDetails.transporter">
-        <md-option value="VHS Logistics">VHS Logistics</md-option>
+        <md-option value="VHS Logistics">KSH Logistics</md-option>
         <md-option value="TVS Logistics">TVS Logistics</md-option>
         <md-option value="Mahindra Logistics">Mahindra Logistics</md-option>
       </md-select>

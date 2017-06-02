@@ -55,6 +55,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
     		step4Completed : false,
     		step5Completed : false,
     		step6Completed : false,
+    		disable : false,
     		selected : 0
     	};
 
@@ -412,6 +413,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 
 			//Buyer
 			if($rootScope.userName == 'ford_inbound'){
+				$scope.stepper.disable = true;
 				if($scope.dispatchOrderDetails.stage == "0"){
 					$scope.stepper.selected = 0;                                                
 				}

@@ -24,7 +24,20 @@ angular.module('pilotApp').controller('contractListController', ['$scope', '$htt
 				var message1 = message.split("}{").join("},{");
 				var message2 = "[" + message1 + "]";
 				console.log(message2);
+				if($rootScope.userName == 'ksh_transport'){
+					console.log("if works")
+					orderList = JSON.parse(message2);
+					angular.forEach(orderList, function(list){
+						console.log("loop wprs")
+						if((list.stage != "0") && (list.stage !="1")){
+							console.log("if works")
+							$scope.gridOptions.data.push(list);	
+						}
+					})	
+				}
+				else{
 				$scope.gridOptions.data = JSON.parse(message2);
+				}
 		        myutils.hideWait();	
 			});
 	},1000);			
