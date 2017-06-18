@@ -1,4 +1,4 @@
-angular.module('pilotApp').controller('voucherDetailsController', ['$scope', '$http', '$location', '$routeParams', '$rootScope', 'myutils', 'para', function($scope, $http, $location, $routeParams, $rootScope,myutils, para) {
+angular.module('pilotApp').controller('voucherDetailsController', ['$scope', '$http', '$location', '$routeParams', '$rootScope', 'myutils', 'para', '$mdSidenav',function($scope, $http, $location, $routeParams, $rootScope,myutils, para,$mdSidenav) {
 
 	$scope.voucherId = $routeParams.id;
 	$scope.voucherDetails = {};
@@ -56,6 +56,13 @@ angular.module('pilotApp').controller('voucherDetailsController', ['$scope', '$h
 		            a.click();
 		      	});	
 
-		}	
+		}
+
+	$scope.openSideNavPanel = function() {
+        $mdSidenav('left').open();
+    };
+    $scope.closeSideNavPanel = function() {
+        $mdSidenav('left').close();
+    };
 
 }]);

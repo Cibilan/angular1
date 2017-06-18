@@ -1,4 +1,4 @@
-angular.module('pilotApp').controller('createOrderController',['$scope', '$location', '$http', '$rootScope' ,'para','myutils', function($scope,$location,$http,$rootScope,para,myutils){
+angular.module('pilotApp').controller('createOrderController',['$scope', '$location', '$http', '$rootScope' ,'para','myutils', '$mdSidenav',function($scope,$location,$http,$rootScope,para,myutils,$mdSidenav){
 
 	$scope.order ={};
 	console.log($rootScope.userName);
@@ -27,5 +27,12 @@ angular.module('pilotApp').controller('createOrderController',['$scope', '$locat
 	      	},4000);
         });	
 	};
+
+	$scope.openSideNavPanel = function() {
+        $mdSidenav('left').open();
+    };
+    $scope.closeSideNavPanel = function() {
+        $mdSidenav('left').close();
+    };
 
 }]);

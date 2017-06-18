@@ -1,4 +1,4 @@
-angular.module('pilotApp').controller('contractListController', ['$scope', '$http' , '$location','para', '$rootScope','myutils' ,function($scope, $http, $location, para, $rootScope,myutils) {
+angular.module('pilotApp').controller('contractListController', ['$scope', '$http' , '$location','para', '$rootScope','myutils', '$mdSidenav' ,function($scope, $http, $location, para, $rootScope,myutils,$mdSidenav) {
 
 	$scope.gridOptions = {
             data: [],
@@ -7,11 +7,6 @@ angular.module('pilotApp').controller('contractListController', ['$scope', '$htt
 
     var arg = [""];
 
-
-    if($rootScope.userName == 'test_user0' || $rootScope.userName == 'bosch_planner'){
-    	$scope.show = true;
-    	console.log($scope.show);
-    }
 
     myutils.showWait();	
 
@@ -62,5 +57,13 @@ angular.module('pilotApp').controller('contractListController', ['$scope', '$htt
 			});
 		},1000);	
 	}
+
+	$scope.openSideNavPanel = function() {
+        $mdSidenav('left').open();
+    };
+    $scope.closeSideNavPanel = function() {
+        $mdSidenav('left').close();
+    };
+
 	
 }]);

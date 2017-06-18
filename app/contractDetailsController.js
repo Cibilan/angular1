@@ -1,4 +1,4 @@
-angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$http', '$location', '$routeParams','$rootScope','para','myutils' , function($scope, $http, $location, $routeParams, $rootScope,para,myutils) {
+angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$http', '$location', '$routeParams','$rootScope','para','myutils' , '$mdSidenav',function($scope, $http, $location, $routeParams, $rootScope,para,myutils,$mdSidenav) {
 
 	$scope.dispatchOrderId = $routeParams.id;
 	$scope.dispatchOrderDetails = {};
@@ -13,6 +13,14 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 	$scope.stage4 = [];
 	$scope.stage5 = [];
 	$scope.stage6 = [];
+
+	$scope.openSideNavPanel = function() {
+        $mdSidenav('left').open();
+    };
+    $scope.closeSideNavPanel = function() {
+        $mdSidenav('left').close();
+    };
+
 
 	myutils.showWait();		
 	function refresh(){
@@ -806,5 +814,6 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 	$scope.drop = function(){
 		alert("Feature Not active");
 	}
+
 		
 }]);

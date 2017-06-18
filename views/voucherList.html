@@ -2,9 +2,8 @@
 
 <md-toolbar>
       <div class="md-toolbar-tools">
-        <md-button
-        class="md-icon-button"
-        aria-label="Settings">
+        <md-button class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
+        <md-tooltip>Menu</md-tooltip>
         <md-icon md-svg-icon="img/icons/ic_menu_white_48px.svg"></md-icon>
         </md-button>
         <h2 class="md-toolbar-item md-breadcrumb md-headline ng-isolate-scope">
@@ -38,6 +37,38 @@
       </div>
 
 </md-toolbar>
+
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+
+        <md-toolbar layout="row">
+     <div class="md-toolbar-tools">
+        <h2>
+          <span>Menu</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label="Close Side Panel" ng-click="closeSideNavPanel()">
+          <md-tooltip>Close Menu</md-tooltip>
+          <md-icon class="md-default-theme" class="material-icons">&#xE5CD;</md-icon>
+        </md-button>
+       </div>
+    </md-toolbar> 
+    <md-list>
+      <md-subheader class="md-no-sticky">Pages</md-subheader>
+      <md-list-item href="#/orderList" ng-if="$root.dispatch">
+        <md-icon class="md-default-theme" md-svg-src="img/icons/ic_assignment_black_24px.svg"> </md-icon>
+        <p>Dispatch Orders</p>
+      </md-list-item> 
+      <md-list-item href="#/voucherList" ng-if="$root.voucher">
+        <md-icon class="md-default-theme" md-svg-src="img/icons/ic_description_black_24px.svg"> </md-icon>
+        <p>Vouchers</p>
+      </md-list-item> 
+      <md-list-item href="#/logisticsInvoiceList" ng-if="$root.invoice">
+        <md-icon class="md-default-theme" md-svg-src="img/icons/ic_receipt_black_24px.svg"> </md-icon>
+        <p>Logistics Invoice</p>
+      </md-list-item> 
+
+    </md-list>
+</md-sidenav>
 
 <md-card layout-padding>
 <div grid-data id='test' grid-options="gridOptions" grid-actions="gridActions">

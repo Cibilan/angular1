@@ -1,4 +1,4 @@
-angular.module('pilotApp').controller('voucherListController', ['$scope', '$http' , '$location','para', '$rootScope','myutils' ,function($scope, $http, $location, para, $rootScope,myutils) {
+angular.module('pilotApp').controller('voucherListController', ['$scope', '$http' , '$location','para', '$rootScope','myutils', '$mdSidenav' ,function($scope, $http, $location, para, $rootScope,myutils,$mdSidenav) {
 
 	$scope.gridOptions = {
             data: [],
@@ -41,5 +41,12 @@ angular.module('pilotApp').controller('voucherListController', ['$scope', '$http
 			});
 		},1000);	
 	}
+
+	$scope.openSideNavPanel = function() {
+        $mdSidenav('left').open();
+    };
+    $scope.closeSideNavPanel = function() {
+        $mdSidenav('left').close();
+    };
 	
 }]);

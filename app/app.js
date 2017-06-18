@@ -69,6 +69,10 @@ pilotApp.config(['$routeProvider', function($routeProvider){
 			templateUrl: 'views/logisticsInvoiceDetails.html',
 			controller: 'logisticsInvoiceDetailsController'			
 		})
+		.when('/logisticsInvoiceCreate',{
+			templateUrl: 'views/logisticsInvoiceCreate.html',
+			controller: 'logisticsInvoiceCreateController'			
+		})
 		.otherwise({
 			redirectTo: '/login'
 		});
@@ -147,6 +151,7 @@ function showWait(){
 }]);
 
 pilotApp.controller('mainController', ['$scope' , function($scope) {
+
 
 }]);
 

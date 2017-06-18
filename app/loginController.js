@@ -37,7 +37,37 @@ angular.module('pilotApp').controller('loginController', ['$scope', '$http', '$l
 		    $rootScope.cc = $scope.login.cc;
 		    $rootScope.callerMeta = $scope.metacaller;
 		    $rootScope.peer = $scope.login.port;
-			$location.path('/orderList');
+
+			if( $rootScope.userName == 'test_user0') {
+		    	$rootScope.dispatch = true;
+		    	$rootScope.voucher = true;
+		    	$rootScope.invoice = true;
+			}
+
+		    if( $rootScope.userName == 'bosch_planner' || $rootScope.userName == 'bosch_dispatch' || $rootScope.userName == 'ford_inbound') {
+		    	$rootScope.dispatch = true;
+		    	$rootScope.voucher = false;
+		    	$rootScope.invoice = false;
+			}
+
+			if( $rootScope.userName == 'ksh_transport') {
+		    	$rootScope.dispatch = true;
+		    	$rootScope.voucher = true;
+		    	$rootScope.invoice = true;
+			}
+
+			if( $rootScope.userName == 'bosch_finance') {
+		    	$rootScope.dispatch = false;
+		    	$rootScope.voucher = false;
+		    	$rootScope.invoice = true;
+			}
+
+			if($rootScope.userName == 'bosch_finance'){
+				$location.path('/logisticsInvoiceList');
+			}
+			else {
+				$location.path('/orderList');
+			}
 		}, function errorCallback(response) {
 		  	alert(response.data.Error);
 		});
