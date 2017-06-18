@@ -621,6 +621,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 			var param = para.myFunc("invoke","createAsset",arg);
 			console.log(param);
 
+			
 			$http.post($rootScope.url,param).then(function(response) { 	
 			
         		console.log(asset.assetId);
