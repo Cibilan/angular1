@@ -53,6 +53,22 @@ pilotApp.config(['$routeProvider', function($routeProvider){
 			templateUrl: 'views/createOrder.html',
 			controller: 'createOrderController'
 		})
+		.when('/voucherList',{
+			templateUrl: 'views/voucherList.html',
+			controller: 'voucherListController'			
+		})
+		.when('/logisticsInvoiceList',{
+			templateUrl: 'views/logisticsInvoiceList.html',
+			controller: 'logisticsInvoiceListController'			
+		})
+		.when('/voucherDetails/:id',{
+			templateUrl: 'views/voucherDetails.html',
+			controller: 'voucherDetailsController'			
+		})
+		.when('/logisticsInvoiceDetails',{
+			templateUrl: 'views/logisticsInvoiceDetails.html',
+			controller: 'logisticsInvoiceDetailsController'			
+		})
 		.otherwise({
 			redirectTo: '/login'
 		});

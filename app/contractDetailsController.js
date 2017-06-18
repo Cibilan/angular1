@@ -45,7 +45,8 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
     		downdocumentID4 : false,
     		goodsLoad : false,
     		goodsReceived : false,
-    		goodsDelivered : false
+    		goodsDelivered : false,
+    		generateVoucher : false
     	};
 
     	$scope.stepper = {
@@ -185,6 +186,21 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 					$scope.stepper.step3Completed = true;
 					$scope.stepper.step4Completed = true;
 					$scope.stepper.selected = 4; 
+				}
+				else if($scope.dispatchOrderDetails.stage == "5"){
+					$scope.show.documentUpload = true;
+					$scope.show.downdocumentID1 = true;
+					$scope.show.downdocumentID2 = true;
+					$scope.show.downdocumentID3 = true;
+					$scope.show.downdocumentID4 = true;						
+					$scope.show.generateVoucher = true;	
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.step3Completed = true;
+					$scope.stepper.step4Completed = true;
+					$scope.stepper.step5Completed = true;
+					$scope.stepper.step6Completed = true;
+					$scope.stepper.selected = 5; 
 				}
 				else{
 					$scope.show.documentUpload = true;
@@ -756,6 +772,24 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 		$scope.dispatchOrderDetails.transactionDescription = "Shipment Delivered";
 		$scope.dispatchOrderDetails.stage = "5";
 		update();
+	}
+
+	$scope.createVoucher = function(){
+		console.log($scope.dispatchOrderDetails);
+		$scope.dispatchOrderDetails.transactionDescription = "Voucher Created";
+		var arg = [$scope.dispatchOrderDetails.dispatchOrderId,$scope.dispatchOrderDetails.stage,$scope.dispatchOrderDetails.customer,$scope.dispatchOrderDetails.transporter,$scope.dispatchOrderDetails.seller,$scope.dispatchOrderDetails.assetIDs,$scope.dispatchOrderDetails.asnNumber,$scope.dispatchOrderDetails.source,$scope.dispatchOrderDetails.shipmentType,$scope.dispatchOrderDetails.contractType,$scope.dispatchOrderDetails.deliveryTerm,$scope.dispatchOrderDetails.dispatchDate,$scope.dispatchOrderDetails.transporterRef,$scope.dispatchOrderDetails.loadingType,$scope.dispatchOrderDetails.vehicleType,$scope.dispatchOrderDetails.weight,$scope.dispatchOrderDetails.consignment,$scope.dispatchOrderDetails.quantity,$scope.dispatchOrderDetails.partNumber,$scope.dispatchOrderDetails.partName,$scope.dispatchOrderDetails.orderRefNum,$scope.dispatchOrderDetails.createdOn,$scope.dispatchOrderDetails.documentID1,$scope.dispatchOrderDetails.documentID2,$scope.dispatchOrderDetails.documentID3,$scope.dispatchOrderDetails.documentID4,$scope.dispatchOrderDetails.dropDescription,$scope.dispatchOrderDetails.deliverydescription,$scope.dispatchOrderDetails.inTransitDisptachOfficerSigned,$scope.dispatchOrderDetails.inTransitTransporterSigned,$scope.dispatchOrderDetails.transactionDescription];
+		var param = para.myFunc("invoke","createVoucher",arg);	
+		console.log(param);
+		myutils.showWait();	
+
+		setTimeout(function(){
+		    $http.post($rootScope.url,param).success(function(reponse){
+			console.log($scope.param);
+			myutils.hideWait();			
+			});
+	      	},4000);
+
+
 	}
 
 	$scope.reload = function(){

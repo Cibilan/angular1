@@ -1,0 +1,129 @@
+<div ng-cloak>  
+
+<md-toolbar>
+      <div class="md-toolbar-tools">
+        <md-button
+        class="md-icon-button"
+        aria-label="Settings">
+        <md-icon md-svg-icon="img/icons/ic_menu_white_48px.svg"></md-icon>
+        </md-button>
+        <h2 class="md-toolbar-item md-breadcrumb md-headline ng-isolate-scope">
+            <span class="md-breadcrumb-page ng-binding">List of Transport Vouchers</span>
+          </h2>
+        <md-input-container layout="center center" layout-padding md-no-float>
+                   
+                    <input ng-model="voucherOrderID"
+                       class="md-input"
+                       ng-change="gridActions.filter()"
+                       id="voucherOrderID"
+                       filter-by="voucherOrderID"
+                       placeholder ="Search by Vouchers #" 
+                       filter-type="text"
+                       aria-invalid="false"
+                       style="border-color: white; color: white">    
+        </md-input-container>
+
+        <span flex></span>
+
+        <md-button class="md-raised md-accent" aria-label="Learn More" ng-click= "reload()">
+          Reload
+        </md-button>
+
+        <md-button class="md-icon-button md-accent" aria-label="Logout" href="#/Login">
+          <md-icon md-svg-src="img/icons/ic_account_circle_white_48px.svg"></md-icon>
+        </md-button>
+        <div layout="row">
+          <h3 class="md-toolbar-item"> <span> {{userName}} </span></h3>  
+        </div>
+      </div>
+
+</md-toolbar>
+
+<md-card layout-padding>
+<div grid-data id='test' grid-options="gridOptions" grid-actions="gridActions">
+<div layout-gt-sm="row" layout-sm="column" layout-align="center">
+    <div flex-gt-sm="25" flex-sm="100" layout="row" layout-align="start center">
+        <span>{{filtered.length}} items total</span>
+    </div>
+    <div flex-gt-sm="75" flex-xs="100">
+        <div layout-xs="column" layout="row" layout-align-xs="end end" layout-align="end center">
+            <grid-pagination max-size="5"
+                             boundary-links="true"
+                             class="pagination mdl-shadow--2dp"
+                             ng-if="paginationOptions.totalItems  > paginationOptions.itemsPerPage"
+                             total-items="paginationOptions.totalItems"
+                             ng-model="paginationOptions.currentPage"
+                             ng-change="reloadGrid()"
+                             items-per-page="paginationOptions.itemsPerPage"></grid-pagination>
+            <md-input-container flex-offset-gt-xs="5" class="items-per-page">
+                <md-select ng-init="paginationOptions.itemsPerPage = '10'" ng-model="paginationOptions.itemsPerPage" ng-change="reloadGrid()">
+                    <md-option>10</md-option>
+                    <md-option>25</md-option>
+                    <md-option>50</md-option>
+                    <md-option>75</md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+    </div>
+</div>    
+    
+    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+        <thead>
+        <tr>
+            <th sortable="voucherOrderID" class="sortable mdl-data-table__cell--non-numeric">
+                <span>Voucher Id</span>
+            </th>
+             <th sortable="stage" class="sortable">
+                <span>Stage</span>
+            </th>
+            <th sortable="source" class="sortable">
+                <span>Source</span>
+            </th>
+            <th sortable="customer" class="sortable">
+                <span>Destination</span>
+            </th>
+            <th sortable="shipmentType" class="sortable">
+                <span>Shipment Type</span>
+            </th>
+            <th sortable="loadingType" class="sortable">
+                <span>Loading Type</span>
+            </th>
+            <th sortable="dispatchDate" class="sortable">
+                <span>Dispatch Date</span>
+            </th>
+            <th sortable="amount" class="sortable">
+                <span>Amount (INR)</span>
+            </th>
+            <th sortable="dispatchDate" class="sortable" layout-align = "center center">
+            <span>Select</span>
+            </th>
+            
+        </tr>
+        </thead>
+        <tbody>
+          <tr grid-item>
+            <td class="mdl-data-table__cell--non-numeric">
+                <span ng-bind="item.voucherOrderID"></span>
+            </td>
+            <td ng-bind="item.stage"> </td>
+            <td ng-bind="item.source"> </td>
+            <td ng-bind="item.customer"> </td>
+            <td ng-bind="item.shipmentType"> </td>
+            <td ng-bind="item.loadingType"> </td>
+            <td ng-bind="item.dispatchDate | date:'MM/dd/yyyy'"> </td>
+            <td ng-bind="item.amount"> </td>
+            <td>
+                <md-button ng-click= "goPath(item.dispatchOrderId)" class="md-raised md-primary md-hue-1"> View </md-button>  
+
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+    
+</div>
+
+</md-card>
+
+
+</div>
