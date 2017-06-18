@@ -1,0 +1,174 @@
+<div ng-cloak>
+<md-toolbar>
+  <div class="md-toolbar-tools">
+        <md-button href="#/orderList"
+        class="md-icon-button"
+        aria-label="Home">
+        <md-icon md-svg-icon="img/icons/ic_home_white_48px.svg"></md-icon>
+      </md-button>
+      <h2 class="md-toolbar-item md-breadcrumb md-headline ng-isolate-scope">
+            <span class="md-breadcrumb-page ng-binding">Voucher Details</span>
+          </h2>
+      <span flex></span>
+      <md-button class="md-raised md-accent" aria-label="Reload" ng-click= "reload()">
+          Reload
+        </md-button>
+      <md-button class="md-icon-button md-accent" aria-label="Logout" href="#/Login">
+          <md-icon md-svg-src="img/icons/ic_account_circle_white_48px.svg"></md-icon>
+        </md-button>
+        <div layout="row">
+          <h3 class="md-toolbar-item"> <span> {{userName}} </span></h3>  
+        </div>
+   </div>   
+</md-toolbar>
+
+<div layout-gt-xs layout="row" layout-align="center" layout-padding>
+
+<md-card flex md-theme="default">
+
+  <md-card-header>
+      <md-card-header-text>
+        <span class="md-title">Voucher Info</span>
+      </md-card-header-text>
+  </md-card-header>
+  
+  <div layout="row" layout-align="center">    
+  <md-card-title >
+      <md-card-title-text> 
+        <span>Voucher ID</span>
+      </md-card-title-text>
+      <md-card-title-text> 
+        <span class="md-subhead"> {{voucherDetails.dispatchOrderId}} </span>
+      </md-card-title-text>
+  </md-card-title>
+  <md-card-title>
+      <md-card-title-text> 
+        <span >Source</span>
+      </md-card-title-text>
+      <md-card-title-text> 
+        <span class="md-subhead"> {{voucherDetails.source}} </span>
+      </md-card-title-text>
+  </md-card-title>
+  <md-card-title>
+      <md-card-title-text> 
+        <span>Destination</span> 
+       </md-card-title-text>
+       <md-card-title-text> 
+        <span class="md-subhead"> {{voucherDetails.customer}} </span>
+      </md-card-title-text>        
+  </md-card-title>
+
+  <md-card-title>
+      <md-card-title-text> 
+        <span> Part# </span>
+      </md-card-title-text>
+      <md-card-title-text> 
+        <span class="md-subhead"> {{voucherDetails.partNumber}} </span>
+      </md-card-title-text>
+  </md-card-title>
+  
+  </div>
+  <div layout="row" layout-align="center">    
+  <md-card-title >
+      <md-card-title-text> 
+        <span>Quantity</span>
+      </md-card-title-text>
+      <md-card-title-text> 
+        <span class="md-subhead"> {{voucherDetails.quantity}} </span>
+      </md-card-title-text>
+  </md-card-title>
+  <md-card-title>
+      <md-card-title-text> 
+        <span>Shipment Type</span>
+      </md-card-title-text>
+      <md-card-title-text> 
+        <span class="md-subhead"> {{voucherDetails.shipmentType}} </span>
+      </md-card-title-text>
+  </md-card-title>
+  <md-card-title>
+      <md-card-title-text> 
+        <span>Load Type</span>
+      </md-card-title-text>
+      <md-card-title-text> 
+        <span class="md-subhead"> {{voucherDetails.loadingType}} </span>
+      </md-card-title-text>
+  </md-card-title>
+  <md-card-title>
+      <md-card-title-text> 
+        <span>Delivery term</span>
+      </md-card-title-text>
+      <md-card-title-text> 
+        <span class="md-subhead"> {{voucherDetails.deliveryTerm}} </span>
+      </md-card-title-text>
+  </md-card-title>
+
+  </div>
+  <div layout="row" layout-align="center"> 
+       <md-card-title>
+      <md-card-title-text> 
+        <span>Weight (Kgs)</span>
+      </md-card-title-text>
+      <md-card-title-text> 
+        <span class="md-subhead"> {{voucherDetails.weight}} </span>
+      </md-card-title-text>
+  </md-card-title>
+       <md-card-title>
+      <md-card-title-text> 
+        <span>Dispatch Date</span>
+      </md-card-title-text>
+      <md-card-title-text> 
+        <span class="md-subhead"> {{voucherDetails.dispatchDate}}</span>
+      </md-card-title-text>
+      </md-card-title>
+     <md-card-title>
+      <md-card-title-text> 
+        <span>Transport contract</span>
+      </md-card-title-text>
+      <md-card-title-text> 
+        <span class="md-subhead"> {{voucherDetails.transporterRef}} </span>
+      </md-card-title-text>
+  </md-card-title>
+  </md-card-title>
+     <md-card-title>
+      <md-card-title-text> 
+        <span>Amount (INR)</span>
+      </md-card-title-text>
+      <md-card-title-text> 
+        <span class="md-subhead"> {{voucherDetails.amount}} </span>
+      </md-card-title-text>
+  </md-card-title>
+  </div>  
+</md-card>
+</div>
+  <div layout ="row">
+  <md-card flex layout-padding>
+  <md-card-header>
+      <md-card-header-text>
+        <span class="md-title">Document Details</span>
+      </md-card-header-text>
+  </md-card-header>
+  <md-card-content>
+
+  <md-list-item>
+    <p> Invoice</p>
+      <md-button class="md-raised md-primary md-hue-1" ng-click = "downFile('documentID1')">Download</md-button> 
+</md-list-item>
+<md-divider ></md-divider>
+<md-list-item>
+    <p> Esugam</p>
+      <md-button class="md-raised md-primary md-hue-1" ng-click = "downFile('documentID2')">Download</md-button>  
+</md-list-item>
+<md-divider ></md-divider>
+<md-list-item>
+    <p> LR</p>
+      <md-button class="md-raised md-primary md-hue-1" ng-click = "downFile('documentID3')">Download</md-button>   
+</md-list-item>
+<md-divider ></md-divider>
+<md-list-item>
+    <p> ETC</p>
+      <md-button class="md-raised md-primary md-hue-1" ng-click = "downFile('documentID4')">Download</md-button>    
+</md-list-item>
+  </md-card-content> 
+</md-card>
+</div>
+</div>
