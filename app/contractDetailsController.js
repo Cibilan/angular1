@@ -421,6 +421,21 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 					$scope.show.downdocumentID3 = true;
 					$scope.show.downdocumentID4 = true;
 				}
+				else if($scope.dispatchOrderDetails.stage == "5"){
+					$scope.show.documentUpload = true;
+					$scope.show.downdocumentID1 = true;
+					$scope.show.downdocumentID2 = true;
+					$scope.show.downdocumentID3 = true;
+					$scope.show.downdocumentID4 = true;						
+					$scope.show.generateVoucher = true;	
+					$scope.stepper.step1Completed = true;
+					$scope.stepper.step2Completed = true;
+					$scope.stepper.step3Completed = true;
+					$scope.stepper.step4Completed = true;
+					$scope.stepper.step5Completed = true;
+					$scope.stepper.step6Completed = true;
+					$scope.stepper.selected = 5; 
+				}
 				else{
 					$scope.stepper.step1Completed = true;
 					$scope.stepper.step2Completed = true;

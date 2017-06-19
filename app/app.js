@@ -54,10 +54,24 @@ pilotApp.config(['$routeProvider', function($routeProvider){
 			controller: 'createOrderController'
 		})
 		.when('/voucherList',{
+			resolve:{
+				"check":function($location,$rootScope){
+					if(!$rootScope.loggedIn){
+						$location.path('/login');
+					}
+				}	
+			},
 			templateUrl: 'views/voucherList.html',
 			controller: 'voucherListController'			
 		})
 		.when('/voucherDetails/:id',{
+			resolve:{
+				"check":function($location,$rootScope){
+					if(!$rootScope.loggedIn){
+						$location.path('/login');
+					}
+				}	
+			},
 			templateUrl: 'views/voucherDetails.html',
 			controller: 'voucherDetailsController'			
 		})

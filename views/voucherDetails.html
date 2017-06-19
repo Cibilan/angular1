@@ -138,7 +138,7 @@
   <div layout="row" layout-align="center"> 
        <md-card-title>
       <md-card-title-text> 
-        <span>Weight (Kgs)</span>
+        <span>Weight (Tons)</span>
       </md-card-title-text>
       <md-card-title-text> 
         <span class="md-subhead"> {{voucherDetails.weight}} </span>
@@ -203,7 +203,7 @@
   </md-card-content> 
 </md-card>
 </div>
-
+<div ng-if="finance">
 <div ng-if="approve">
   <md-card flex ="50" layout-padding >
     <md-card-header>
@@ -218,5 +218,6 @@
       </md-list-item> 
     </md-list>
   </md-card>
+</div>
 </div>
 </div>
