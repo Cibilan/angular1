@@ -2,10 +2,14 @@ angular.module('pilotApp').controller('voucherDetailsController', ['$scope', '$h
 
 	$scope.voucherId = $routeParams.id;
 	$scope.voucherDetails = {};
+	$scope.approve = false;
+	$scope.approved = false;
 
 	myutils.showWait();	
 
-	var arg = ["voucher" , $scope.voucherId];
+	function refresh(){
+
+		var arg = ["voucher" , $scope.voucherId];
 
 	console.log(arg);
 	$scope.param = para.myFunc("query","getVouchers",arg);
@@ -18,10 +22,18 @@ angular.module('pilotApp').controller('voucherDetailsController', ['$scope', '$h
 				var voucher = JSON.parse(message);
 				$scope.voucherDetails = voucher[0];
 				console.log($scope.voucherDetails);
+				if($scope.voucherDetails.stage == "8"){
+					$scope.approve = true;
+				}
+				else{
+					$scope.approved = true;
+				}
 		        myutils.hideWait();	
 			});
 	},1000);
+	}
 
+	refresh();
 	$scope.downFile = function(field){
 
 			var name = $scope.voucherDetails[field]; 
@@ -64,5 +76,17 @@ angular.module('pilotApp').controller('voucherDetailsController', ['$scope', '$h
     $scope.closeSideNavPanel = function() {
         $mdSidenav('left').close();
     };
+
+    $scope.approvefun = function(){
+    	
+    	var arg = [$scope.voucherDetails.voucherOrderID, $scope.voucherDetails.dispatchOrderId ,$scope.voucherDetails.stage,$scope.voucherDetails.customer,$scope.voucherDetails.transporter,$scope.voucherDetails.seller,$scope.voucherDetails.assetIDs,$scope.voucherDetails.asnNumber,$scope.voucherDetails.source,$scope.voucherDetails.shipmentType,$scope.voucherDetails.contractType,$scope.voucherDetails.deliveryTerm,$scope.voucherDetails.dispatchDate,$scope.voucherDetails.transporterRef,$scope.voucherDetails.loadingType,$scope.voucherDetails.vehicleType,$scope.voucherDetails.weight,$scope.voucherDetails.consignment,$scope.voucherDetails.quantity,$scope.voucherDetails.partNumber,$scope.voucherDetails.partName , $scope.voucherDetails.orderRefNum, $scope.voucherDetails.createdOn, $scope.voucherDetails.documentID1, $scope.voucherDetails.documentID2, $scope.voucherDetails.documentID3, $scope.voucherDetails.documentID4, $scope.voucherDetails.dropDescription , $scope.voucherDetails.deliverydescription , $scope.voucherDetails.inTransitDisptachOfficerSigned , $scope.voucherDetails.inTransitTransporterSigned , $scope.voucherDetails.transactionDescription , $scope.voucherDetails.timeStamp , $scope.voucherDetails.amount];
+    	$scope.param1 = para.myFunc("invoke","updateVoucher",arg);
+    		setTimeout(function(){       
+			$http.post($rootScope.url,$scope.param1).success(function(reponse){
+				refresh();
+			});
+		},1000);
+
+    }
 
 }]);

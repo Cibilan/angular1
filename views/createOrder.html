@@ -31,19 +31,15 @@
        </div>
     </md-toolbar> 
     <md-list>
-      <md-subheader class="md-no-sticky">Pages</md-subheader>
+            <md-subheader class="md-no-sticky">Pages</md-subheader>
       <md-list-item href="#/orderList" ng-if="$root.dispatch">
         <md-icon class="md-default-theme" md-svg-src="img/icons/ic_assignment_black_24px.svg"> </md-icon>
         <p>Dispatch Orders</p>
       </md-list-item> 
-      <md-list-item href="#/voucherList" ng-if="$root.voucher">
-        <md-icon class="md-default-theme" md-svg-src="img/icons/ic_description_black_24px.svg"> </md-icon>
-        <p>Vouchers</p>
-      </md-list-item> 
-      <md-list-item href="#/logisticsInvoiceList" ng-if="$root.invoice">
+      <md-list-item href="#/voucherList" ng-if="$root.invoice">
         <md-icon class="md-default-theme" md-svg-src="img/icons/ic_receipt_black_24px.svg"> </md-icon>
         <p>Logistics Invoice</p>
-      </md-list-item> 
+      </md-list-item>
 
     </md-list>
 </md-sidenav>
@@ -90,8 +86,8 @@
                   <label>Destination</label>
                   <md-select name="type" ng-model="order.destination">
                     <md-option value="Maruthi Pune">Maruthi Pune</md-option>
-                    <md-option value="Ashok Leyland,Hosur">Ashok Leyland,Hosur</md-option>
-                    <md-option value="Ford, Chennai">Ford, Chennai</md-option>
+                    <md-option value="Ashok Leyland Hosur">Ashok Leyland,Hosur</md-option>
+                    <md-option value="Ford Chennai">Ford, Chennai</md-option>
                   </md-select>                  
              </md-input-container>
              <md-input-container class="md-block" flex >

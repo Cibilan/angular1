@@ -41,11 +41,7 @@
         <md-icon class="md-default-theme" md-svg-src="img/icons/ic_assignment_black_24px.svg"> </md-icon>
         <p>Dispatch Orders</p>
       </md-list-item> 
-      <md-list-item href="#/voucherList" ng-if="$root.voucher">
-        <md-icon class="md-default-theme" md-svg-src="img/icons/ic_description_black_24px.svg"> </md-icon>
-        <p>Vouchers</p>
-      </md-list-item> 
-      <md-list-item href="#/logisticsInvoiceList" ng-if="$root.invoice">
+      <md-list-item href="#/voucherList" ng-if="$root.invoice">
         <md-icon class="md-default-theme" md-svg-src="img/icons/ic_receipt_black_24px.svg"> </md-icon>
         <p>Logistics Invoice</p>
       </md-list-item> 
@@ -476,7 +472,7 @@
       <label>Vehicle Type</label>
       <md-select name="type" ng-model="dispatchOrderDetails.vehicleType">
         <md-option value="16 Tonner">16 Tonner</md-option>
-        <md-option value="12 Tonner">12 Tonner</md-option>
+        <md-option value="21 Tonner">21 Tonner</md-option>
       </md-select>
     </md-input-container>
     <md-input-container class="md-block" flex >
@@ -491,7 +487,7 @@
         <input class="md-input" ng-model="dispatchOrderDetails.transporterRef" >
     </md-input-container>
     <md-input-container  class="md-block" flex>
-        <label>Weight in Kgs</label>
+        <label>Weight in Tons</label>
         <input class="md-input" ng-model="dispatchOrderDetails.weight" >
     </md-input-container>
     <md-card-actions layout="row"  layout-align="end center">
@@ -587,9 +583,41 @@
   <md-card flex ="50" layout-padding >
     <md-card-header>
       <md-card-header-text>
-        <span class = "md-title">Confirm Goods delivered</span>
+        <span class = "md-title">Goods Delivery Condition</span>
       </md-card-header-text>
     </md-card-header>
+    <md-content>
+        <div layout="column">            
+             <md-input-container class="md-block" flex >
+                  <label>Quantity Match</label>
+                  <md-select name="type" ng-model="delivery.quantity">
+                    <md-option value="Yes">Yes</md-option>
+                    <md-option value="No">No</md-option>
+                  </md-select>
+             </md-input-container>
+             <md-input-container class="md-block" flex >
+                  <label>External Damage</label>
+                  <md-select name="type" ng-model="delivery.external">
+                    <md-option value="Yes">Yes</md-option>
+                    <md-option value="No">No</md-option>
+                  </md-select>
+             </md-input-container>
+             <md-input-container class="md-block" flex >
+                  <label>Physical Damage</label>
+                  <md-select name="type" ng-model="delivery.physical">
+                    <md-option value="Yes">Yes</md-option>
+                    <md-option value="No">No</md-option>
+                  </md-select>
+             </md-input-container>
+             <md-input-container class="md-block" flex >
+                  <label>Other Condition</label>
+                  <md-select name="type" ng-model="delivery.other">
+                    <md-option value="Yes">Yes</md-option>
+                    <md-option value="No">No</md-option>
+                  </md-select>
+             </md-input-container>
+        </div>
+    </md-content>
     <md-card-actions layout="row"  layout-align="end center">
         <md-button class="md-raised md-primary" ng-click= "goodsdelivered()">Delivered</md-button>
     </md-card-actions>
@@ -601,13 +629,15 @@
   <md-card flex ="50" layout-padding >
     <md-card-header>
       <md-card-header-text>
-        <span class = "md-title">Generate Voucher</span>
+        <span class = "md-title">Generate Invoice</span>
       </md-card-header-text>
     </md-card-header>
-    <md-card-actions layout="row"  layout-align="end center">
-        <md-button class="md-raised md-primary" ng-click= "createVoucher()">Create</md-button>
-    </md-card-actions>
-
+    <md-list>
+      <md-list-item>
+        <p>Generate Logistic Invoice and Calculate Invoice Amout</p>
+        <md-button class="md-raised md-primary" ng-click= "createVoucher()">Generate</md-button> 
+      </md-list-item> 
+    </md-list>
   </md-card>
 </div>
 

@@ -6,7 +6,7 @@
         <md-icon md-svg-icon="img/icons/ic_menu_white_48px.svg"></md-icon>
         </md-button>
       <h2 class="md-toolbar-item md-breadcrumb md-headline ng-isolate-scope">
-            <span class="md-breadcrumb-page ng-binding">Voucher Details</span>
+            <span class="md-breadcrumb-page ng-binding">Invoice Details</span>
           </h2>
       <span flex></span>
       <md-button class="md-raised md-accent" aria-label="Reload" ng-click= "reload()">
@@ -41,14 +41,10 @@
         <md-icon class="md-default-theme" md-svg-src="img/icons/ic_assignment_black_24px.svg"> </md-icon>
         <p>Dispatch Orders</p>
       </md-list-item> 
-      <md-list-item href="#/voucherList" ng-if="$root.voucher">
-        <md-icon class="md-default-theme" md-svg-src="img/icons/ic_description_black_24px.svg"> </md-icon>
-        <p>Vouchers</p>
-      </md-list-item> 
-      <md-list-item href="#/logisticsInvoiceList" ng-if="$root.invoice">
+      <md-list-item href="#/voucherList" ng-if="$root.invoice">
         <md-icon class="md-default-theme" md-svg-src="img/icons/ic_receipt_black_24px.svg"> </md-icon>
         <p>Logistics Invoice</p>
-      </md-list-item> 
+      </md-list-item>
 
     </md-list>
 </md-sidenav>
@@ -57,9 +53,14 @@
 
 <md-card flex md-theme="default">
 
-  <md-card-header>
+  <md-card-header ng-if="approve">
       <md-card-header-text>
-        <span class="md-title">Voucher Info</span>
+        <span class="md-title">Invoice Info - Awaiting for Approval</span>
+      </md-card-header-text>
+  </md-card-header>
+  <md-card-header ng-if="approved">
+      <md-card-header-text>
+        <span class="md-title">Invoice Info - Approved and Payment confirmed</span>
       </md-card-header-text>
   </md-card-header>
   
@@ -201,5 +202,21 @@
 </md-list-item>
   </md-card-content> 
 </md-card>
+</div>
+
+<div ng-if="approve">
+  <md-card flex ="50" layout-padding >
+    <md-card-header>
+      <md-card-header-text>
+        <span class = "md-title">Approve Invoice</span>
+      </md-card-header-text>
+    </md-card-header>
+    <md-list>
+      <md-list-item>
+        <p>Approve and process payment</p>
+        <md-button class="md-raised md-primary" ng-click= "approvefun()">Approve</md-button> 
+      </md-list-item> 
+    </md-list>
+  </md-card>
 </div>
 </div>

@@ -13,6 +13,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 	$scope.stage4 = [];
 	$scope.stage5 = [];
 	$scope.stage6 = [];
+	$scope.delivery ={};
 
 	$scope.openSideNavPanel = function() {
         $mdSidenav('left').open();
@@ -777,6 +778,7 @@ angular.module('pilotApp').controller('contractDetailsController', ['$scope', '$
 
 	$scope.goodsdelivered = function(){
 		console.log($scope.dispatchOrderDetails);
+		$scope.dispatchOrderDetails.dropDescription = $scope.delivery.quantity + $scope.delivery.external + $scope.delivery.physical + $scope.delivery.other ; 
 		$scope.dispatchOrderDetails.transactionDescription = "Shipment Delivered";
 		$scope.dispatchOrderDetails.stage = "5";
 		update();

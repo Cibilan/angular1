@@ -10,6 +10,11 @@ angular.module('pilotApp').controller('contractListController', ['$scope', '$htt
 
     myutils.showWait();	
 
+    if($rootScope.userName == 'test_user0' || $rootScope.userName == 'bosch_planner'){
+     	$scope.show = true;
+     	console.log($scope.show);
+    }
+
     $scope.param = para.myFunc("query","getAllDispatchOrdersLatest",arg);
     
     setTimeout(function(){       

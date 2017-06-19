@@ -4,7 +4,7 @@ angular.module('pilotApp').controller('loginController', ['$scope', '$http', '$l
 
 		peer : "localhost",	
 		port : "7050",
-		cc : "973826f23f42b8dfdda6b712b3016cef013f6a02f5999ccc63c663a48539298439a11dcdf71cc3d456ceabd9fb60b165d1e63b5a7dabcb6c039a8b510294d893",
+		cc : "5ec8f59817606e2473404a0d07f73f4e0cb6da0cb8757413637d21dada73b1c2c64e1a0c09872ec2eca92fd095f4fc58527a6f1fb25965b9327f5159ef499c7f",
 		userName : "test_user0" ,
 		password : "MS9qrN8hFjlE"
 	};
@@ -40,30 +40,26 @@ angular.module('pilotApp').controller('loginController', ['$scope', '$http', '$l
 
 			if( $rootScope.userName == 'test_user0') {
 		    	$rootScope.dispatch = true;
-		    	$rootScope.voucher = true;
 		    	$rootScope.invoice = true;
 			}
 
 		    if( $rootScope.userName == 'bosch_planner' || $rootScope.userName == 'bosch_dispatch' || $rootScope.userName == 'ford_inbound') {
 		    	$rootScope.dispatch = true;
-		    	$rootScope.voucher = false;
 		    	$rootScope.invoice = false;
 			}
 
 			if( $rootScope.userName == 'ksh_transport') {
 		    	$rootScope.dispatch = true;
-		    	$rootScope.voucher = true;
 		    	$rootScope.invoice = true;
 			}
 
 			if( $rootScope.userName == 'bosch_finance') {
 		    	$rootScope.dispatch = false;
-		    	$rootScope.voucher = false;
 		    	$rootScope.invoice = true;
 			}
 
 			if($rootScope.userName == 'bosch_finance'){
-				$location.path('/logisticsInvoiceList');
+				$location.path('/voucherList');
 			}
 			else {
 				$location.path('/orderList');
