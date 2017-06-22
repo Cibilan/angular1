@@ -1,0 +1,50 @@
+[{
+		"assetId": "S951",
+		"partNumber": "F002.A0Z.807-6YE",
+		"partDescription": "Diesel pump",
+		"owner": "Bosch",
+		"stage": "Open",
+		"batchNumer": "123435",
+		"manufactureDate": "2017-05-20 17:41:40",
+		"itchs": "1234",
+		"exciseChaperNumber": "2351",
+		"orderId": ""
+	},
+	{
+		"assetId": "S950",
+		"partNumber": "F002.A0Z.807-6YE",
+		"partDescription": "Diesel pump",
+		"owner": "Bosch",
+		"stage": "Open",
+		"batchNumer": "123435",
+		"manufactureDate": "2017-05-20 17:41:40",
+		"itchs": "1234",
+		"exciseChaperNumber": "2351",
+		"orderId": ""
+	},
+	{
+		"assetId": "S940",
+		"partNumber": "F002.A0Z.807-6YE",
+		"partDescription": "Diesel pump",
+		"owner": "Bosch",
+		"stage": "Open",
+		"batchNumer": "123435",
+		"manufactureDate": "2017-05-20 17:41:40",
+		"itchs": "1234",
+		"exciseChaperNumber": "2351",
+		"orderId": ""
+	},
+	{
+		"assetId": "S945",
+		"partNumber": "F002.A0Z.807-6YE",
+		"partDescription": "Diesel pump",
+		"owner": "Bosch",
+		"stage": "Open",
+		"batchNumer": "123435",
+		"manufactureDate": "2017-05-20 17:41:40",
+		"itchs": "1234",
+		"exciseChaperNumber": "2351",
+		"orderId": ""
+	}
+
+]
